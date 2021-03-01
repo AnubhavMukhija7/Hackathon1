@@ -4,13 +4,17 @@ import { addData, updateEmp, deleteEmp, findAllEmp, findOneEmp } from '../3Contr
 const router = express.Router();
 
 // get an employee with the given id
-router.get('/id:=id', (req, res) => {});
+router.get('/id=:id', (req, res) => {
+    findOneEmp(req,res);
+});
 
 // get all employee for the given year
-router.get('/year:=year', (req, res) => {});
+router.get('/year=:year', (req, res) => {});
 
 // get all employees uptill now
-router.get('/', (req, res) => {});
+router.get('/', (req, res) => {
+    findAllEmp(req,res);
+});
 
 router.get('/billable', (req, res) => {});
 

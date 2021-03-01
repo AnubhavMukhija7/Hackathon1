@@ -1,15 +1,15 @@
 import { makeConnection } from '../6Connection/connection.js';
 const request = await makeConnection();
-
 const getEmployees = async () => {
-  const data = await request.query('Select * from Employees');
+  const data = await request.query('Select * from Employee');
   return data.recordsets[0];
 };
 
 const getEmployee = async (id) => {
   const data = await request.query(
-    `Select * from Employees where EmpID = ${id}))`
+    `Select * from Employees where EmpID = ${id}`
   );
+  console.log('hello');
   return data.recordsets[0];
 };
 

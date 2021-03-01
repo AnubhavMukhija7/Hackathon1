@@ -1,5 +1,5 @@
 import { makeConnection } from '../6Connection/connection.js';
-const request = await makeConnection();
+
 
 const getVendors = async () => {
   const data = await request.query('Select * from Vendors');

@@ -18,28 +18,23 @@ import {
 
 //employee
 const addData = async (req, res) => {
-  const response = await addEmpData(req.body);
-  res.send(response);
+  res.send(await addEmpData(req.body));
 };
 
 const updateEmp = async (req, res) => {
-  const response = await updateEmpData(req.body);
-  res.send(response);
+  res.send(await updateEmpData(req.body));
 };
 
 const deleteEmp = async (req, res) => {
-  const response = await deleteEmpData(req.body);
-  res.send(response);
+  res.send(await deleteEmpData(req.body));
 };
 
 const findAllEmp = async (req, res) => {
-  const response = await findAllEmpDetails();
-  res.send(response);
+  res.send(await findAllEmpDetails(req,res));
 };
 
 const findOneEmp = async (req, res) => {
-  const response = await findOneEmpDetail(req.params.id);
-  res.send(response);
+  res.send(await findOneEmpDetail(req,res));
 };
 
 // for vendors

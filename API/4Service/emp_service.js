@@ -17,18 +17,16 @@ const updateEmpData = async (req, res) => {
 };
 
 const deleteEmpData = async (req, res) => {
-  const response = await deleteEmployee(req.body);
-  res.send(response);
+  return await deleteEmployee(req.body);
 };
 
 const findAllEmpDetails = async (req, res) => {
-  const response = await getEmployees();
-  res.send(response);
+  return await getEmployees();
 };
 
 const findOneEmpDetail = async (req, res) => {
-  const response = await getEmployee(req.params.id);
-  res.send(response);
+  console.log('ping me');
+  return await getEmployee(req.params.id);
 };
 
 export {
