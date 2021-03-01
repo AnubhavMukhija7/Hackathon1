@@ -18,15 +18,15 @@ import {
 
 //employee
 const addData = async (req, res) => {
-  res.send(await addEmpData(req.body));
+  res.send(await addEmpData(req,res));
 };
 
 const updateEmp = async (req, res) => {
-  res.send(await updateEmpData(req.body));
+  res.send(await updateEmpData(req,res));
 };
 
 const deleteEmp = async (req, res) => {
-  res.send(await deleteEmpData(req.body));
+  res.send(await deleteEmpData(req,res));
 };
 
 const findAllEmp = async (req, res) => {
@@ -39,28 +39,23 @@ const findOneEmp = async (req, res) => {
 
 // for vendors
 const addVendor = async (req, res) => {
-  const response = await addVen(req.body);
-  res.send(response);
+  res.send(await addVen(req.body));
 };
 
 const updateVendor = async (req, res) => {
-  const response = await updateVen(req.body);
-  res.send(response);
+  res.send(await updateVen(req.body));
 };
 
 const deleteVendor = async (req, res) => {
-  const response = await deleteVen(req.body);
-  res.send(response);
+  res.send(await deleteVen(req.body));
 };
 
 const findAllVendor = async (req, res) => {
-  const response = await findAllVen();
-  res.send(response);
+   res.send(await findAllVen());
 };
 
 const findOneVendor = async (req, res) => {
-  const response = await findOneVen(req.params.id);
-  res.send(response);
+  res.send(await findOneVen(req.params.id));
 };
 
 //export

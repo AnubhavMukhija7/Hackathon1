@@ -7,22 +7,21 @@ const getEmployees = async () => {
 
 const getEmployee = async (id) => {
   const data = await request.query(
-    `Select * from Employees where EmpID = ${id}`
+    `Select * from Employee where EmpID = ${id}`
   );
-  console.log('hello');
   return data.recordsets[0];
 };
 
 const addEmployee = async (body) => {
   const data = await request.query(
-    `Insert into Employees (EmployeeID,FirstName, LastName, etc) values (${body.EmployeeID},'${body.FirstName}', '${body.LastName}')`
+    `Insert into Employee (EmpID,FirstName, LastName, etc) values (${body.EmpID},'${body.FirstName}', '${body.LastName}')`
   );
   return 'Record Inserted';
 };
 
 const updateEmployee = async (body) => {
   const data = await request.query(
-    `Update Employees set ${body.Column} = '${body.Detail}' where EmployeeID=${body.EmployeeID}`
+    `Update Employee set ${body.Column} = '${body.Detail}' where EmployeeID=${body.EmployeeID}`
   );
   return 'Record Updated';
 };

@@ -25,7 +25,6 @@ const findAllEmpDetails = async (req, res) => {
 };
 
 const findOneEmpDetail = async (req, res) => {
-  console.log('ping me');
   return await getEmployee(req.params.id);
 };
 

@@ -2,7 +2,6 @@ import express from 'express';
 import { addData, updateEmp, deleteEmp, findAllEmp, findOneEmp } from '../3Controller/controller.js';
 
 const router = express.Router();
-
 // get an employee with the given id
 router.get('/id=:id', (req, res) => {
     findOneEmp(req,res);
