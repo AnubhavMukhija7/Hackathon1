@@ -1,4 +1,4 @@
-//employee
+// employee
 import {
   addEmpData,
   updateEmpData,
@@ -7,7 +7,7 @@ import {
   findOneEmpDetail,
 } from '../4Service/emp_service.js';
 
-//vendors
+// vendors
 import {
   addVen,
   updateVen,
@@ -16,7 +16,7 @@ import {
   findOneVen,
 } from '../4Service/vendor_service.js';
 
-//employee
+// employee
 const addData = async (req, res) => {
   const response = await addEmpData(req.body);
   res.send(response);
