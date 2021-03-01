@@ -1,0 +1,22 @@
+{
+    "name": "Hackathon1",
+    "version": "1.0.0",
+    "description": "",
+    "main": "API/1Main/main.js",
+    "type": "module",
+    "scripts": {
+        "start": "nodemon API/1Main/main.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AnubhavMukhija7/Hackathon1.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/AnubhavMukhija7/Hackathon1/issues"
+    },
+    "homepage": "https://github.com/AnubhavMukhija7/Hackathon1#readme"
+}
