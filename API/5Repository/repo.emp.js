@@ -1,8 +1,7 @@
 import { makeConnection } from '../6Connection/connection.js';
 const request = await makeConnection();
 const findAllEmployee = async () => {
-    const query = 'Select * from Employee';
-    // INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId';
+    const query = 'Select * from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId';
     const data = await request.query(query);
     return data.recordsets[0];
 };
