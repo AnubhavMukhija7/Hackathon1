@@ -10,10 +10,10 @@ const port = process.env.port || 3000;
 app.use(express.json());
 app.use(pkg());
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the financial bowling chart');
-    console.log('hello');
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the financial bowling chart');
+//     console.log('hello');
+// });
 app.use('/employee', employee);
 app.use('/vendor', vendor);
 app.use('/benefit', benefits);
