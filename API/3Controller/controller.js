@@ -1,10 +1,11 @@
 //employee
 import {
-  addEmpData,
-  updateEmpData,
-  deleteEmpData,
-  findAllEmpDetails,
-  findOneEmpDetail,
+  addEmployeeDetails,
+  updateEmployeeDetails,
+  deleteEmployeeDetails,
+  findAllEmployeeDetails,
+  findOneEmployeeDetail,
+  findAllEmployeeInTheGivenYearDetails
 } from '../4Service/emp_service.js';
 
 //vendors
@@ -17,47 +18,51 @@ import {
 } from '../4Service/vendor_service.js';
 
 //employee
-const addData = async (req, res) => {
-  res.send(await addEmpData(req,res));
+const addEmployeeController = async (req, res) => {
+  res.send(await addEmployeeDetails(req,res));
 };
 
-const updateEmp = async (req, res) => {
-  res.send(await updateEmpData(req,res));
+const updateEmployeeController = async (req, res) => {
+  res.send(await updateEmployeeDetails(req,res));
 };
 
-const deleteEmp = async (req, res) => {
-  res.send(await deleteEmpData(req,res));
+const deleteEmployeeController = async (req, res) => {
+  res.send(await deleteEmployeeDetails(req,res));
 };
 
-const findAllEmp = async (req, res) => {
-  res.send(await findAllEmpDetails(req,res));
+const findAllEmployeeController = async (req, res) => {
+  res.send(await findAllEmployeeDetails(req,res));
 };
 
-const findOneEmp = async (req, res) => {
-  res.send(await findOneEmpDetail(req,res));
+const findOneEmployeeController = async (req, res) => {
+  res.send(await findOneEmployeeDetail(req,res));
 };
 
-// for vendors
-const addVendor = async (req, res) => {
-  res.send(await addVen(req.body));
+// // for vendors
+// const addVendorController = async (req, res) => {
+//   res.send(await addVendorDetails(req.body));
+// };
+
+// const updateVendorController = async (req, res) => {
+//   res.send(await updateVendorDetails(req.body));
+// };
+
+// const deleteVendorController = async (req, res) => {
+//   res.send(await deleteVendorDetails(req.body));
+// };
+
+// const findAllVendorController = async (req, res) => {
+//    res.send(await findAllVendorDetails());
+// };
+
+const findOneVendorController = async (req, res) => {
+  res.send(await findOneVendorDetails(req.params.id));
 };
 
-const updateVendor = async (req, res) => {
-  res.send(await updateVen(req.body));
-};
-
-const deleteVendor = async (req, res) => {
-  res.send(await deleteVen(req.body));
-};
-
-const findAllVendor = async (req, res) => {
-   res.send(await findAllVen());
-};
-
-const findOneVendor = async (req, res) => {
-  res.send(await findOneVen(req.params.id));
-};
+const findAllEmployeeInTheGivenYearController = async(req,res)=>{
+  res.send(findAllEmployeeInTheGivenYearDetails())
+}
 
 //export
-export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor };
-export { addData, updateEmp, deleteEmp, findAllEmp, findOneEmp };
+//export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor};
+export { addEmployeeController, updateEmployeeController, deleteEmployeeController, findAllEmployeeController, findOneEmployeeController ,findAllEmployeeInTheGivenYearController };
