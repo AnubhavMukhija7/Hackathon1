@@ -8,7 +8,9 @@ router.get('/id=:id', (req, res) => {
 });
 
 // get all employee for the given year
-router.get('/year=:year', (req, res) => {});
+router.get('/year=:year', (req, res) => {
+    findAllEmp(req,res);
+});
 
 // get all employees uptill now
 router.get('/', (req, res) => {
