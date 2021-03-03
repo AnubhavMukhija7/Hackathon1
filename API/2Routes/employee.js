@@ -1,10 +1,16 @@
 import express from 'express';
 import { addEmployeeController,
-    updateEmployeeController,
+    updateEmployeeBankAccountController,
     deleteEmployeeController,
     findAllEmployeeController,
     findOneEmployeeController,
-    findAllEmployeeInTheGivenYearController
+    findAllEmployeeInTheGivenYearController,
+    findYourEmployeeIdController,
+    findAllBillableEmployeeController,
+    findAllNonBillableEmployeeController,
+    findCompensationOfOneEmployeeInGivenYearController,
+    findCtcOfOneEmployeeInTheGivenYearController,
+    findOverheadOfOneEmployeeInTheGivenYearController
  } from '../3Controller/controller.emp.js';
 
 const router = express.Router();
@@ -23,23 +29,45 @@ router.get('/', (req, res) => {
     findAllEmployeeController(req,res);
 });
 
-router.get('/billable', (req, res) => {});
+router.get('/billable', (req, res) => {
+    findAllBillableEmployeeController(req,res);
+});
 
-router.get('/nonBillable', (req, res) => {});
+router.get('/nonBillable', (req, res) => {
+    findAllNonBillableEmployeeController(req,res);
+});
 
 // add record
 router.post('/add', (req, res) => {
     addEmployeeController(req, res);
 });
 
-// update employee
-router.put('/update', (req, res) => {
-    updateEmployeeController(req, res);
+// update bank account of employee
+router.put('/update/bankAccount/id=:id', (req, res) => {
+    updateEmployeeBankAccountController(req, res);
 });
 
 // delete employee
-router.delete('/delete::id', (req, res) => {
+router.delete('/delete/id=:id', (req, res) => {
     deleteEmployeeController(req, res);
 });
+// get you employee id corresponding to emailId
+router.get('/getEmployeeId/emailId=:emailId',(req,res)=>{
+    findYourEmployeeIdController(req,res);
+});
 
+// Total Compensation of an employee in a year
+router.get('/compensation/year=:year/id=:id',(req,res)=>{
+    findCompensationOfOneEmployeeInGivenYearController(req,res);
+})
+
+//CTC of each Employee in a given year
+router.get('/ctc/year=:year/id=:id',(req,res)=>{
+    findCtcOfOneEmployeeInTheGivenYearController(req,res);
+})
+
+// Total overhead of an employee in a given year
+router.get('/overhead/year=:year',(req,res)=>{
+    findOverheadOfOneEmployeeInTheGivenYearController(req,res);
+})
 export default router;
