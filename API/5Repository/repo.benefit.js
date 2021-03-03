@@ -11,7 +11,7 @@ const getTotalExpense = async () => {
     from Facilities
     INNER JOIN FacilityAvailed ON
     FacilityAvailed.FacilityId = Facilities.FacilityId
-    where FacilityAvailed.[Year] = ${2021} AND Facilities.IsActive = ${1} AND Facilities.FacilityType = 'B'`;
+    where FacilityAvailed.[Year] = YEAR(GETDATE()) AND Facilities.IsActive = ${1} AND Facilities.FacilityType = 'B'`;
     const data = await request.query(query);
     return data.recordsets[0];
 };

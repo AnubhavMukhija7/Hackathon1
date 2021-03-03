@@ -1,34 +1,79 @@
 import {
-  getVendors,
-  getVendor,
-  addVendor,
-  updateVendor,
-  deleteVendor,
+    getVendor,
+    getAllVendors,
+    addVendor,
+    updateVendor,
+    deleteVendor,
+    getVendorForFacility,
+    getVendorsEarning,
+    getVendorsEarningForFacility,
+    vendorEarningInYear,
+    vendorEarningForFacilityInYear,
+    addVendorFacility,
+    updateVendorFacility,
+    deleteFacility,
 } from '../5Repository/vendor.js';
 
-const addVen = async (req, res) => {
-  const response = await addVendor(req.body);
-  res.send(response);
+const getVendorDetails = (id) => {
+    return getVendor(id);
 };
 
-const updateVen = async (req, res) => {
-  const response = await updateVendor(req.body);
-  res.send(response);
+const getAllVendorsDetails = () => {
+    return getAllVendors();
 };
 
-const deleteVen = async (req, res) => {
-  const response = await deleteVendor(req.body);
-  res.send(response);
+const getVendorForFacilityDetails = (facility) => {
+    return getVendorForFacility(facility);
 };
 
-const findAllVen = async (req, res) => {
-  const response = await getVendors();
-  res.send(response);
+const getVendorsEarningDetails = (year) => {
+    return getVendorsEarning();
+};
+const getVendorsEarningForFacilityDetails = (facility, year) => {
+    return getVendorsEarningForFacility(facility, year);
+};
+const vendorEarningInYearDetails = (facility, year) => {
+    return vendorEarningInYear(facility, year);
+};
+const vendorEarningForFacilityInYearDetails = (facility, year) => {
+    return vendorEarningForFacilityInYear(facility, year);
 };
 
-const findOneVen = async (req, res) => {
-  const response = await getVendor(req.params.id);
-  res.send(response);
+const addVendorFacilityDetails = (object) => {
+    return addVendorFacility(object);
+};
+const addVendorDetails = (body) => {
+    return addVendor(body);
 };
 
-export { addVen, updateVen, deleteVen, findAllVen, findOneVen };
+const updateVendorDetails = (body) => {
+    return updateVendor(body);
+};
+
+const updateVendorFacilityDetails = (body) => {
+    return updateVendorFacility(body);
+};
+
+const deleteVendorDetails = (body) => {
+    return deleteVendor(body);
+};
+
+const deleteFacilityDetails = (body) => {
+    return deleteFacility(body);
+};
+
+export {
+    getVendorDetails,
+    getAllVendorsDetails,
+    getVendorForFacilityDetails,
+    getVendorsEarningDetails,
+    getVendorsEarningForFacilityDetails,
+    vendorEarningInYearDetails,
+    vendorEarningForFacilityInYearDetails,
+    addVendorFacilityDetails,
+    addVendorDetails,
+    updateVendorDetails,
+    updateVendorFacilityDetails,
+    deleteVendorDetails,
+    deleteFacilityDetails,
+};
