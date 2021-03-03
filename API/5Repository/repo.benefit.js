@@ -2,7 +2,7 @@ import { makeConnection } from '../6Connection/connection.js';
 const request = await makeConnection();
 
 const getAllBenefit = async () => {
-    const query = 'Select * from Facilities';
+    const query = `Select FacilityId, FacilityName, FacilityDescription from Facilities where isActive = '1' and FacilityType = 'B'`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
@@ -11,7 +11,7 @@ const getTotalExpense = async () => {
     from Facilities
     INNER JOIN FacilityAvailed ON
     FacilityAvailed.FacilityId = Facilities.FacilityId
-    where FacilityAvailed.[Year] = ${2021} AND Facilities.IsActive = ${1} AND Facilities.FacilityType = 'B'`;
+    where FacilityAvailed.[Year] = YEAR(GETDATE()) AND Facilities.IsActive = ${1} AND Facilities.FacilityType = 'B'`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
@@ -48,7 +48,7 @@ const benefitExpenseForEmp = async (id) => {
     const query = `Select FacilityName,  FacilityAvailed.Amount from Facilities 
     INNER JOIN FacilityAvailed ON
     Facilities.FacilityId = FacilityAvailed.FacilityId
-    where AvailedFor = ${id}`;
+    where Facilities.FacilityType = 'B' and AvailedFor = ${id}`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
