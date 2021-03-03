@@ -3,7 +3,7 @@ import pkg from 'cors';
 import employee from '../2Routes/employee.js';
 import vendor from '../2Routes/vendor.js';
 import benefits from '../2Routes/benefit.js';
-import totalExpense from '../2Routes/totalCost.js';
+import totalExpense from '../2Routes/totalExpense.js';
 import overHead from '../2Routes/overhead.js';
 
 const app = express();
@@ -14,7 +14,6 @@ app.use(pkg());
 
 app.get('/', (req, res) => {
     res.send('Welcome to the financial bowling chart');
-    console.log('hello');
 });
 app.use('/employee', employee);
 app.use('/vendor', vendor);

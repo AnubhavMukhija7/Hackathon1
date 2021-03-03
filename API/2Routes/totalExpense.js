@@ -9,8 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 // show result of corresponding year...
-router.get('/:year', (req, res) =>
-{
+router.get('/:year', async (req, res) => {
     const result = await totalExpenseForYearController();
     return result;
 });
