@@ -2,7 +2,7 @@ import { makeConnection } from '../6Connection/connection.js';
 const request = await makeConnection();
 
 const getAllBenefit = async () => {
-    const query = 'Select * from Facilities';
+    const query = `Select FacilityId, FacilityName, FacilityDescription from Facilities where isActive = '1' and FacilityType = 'B'`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
@@ -48,7 +48,7 @@ const benefitExpenseForEmp = async (id) => {
     const query = `Select FacilityName,  FacilityAvailed.Amount from Facilities 
     INNER JOIN FacilityAvailed ON
     Facilities.FacilityId = FacilityAvailed.FacilityId
-    where AvailedFor = ${id}`;
+    where Facilities.FacilityType = 'B' and AvailedFor = ${id}`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
