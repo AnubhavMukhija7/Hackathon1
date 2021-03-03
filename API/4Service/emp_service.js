@@ -9,28 +9,32 @@ import {
 
 const addEmployeeDetails = async (req, res) => {
     const response = await addEmployee(req.body);
-    res.send(response);
+    return response;
 };
 
 const updateEmployeeDetails = async (req, res) => {
     const response = await updateEmployee(req.body);
-    res.send(response);
+    return response;
 };
 
 const deleteEmployeeDetails = async (req, res) => {
-    return await deleteEmployee(req.body);
+    const response =  await deleteEmployee(req.body);
+    return response;
 };
 
 const findAllEmployeeDetails = async (req, res) => {
-    return await findAllEmployee();
+    const response =  await findAllEmployee();
+    return response;
 };
 
 const findOneEmployeeDetails = async (req, res) => {
-    return await findOneEmployee(req.params.id);
+    const resopnse = await findOneEmployee(req.params.id);
+    return resopnse;
 };
 
 const findAllEmployeeInTheGivenYearDetails = async (req, res, next) => {
-    return await findAllEmployeeInTheGivenYear(req.params.year);
+    const resopnse =  await findAllEmployeeInTheGivenYear(req.params.year);
+    return resopnse;
 };
 export {
     addEmployeeDetails,

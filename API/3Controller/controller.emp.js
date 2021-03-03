@@ -46,8 +46,8 @@ const findOneEmployeeController = async (req, res) => {
 //    res.send(await findAllVendorDetails());
 // };
 
-const findAllEmployeeInTheGivenYearController = async (req, res) => {
-    res.send(findAllEmployeeInTheGivenYearDetails());
+const findAllEmployeeInTheGivenYearController = async (req, res,next) => {
+    res.send(await findAllEmployeeInTheGivenYearDetails(req,res,next));
 };
 
 //export

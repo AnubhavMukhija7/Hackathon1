@@ -1,27 +1,26 @@
 import express from 'express';
-import {
-    addEmployeeController,
+import { addEmployeeController,
     updateEmployeeController,
     deleteEmployeeController,
     findAllEmployeeController,
     findOneEmployeeController,
-    findAllEmployeeInTheGivenYearController,
-} from '../3Controller/controller.emp.js';
+    findAllEmployeeInTheGivenYearController
+ } from '../3Controller/controller.emp.js';
 
 const router = express.Router();
 // get an employee with the given id
 router.get('/id=:id', (req, res) => {
-    findOneEmployeeController(req, res);
+    findOneEmployeeController(req,res);
 });
 
 // get all employee for the given year
-router.get('/year=:year', (req, res) => {
-    findAllEmployeeInTheGivenYearController(req, res);
+router.get('/year=:year', (req, res,next) => {
+    findAllEmployeeInTheGivenYearController(req,res,next);
 });
 
 // get all employees uptill now
 router.get('/', (req, res) => {
-    findAllEmployeeController(req, res);
+    findAllEmployeeController(req,res);
 });
 
 router.get('/billable', (req, res) => {});
