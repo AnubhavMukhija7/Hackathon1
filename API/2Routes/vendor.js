@@ -73,10 +73,10 @@ router.post('/addFacilityAddvendor', async (req, res) => {
     res.send(result);
 });
 
-router.post('/addVendor',async(req,res)=>{
+router.post('/addVendor', async (req, res) => {
     const result = await addVendorController(req.body);
     res.send(result);
-})
+});
 
 // update vendor
 router.put('/update', async (req, res) => {
@@ -89,7 +89,6 @@ router.post('/update/facility', async (req, res) => {
     const result = await updateVendorFacilityController(req);
     res.send(result);
 });
-
 
 // set inactive for a particular vendor
 router.delete('/deleteVendor/id=:id', async (req, res) => {

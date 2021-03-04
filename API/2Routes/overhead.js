@@ -27,7 +27,7 @@ router.get('/facility=:facility/expense/:year', async (req, res) => {
     res.send(result);
 });
 
-// get overhead facility for particular emp.. imp?
+// get overhead for particular emp.. imp?
 
 // get vendors for overhead facility.. not working yet
 router.get('/:facility/vendors/:year', async (req, res) => {
