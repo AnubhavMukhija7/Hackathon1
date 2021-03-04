@@ -1,7 +1,7 @@
 import { totalExpenseDetails, totalExpenseForYearDetails } from '../4Service/totalExpense_service.js';
 
-const totalExpenseController = () => {
-    return totalExpenseDetails();
+const totalExpenseController = async () => {
+    return await totalExpenseDetails();
 };
 
 const totalExpenseForYearController = (year) => {

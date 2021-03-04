@@ -1,83 +1,99 @@
 import express from 'express';
 
+import {
+    getVendorController,
+    getAllVendorsController,
+    getVendorForFacilityController,
+    getVendorsEarningController,
+    getVendorsEarningForFacilityController,
+    vendorEarningInYearController,
+    vendorEarningForFacilityInYearController,
+    addVendorFacilityController,
+    addVendorController,
+    updateVendorController,
+    updateVendorFacilityController,
+    deleteVendorController,
+    deleteFacilityController,
+} from '../3Controller/controller.vendor.js';
+
 const router = express.Router();
 
+// get all vendors for a particular facility... can add a 'sort' feature
+router.get('/facility=:facility', async (req, res) => {
+    const result = await getVendorForFacilityController(req.params.facility);
+    res.send(result);
+});
+
 // get single vendor
-router.get('/:id', (req, res) => {
-    const result = getVendorController(req.params.id);
-    return result;
+router.get('/id=:id', async (req, res) => {
+    const result = await getVendorController(req.params.id);
+    res.send(result);
 });
 
 // get all vendors
-router.get('/', (req, res) => {
-    const result = getAllVendorsController();
-    return result;
-});
-
-// get all vendors for a particular facility... can add a 'sort' feature
-router.get('/:facility', (req, res) => {
-    const result = getVendorForFacilityController(req.params.facility);
-    return result;
+router.get('/', async (req, res) => {
+    const result = await getAllVendorsController();
+    res.send(result);
 });
 
 // get earnings of all vendors in a particular year
-router.get('/earning/:year', (req, res) => {
-    const result = getVendorsEarningController(req.params.year);
-    return result;
+router.get('/earning/:year', async (req, res) => {
+    const result = await getVendorsEarningController(req.params.year);
+    res.send(result);
 });
 
 // get earnings of all vendors for a particular facility in a particular year
-router.get('/earning/:facilityName/:year', (req, res) => {
-    const result = getVendorsEarningForFacilityController(req.params.facilityName, req.params.year);
-    return result;
+router.get('/earning/:facilityName/:year', async (req, res) => {
+    const result = await getVendorsEarningForFacilityController(req.params.facilityName, req.params.year);
+    res.send(result);
 });
 
 // get earnings of a particular vendor in a particular year
-router.get('/:id/earning/:year', (req, res) => {
-    const result = vendorEarningInYearController(req.params.id, req.params.year);
-    return result;
+router.get('/:id/earning/:year', async (req, res) => {
+    const result = await vendorEarningInYearController(req.params.id, req.params.year);
+    res.send(result);
 });
 
 // get earnings of a particular vendor for a particular facility in a particular year
-router.get('/:id/:facility/earning/:year', (req, res) => {
-    const result = vendorEarningForFacilityInYearController(req.params.id, req.params.year);
-    return result;
+router.get('/:id/:facility/earning/:year', async (req, res) => {
+    const result = await vendorEarningForFacilityInYearController(req.params.id, req.params.facility, req.params.year);
+    res.send(result);
 });
 
 // add facility for a particular vendor
-router.post('/add/facility', (req, res) => {
-    const result = addVendorFacilityController(req);
-    return result;
+router.post('/add/facility', async (req, res) => {
+    const result = await addVendorFacilityController(req);
+    res.send(result);
 });
 
 // add vendor with a facility!
-router.post('/add', (req, res) => {
-    const result = addVendorController(req);
-    return result;
+router.post('/add', async (req, res) => {
+    const result = await addVendorController(req);
+    res.send(result);
 });
 
 // update vendor
-router.put('/update', (req, res) => {
-    const result = updateVendorController(req);
-    return result;
+router.put('/update', async (req, res) => {
+    const result = await updateVendorController(req);
+    res.send(result);
 });
 
 // update facility for a particular vendor
-router.post('/update/facility', (req, res) => {
-    const result = updateVendorFacilityController(req);
-    return result;
+router.post('/update/facility', async (req, res) => {
+    const result = await updateVendorFacilityController(req);
+    res.send(result);
 });
 
 // set inactive, set all facilities of that vendor to inactive
-router.delete('/delete', (req, res) => {
-    const result = deleteVendorController(req);
-    return result;
+router.delete('/delete', async (req, res) => {
+    const result = await deleteVendorController(req);
+    res.send(result);
 });
 
 // set inactive
-router.delete('/delete/facility', (req, res) => {
-    const result = deleteFacilityController(req);
-    return result;
+router.delete('/delete/facility', async (req, res) => {
+    const result = await deleteFacilityController(req);
+    res.send(result);
 });
 
 export default router;

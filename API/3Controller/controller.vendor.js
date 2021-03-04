@@ -12,14 +12,14 @@ import {
     updateVendorFacilityDetails,
     deleteVendorDetails,
     deleteFacilityDetails,
-} from '../4Service/vendor_service';
+} from '../4Service/vendor_service.js';
 
-const getVendorController = (id) => {
-    return getVendorDetails(id);
+const getVendorController = async (id) => {
+    return await getVendorDetails(id);
 };
 
-const getAllVendorsController = () => {
-    return getAllVendorsDetails();
+const getAllVendorsController = async () => {
+    return await getAllVendorsDetails();
 };
 
 const getVendorForFacilityController = (facility) => {
@@ -27,16 +27,16 @@ const getVendorForFacilityController = (facility) => {
 };
 
 const getVendorsEarningController = (year) => {
-    return getVendorsEarningDetails();
+    return getVendorsEarningDetails(year);
 };
 const getVendorsEarningForFacilityController = (facility, year) => {
     return getVendorsEarningForFacilityDetails(facility, year);
 };
-const vendorEarningInYearController = (facility, year) => {
-    return vendorEarningInYearDetails(facility, year);
+const vendorEarningInYearController = (id, year) => {
+    return vendorEarningInYearDetails(id, year);
 };
-const vendorEarningForFacilityInYearController = (facility, year) => {
-    return vendorEarningForFacilityInYearDetails(facility, year);
+const vendorEarningForFacilityInYearController = (id, facility, year) => {
+    return vendorEarningForFacilityInYearDetails(id, facility, year);
 };
 
 const addVendorFacilityController = (object) => {

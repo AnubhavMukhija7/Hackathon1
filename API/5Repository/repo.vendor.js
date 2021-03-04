@@ -2,43 +2,86 @@ import { makeConnection } from '../6Connection/connection.js';
 const request = await makeConnection();
 
 const getVendor = async (id) => {
-    const query = ``;
+    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,Facilities.FacilityName,
+    VendorName.FirstName,VendorMobile.PrimaryMobile,Vendor.IsActive FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
+    VendorName.VendorId = VendorMobile.VendorId where Vendor.VendorId = ${id}`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
 
 const getAllVendors = async () => {
-    const query = ``;
+    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,Facilities.FacilityName FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
 
 const getVendorForFacility = async (facility) => {
-    const query = ``;
+    console.log('safafasfasfasf', facility);
+    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,
+    VendorName.FirstName,VendorMobile.PrimaryMobile FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
+    VendorName.VendorId = VendorMobile.VendorId where Vendor.EndDate Is NULL and Facilities.FacilityName = '${facility}'`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
 
 const getVendorsEarning = async (year) => {
-    const query = ``;
+    const query = `
+    SELECT Vendor.VendorId,Vendor.VendorCompany,sum(VendorPayment.Amount)as Amount,VendorPayment.[Year] FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorPayment ON
+    VendorName.VendorId = VendorPayment.VendorId
+    where Vendor.EndDate Is NULL and VendorPayment.[Year] = ${year}
+    GROUP BY Vendor.VendorId,Vendor.VendorCompany,VendorPayment.[Year]`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
 
 const getVendorsEarningForFacility = async (facility, year) => {
-    const query = ``;
+    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany, Facilities.FacilityName,
+    VendorName.FirstName,VendorMobile.PrimaryMobile, SUM(VendorPayment.Amount) as Amount,
+    VendorPayment.[Year] FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
+    VendorName.VendorId = VendorMobile.VendorId INNER JOIN VendorPayment ON
+    VendorMobile.VendorId = VendorPayment.VendorId where Vendor.EndDate Is NULL
+     and Facilities.FacilityName = '${facility}' and Year = ${year}
+    group by 
+    Vendor.VendorId,Vendor.VendorCompany, Facilities.FacilityName,
+    VendorName.FirstName,VendorMobile.PrimaryMobile,VendorPayment.[Year]`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
 
-const vendorEarningInYear = async (facility, year) => {
-    const query = ``;
+const vendorEarningInYear = async (id, year) => {
+    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,sum(VendorPayment.Amount)as Amount,VendorPayment.[Year] FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorPayment ON
+    VendorName.VendorId = VendorPayment.VendorId
+    where Vendor.EndDate Is NULL and VendorPayment.[Year] = ${year} and Vendor.VendorId=${id}
+    GROUP BY Vendor.VendorId,Vendor.VendorCompany,VendorPayment.[Year]`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
 
-const vendorEarningForFacilityInYear = async (facility, year) => {
-    const query = ``;
+const vendorEarningForFacilityInYear = async (id, facility, year) => {
+    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,sum(VendorPayment.Amount)as Amount,VendorPayment.[Year] FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorPayment ON
+    VendorName.VendorId = VendorPayment.VendorId
+    where Vendor.EndDate Is NULL and VendorPayment.[Year] = ${year} and Vendor.VendorId=${id} and Facilities.FacilityName = '${facility}'
+    GROUP BY Vendor.VendorId,Vendor.VendorCompany,VendorPayment.[Year]`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
