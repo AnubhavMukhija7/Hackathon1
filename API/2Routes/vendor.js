@@ -91,15 +91,10 @@ router.post('/update/facility', async (req, res) => {
 });
 
 
-// set inactive, set all facilities of that vendor to inactive
+// set inactive for a particular vendor
 router.delete('/deleteVendor/id=:id', async (req, res) => {
     const result = await deleteVendorController(req.params.id);
     res.send(result);
 });
 
-// set inactive
-router.delete('/delete/facility', async (req, res) => {
-    const result = await deleteFacilityController(req);
-    res.send(result);
-});
 export default router;

@@ -1,8 +1,11 @@
 import { makeConnection } from '../6Connection/connection.js';
 const request = await makeConnection();
 const findAllEmployee = async () => {
-    const query =
-        'Select * from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId';
+    const query = `Select Employee.EmpId , Employee.Title,Employee.FirstName
+                  ,Employee.MiddleName , Employee.Lastname , Employee.Email,
+                  Employee.Gender,Employee.Status,EmployeeAddress.City,
+                  EmployeeAddress.State,EmployeeContact.Office
+                  from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId`;
     const data = await request.query(query);
     return data.recordsets[0];
 };
@@ -14,7 +17,6 @@ const findOneEmployee = async (id) => {
 };
 
 const addEmployee = async (object) => {
-    console.log(object);
     const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}',${object.JoiningDate},${object.LeavingDate})`;
     await request.query(insertIntoEmp);
     let data = await request.query(`Select * from Employee`);
