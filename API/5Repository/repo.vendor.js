@@ -1,3 +1,4 @@
+import { deleteVendorDetails } from '../4Service/vendor_service.js';
 import { makeConnection } from '../6Connection/connection.js';
 const request = await makeConnection();
 
@@ -92,9 +93,28 @@ const addVendorFacility = async (object) => {
     return data.recordsets[0];
 };
 
-const addVendor = async (body) => {
-    const query = `Insert into Vendors (VendorID,FirstName, LastName, etc) values (${body.VendorID},'${body.FirstName}', '${body.LastName}')`;
-    await request.query(query);
+const addFacilityAddVendor = async (object) => {
+    console.log(object);
+    const insertIntoFacilities = `Insert into Facilities(FacilityName,FacilityDescription,IsActive,FacilityType)
+                            Values('${object.FacilityName}','${object.FacilityDescription}',1,'${object.FacilityType}')`;
+    (await request.query(insertIntoFacilities));
+    const newFacilityId = (await request.query(`Select * from Facilities`)).recordsets[0].length;
+    const insertIntoVendor = `Insert into Vendor(VendorCompany,FacilityId,StartDate,EndDate,IsActive)
+                              Values('${object.VendorCompany}',${newFacilityId},'${object.StartDate}',null,1)`;
+    (await request.query(insertIntoVendor));
+    const newVendorId = (await request.query(`Select * from Vendor`)).recordsets[0].length;
+    const insertIntoVendorName = `Insert into VendorName(VendorId,Title,FirstName,MiddleName,LastName)
+                            Values(${newVendorId},'${object.Title}','${object.FirstName}','${object.MiddleName}','${object.LastName}')`;
+    await request.query(insertIntoVendorName);
+    const insertIntoVendorMobile = `Insert Into VendorMobile(VendorId,PrimaryMobile,LandLine,AlternateMobile)
+                            Values(${newVendorId},${object.PrimaryMobile},${object.LandLine},${object.AlternateMobile})`;
+    await request.query(insertIntoVendorMobile);
+    const insertIntoVendorAddress = `Insert into VendorAddress(VendorId,StreetAddress1,StreetAddress2,City,District,PostalCode,State,Country)
+                            Values(${newVendorId},'${object.StreetAddress1}','${object.StreetAddress2}','${object.City}','${object.District}',${object.PostalCode},'${object.State}','${object.Country}')`;
+    await request.query(insertIntoVendorAddress);
+    const insertIntoVendorBankDetails = `Insert into VendorBankDetails(VendorId,BankName,AccountNumber,IFSC,BranchName,PAN)
+                                        Values(${newVendorId},'${object.BankName}',${object.AccountNumber},'${object.IFSC}','${object.BranchName}','${object.PAN}')`;
+    await request.query(insertIntoVendorBankDetails);
     return 'Record Inserted';
 };
 
@@ -110,12 +130,36 @@ const updateVendorFacility = async (body) => {
     return 'Record Updated';
 };
 
-//------NOT USING RN-------
-const deleteVendor = async (body) => {
-    // const data = await request.query(
-    //   `Delete from Vendors where VendorID=${body.VendorID}`
-    // );
-    // return 'Record Deleted';
+
+const addVendor = async(object) => {
+    const getFacilityIdForFacilityName = `Select FacilityId From Facilities
+                                        where FacilityName = '${object.FacilityName}'`;
+    const newFacilityId = ((await request.query(getFacilityIdForFacilityName)).recordset[0]['FacilityId']);
+    const insertIntoVendor = `Insert into Vendor(VendorCompany,FacilityId,StartDate,EndDate,IsActive)
+                              Values('${object.VendorCompany}',${newFacilityId},'${object.StartDate}',null,1)`;
+    (await request.query(insertIntoVendor));
+    const newVendorId = (await request.query(`Select * from Vendor`)).recordsets[0].length;
+    const insertIntoVendorName = `Insert into VendorName(VendorId,Title,FirstName,MiddleName,LastName)
+                            Values(${newVendorId},'${object.Title}','${object.FirstName}','${object.MiddleName}','${object.LastName}')`;
+    await request.query(insertIntoVendorName);
+    const insertIntoVendorMobile = `Insert Into VendorMobile(VendorId,PrimaryMobile,LandLine,AlternateMobile)
+                            Values(${newVendorId},${object.PrimaryMobile},${object.LandLine},${object.AlternateMobile})`;
+    await request.query(insertIntoVendorMobile);
+    const insertIntoVendorAddress = `Insert into VendorAddress(VendorId,StreetAddress1,StreetAddress2,City,District,PostalCode,State,Country)
+                            Values(${newVendorId},'${object.StreetAddress1}','${object.StreetAddress2}','${object.City}','${object.District}',${object.PostalCode},'${object.State}','${object.Country}')`;
+    await request.query(insertIntoVendorAddress);
+    const insertIntoVendorBankDetails = `Insert into VendorBankDetails(VendorId,BankName,AccountNumber,IFSC,BranchName,PAN)
+                                        Values(${newVendorId},'${object.BankName}',${object.AccountNumber},'${object.IFSC}','${object.BranchName}','${object.PAN}')`;
+    await request.query(insertIntoVendorBankDetails);
+    return 'Record Inserted';
+}
+
+const deleteVendor = async (id) => {
+    const query = `Update Vendor
+                    set isActive=0
+                    where VendorId=${id}`;
+    await request.query(query);
+    return `record deleted`;
 };
 
 const deleteFacility = async (body) => {
@@ -127,7 +171,7 @@ const deleteFacility = async (body) => {
 export {
     getVendor,
     getAllVendors,
-    addVendor,
+    addFacilityAddVendor,
     updateVendor,
     deleteVendor,
     getVendorForFacility,
@@ -138,4 +182,5 @@ export {
     addVendorFacility,
     updateVendorFacility,
     deleteFacility,
+    addVendor
 };
