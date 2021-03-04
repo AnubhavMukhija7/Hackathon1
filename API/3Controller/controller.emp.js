@@ -1,11 +1,17 @@
 //employee
 import {
     addEmployeeDetails,
-    updateEmployeeDetails,
     deleteEmployeeDetails,
     findAllEmployeeDetails,
     findOneEmployeeDetails,
     findAllEmployeeInTheGivenYearDetails,
+    updateEmployeeBankAccountDetails,
+    findYourEmployeeIdDetails,
+    findAllBillableEmployeeDetails,
+    findAllNonBillableEmployeeDetails,
+    findCompensationOfOneEmployeeInGivenYearDetails,
+    findCtcOfOneEmployeeInTheGivenYearDetails,
+    findOverheadOfOneEmployeeInTheGivenYearDetails
 } from '../4Service/emp_service.js';
 
 //employee
@@ -29,6 +35,29 @@ const findOneEmployeeController = async (req, res) => {
     res.send(await findOneEmployeeDetails(req, res));
 };
 
+const updateEmployeeBankAccountController = async(req,res)=>{
+    res.send(await updateEmployeeBankAccountDetails(req,res));
+}
+
+const findAllBillableEmployeeController = async(req,res) => {
+    res.send(await findAllBillableEmployeeDetails(req,res));
+}
+
+const findAllNonBillableEmployeeController = async(req,res) => {
+    res.send(await findAllNonBillableEmployeeDetails(req,res));
+}
+
+const findCompensationOfOneEmployeeInGivenYearController = async(req,res) => {
+    res.send(await findCompensationOfOneEmployeeInGivenYearDetails(req,res));
+}
+
+const findCtcOfOneEmployeeInTheGivenYearController = async(req,res) => {
+    res.send(await findCtcOfOneEmployeeInTheGivenYearDetails(req,res));
+}
+
+const findOverheadOfOneEmployeeInTheGivenYearController = async(req,res) => {
+    res.send(String(await (findOverheadOfOneEmployeeInTheGivenYearDetails(req,res))));
+}
 // // for vendors
 // const addVendorController = async (req, res) => {
 //   res.send(await addVendorDetails(req.body));
@@ -50,13 +79,24 @@ const findAllEmployeeInTheGivenYearController = async (req, res,next) => {
     res.send(await findAllEmployeeInTheGivenYearDetails(req,res,next));
 };
 
+const findYourEmployeeIdController = async(req,res) => {
+    const data = await findYourEmployeeIdDetails(req,res);
+    res.send(String(data));
+}
+
 //export
 //export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor};
 export {
     addEmployeeController,
-    updateEmployeeController,
     deleteEmployeeController,
     findAllEmployeeController,
     findOneEmployeeController,
     findAllEmployeeInTheGivenYearController,
+    updateEmployeeBankAccountController,
+    findYourEmployeeIdController,
+    findAllBillableEmployeeController,
+    findAllNonBillableEmployeeController,
+    findCompensationOfOneEmployeeInGivenYearController,
+    findCtcOfOneEmployeeInTheGivenYearController,
+    findOverheadOfOneEmployeeInTheGivenYearController
 };

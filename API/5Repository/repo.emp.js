@@ -33,17 +33,13 @@ const addEmployee = async (object) => {
     return 'Record Inserted!\n';
 };
 
-const updateEmployee = async (object) => { 
-    const data = await request.query(`Update Employees set ${object.Column} = '${object.Detail}' where EmployeeID=${object.EmployeeID}`);
-    return 'Record Updated!\n' + data;
-};
-
 //------NOT USING RN-------
-const deleteEmployee = async (object) => {
-    // const data = await request.query(
-    //   `Delete from Employees where EmployeeID=${object.EmployeeID}`
-    // );
-    // return 'Record Deleted';
+const deleteEmployee = async (id) => {
+    const query = `Update  Employee 
+                set [Status] = 'Terminated'
+                where Employee.EmpId = ${id}`;
+    await request.query(query);
+    return 'Record Deleted';
 };
 
 const findAllEmployeeInTheGivenYear = async (year) => {
@@ -57,4 +53,88 @@ const findAllEmployeeInTheGivenYear = async (year) => {
     return data.recordsets[0];
 };
 
-export { findOneEmployee, addEmployee, updateEmployee, deleteEmployee, findAllEmployee, findAllEmployeeInTheGivenYear };
+const updateEmployeeBankAccount = async(object,id) => {
+    const query = `UPDATE [ExpenseTracker].[dbo].[EmpBankDetails]
+                   set BankName='${object.BankName}',AccountNo=${object.AccountNo},IFSC='${object.IFSC}',BranchName='${object.BranchName}'
+                   where EmpID = ${id};`;
+    const data = await request.query(query);
+    return 'Bank Record updated';
+}
+
+const findYourEmployeeId = async(emailId)=>{
+    const query = `
+    SELECT [ExpenseTracker].[dbo].[Employee].[EmpId]
+    FROM [ExpenseTracker].[dbo].[Employee]
+    WHERE [ExpenseTracker].[dbo].[Employee].[Email] = '${emailId}'`;
+    const data = (await request.query(query)).recordset[0]['EmpId'];
+    return data;
+}
+
+const findAllBillableEmployee = async() => {
+    const query = `SELECT *
+    FROM [ExpenseTracker].[dbo].[Employee]
+    WHERE [ExpenseTracker].[dbo].[Employee].[IsBillable]=1`;
+    const data = (await request.query(query)).recordset;
+    return data;
+}
+
+const findAllNonBillableEmployee = async() => {
+    const query = `SELECT *
+    FROM [ExpenseTracker].[dbo].[Employee]
+    WHERE [ExpenseTracker].[dbo].[Employee].[IsBillable]= 0`;
+    const data = (await request.query(query)).recordset;
+    return data;
+}
+
+const findCompensationOfOneEmployeeInGivenYear = async(year,id) => {
+    const query =`select EmployeePayhead.EmpId,Employee.FirstName,Employee.LastName,sum(EmployeePayhead.Payhead) as TotalCompensation
+    from EmployeePayhead INNER JOIN Employee ON
+    Employee.EmpId = EmployeePayhead.EmpId where EmployeePayhead.Year = ${year}
+    AND Employee.EmpId= ${id}
+    GROUP BY EmployeePayhead.EmpId,Employee.FirstName,Employee.LastName`;
+    const data = (await request.query(query)).recordsets[0];
+    return data;
+}
+
+const findCtcOfOneEmployeeInTheGivenYear = async(year,id) =>{
+    const query = `select EmployeeId,sum(CTC) as CTC from
+    (select EmployeeId,TotalCompensation as CTC From
+    (select EmployeePayhead.EmpId as EmployeeId,sum(EmployeePayhead.Payhead) as TotalCompensation
+    from EmployeePayhead INNER JOIN Employee ON
+    Employee.EmpId = EmployeePayhead.EmpId  and EmployeePayhead.Year = ${year} 
+    GROUP BY EmployeePayhead.EmpId) Compensation
+    UNION
+    select EmployeeId,TotalBenefitAmountOfEmployeeForTheYear From
+    (select FacilityAvailed.AvailedFor as EmployeeId,sum(FacilityAvailed.Amount) as TotalBenefitAmountOfEmployeeForTheYear
+    from FacilityAvailed INNER JOIN Facilities ON
+    FacilityAvailed.FacilityId = Facilities.FacilityId
+    where Facilities.FacilityType = 'B' and FacilityAvailed.YEAR = ${year}
+    GROUP BY FacilityAvailed.AvailedFor) TotalBenefitOfEmployee )  CTC
+    WHERE EmployeeId=${id}
+    GROUP BY EmployeeId`;
+    const data = (await request.query(query)).recordset;
+    return data;
+}
+
+const findOverheadOfOneEmployeeInTheGivenYear = async(year) =>{
+    const query = `select sum(FacilityAvailed.Amount)/(select count(EmpId) from Employee where LeavingDate Is NULL) As OverheadCost
+    from FacilityAvailed INNER JOIN Facilities ON
+    FacilityAvailed.FacilityId = Facilities.FacilityId
+    where Facilities.FacilityType = 'O' and FacilityAvailed.YEAR = ${year}`;
+    const data = (await request.query(query)).recordset[0]['OverheadCost'];
+    return data;
+}
+
+export { findOneEmployee,
+         addEmployee,
+         deleteEmployee, 
+         findAllEmployee, 
+         findAllEmployeeInTheGivenYear , 
+         updateEmployeeBankAccount,
+         findYourEmployeeId , 
+         findAllBillableEmployee,
+         findAllNonBillableEmployee , 
+         findCompensationOfOneEmployeeInGivenYear,
+         findCtcOfOneEmployeeInTheGivenYear ,
+         findOverheadOfOneEmployeeInTheGivenYear
+        };

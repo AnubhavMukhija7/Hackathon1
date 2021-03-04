@@ -78,6 +78,7 @@ const benefitExpense = async (benefit) => {
 };
 
 const benefitExpenseForGivenYear = async (benefit, year) => {
+    console.log('Year:', year);
     const query = `Select sum(Amount) as BenefitExpenseForYear from FacilityAvailed 
     INNER JOIN Facilities ON Facilities.FacilityId = FacilityAvailed.FacilityId
     where FacilityName = '${benefit}' and [Year] = ${year}`;
