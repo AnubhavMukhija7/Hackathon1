@@ -21,7 +21,6 @@ const getAllVendors = async () => {
 };
 
 const getVendorForFacility = async (facility) => {
-    console.log('safafasfasfasf', facility);
     const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,
     VendorName.FirstName,VendorMobile.PrimaryMobile FROM
     Vendor INNER JOIN Facilities ON
@@ -54,7 +53,7 @@ const getVendorsEarningForFacility = async (facility, year) => {
     Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
     VendorName.VendorId = VendorMobile.VendorId INNER JOIN VendorPayment ON
     VendorMobile.VendorId = VendorPayment.VendorId where Vendor.EndDate Is NULL
-     and Facilities.FacilityName = '${facility}' and Year = ${year}
+    and Facilities.FacilityName = '${facility}' and Year = ${year}
     group by 
     Vendor.VendorId,Vendor.VendorCompany, Facilities.FacilityName,
     VendorName.FirstName,VendorMobile.PrimaryMobile,VendorPayment.[Year]`;
