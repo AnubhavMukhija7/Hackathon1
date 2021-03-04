@@ -1,5 +1,5 @@
 export const config = {
-    server: 'EXIDB01',
+    server: '172.17.1.101',
     database: 'ExpenseTracker',
     authentication: {
         type: 'default',

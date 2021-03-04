@@ -12,14 +12,14 @@ import {
     addVendorFacility,
     updateVendorFacility,
     deleteFacility,
-} from '../5Repository/vendor.js';
+} from '../5Repository/repo.vendor.js';
 
-const getVendorDetails = (id) => {
-    return getVendor(id);
+const getVendorDetails = async (id) => {
+    return await getVendor(id);
 };
 
-const getAllVendorsDetails = () => {
-    return getAllVendors();
+const getAllVendorsDetails = async () => {
+    return await getAllVendors();
 };
 
 const getVendorForFacilityDetails = (facility) => {
@@ -27,16 +27,16 @@ const getVendorForFacilityDetails = (facility) => {
 };
 
 const getVendorsEarningDetails = (year) => {
-    return getVendorsEarning();
+    return getVendorsEarning(year);
 };
 const getVendorsEarningForFacilityDetails = (facility, year) => {
     return getVendorsEarningForFacility(facility, year);
 };
-const vendorEarningInYearDetails = (facility, year) => {
-    return vendorEarningInYear(facility, year);
+const vendorEarningInYearDetails = (id, year) => {
+    return vendorEarningInYear(id, year);
 };
-const vendorEarningForFacilityInYearDetails = (facility, year) => {
-    return vendorEarningForFacilityInYear(facility, year);
+const vendorEarningForFacilityInYearDetails = (id, facility, year) => {
+    return vendorEarningForFacilityInYear(id, facility, year);
 };
 
 const addVendorFacilityDetails = (object) => {
