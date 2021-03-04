@@ -61,7 +61,7 @@ const updateEmployeeBankAccount = async (object, id) => {
                    set BankName='${object.BankName}',AccountNo=${object.AccountNo},IFSC='${object.IFSC}',BranchName='${object.BranchName}'
                    where EmpID = ${id};`;
     const data = await request.query(query);
-    return 'Bank Record updated';
+    return 'Bank Record updated!' + data;
 };
 
 const findYourEmployeeId = async (emailId) => {
