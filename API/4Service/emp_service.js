@@ -68,7 +68,7 @@ const findCtcOfOneEmployeeInTheGivenYearDetails = async (req, res) => {
 
 const findOverheadOfOneEmployeeInTheGivenYearDetails = async (req, res) => {
     const response = await findOverheadOfOneEmployeeInTheGivenYear(req.params.year);
-    return response;
+    return (response[0] / response[1]).toFixed(2);
 };
 export {
     addEmployeeDetails,

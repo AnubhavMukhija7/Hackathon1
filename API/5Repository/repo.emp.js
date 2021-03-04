@@ -119,12 +119,15 @@ const findCtcOfOneEmployeeInTheGivenYear = async (year, id) => {
 };
 
 const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
-    const query = `select sum(FacilityAvailed.Amount)/(select count(EmpId) from Employee where LeavingDate Is NULL) As OverheadCost
+    const empQuery = `select count(EmpId) as NumberOfEmp from Employee where LeavingDate Is NULL`;
+    const query = `select sum(FacilityAvailed.Amount) As OverheadCost
     from FacilityAvailed INNER JOIN Facilities ON
     FacilityAvailed.FacilityId = Facilities.FacilityId
     where Facilities.FacilityType = 'O' and FacilityAvailed.YEAR = ${year}`;
+
+    const numberofEmp = (await request.query(empQuery)).recordset[0]['NumberOfEmp'];
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
-    return data;
+    return [data, numberofEmp];
 };
 
 export {
