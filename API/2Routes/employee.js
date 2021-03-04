@@ -1,27 +1,20 @@
 import express from 'express';
-<<<<<<< HEAD
-import { addEmployeeController,
-    updateEmployeeBankAccountController,
-=======
-import {
+
+import 
+{
     addEmployeeController,
-    updateEmployeeController,
->>>>>>> 161b4034ebdde92977ce62cdb63767a80f509ab2
     deleteEmployeeController,
     findAllEmployeeController,
     findOneEmployeeController,
     findAllEmployeeInTheGivenYearController,
-<<<<<<< HEAD
+    updateEmployeeBankAccountController,
     findYourEmployeeIdController,
     findAllBillableEmployeeController,
     findAllNonBillableEmployeeController,
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController
- } from '../3Controller/controller.emp.js';
-=======
 } from '../3Controller/controller.emp.js';
->>>>>>> 161b4034ebdde92977ce62cdb63767a80f509ab2
 
 const router = express.Router();
 // get an employee with the given id

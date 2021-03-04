@@ -10,6 +10,7 @@ import {
     vendorEarningForFacilityInYearController,
     addVendorFacilityController,
     addVendorController,
+    addFacilityAddVendorController,
     updateVendorController,
     updateVendorFacilityController,
     deleteVendorController,
@@ -67,10 +68,15 @@ router.post('/add/facility', async (req, res) => {
 });
 
 // add vendor with a facility!
-router.post('/add', async (req, res) => {
-    const result = await addVendorController(req);
+router.post('/addFacilityAddvendor', async (req, res) => {
+    const result = await addFacilityAddVendorController(req.body);
     res.send(result);
 });
+
+router.post('/addVendor',async(req,res)=>{
+    const result = await addVendorController(req.body);
+    res.send(result);
+})
 
 // update vendor
 router.put('/update', async (req, res) => {
@@ -84,9 +90,10 @@ router.post('/update/facility', async (req, res) => {
     res.send(result);
 });
 
+
 // set inactive, set all facilities of that vendor to inactive
-router.delete('/delete', async (req, res) => {
-    const result = await deleteVendorController(req);
+router.delete('/deleteVendor/id=:id', async (req, res) => {
+    const result = await deleteVendorController(req.params.id);
     res.send(result);
 });
 
@@ -95,5 +102,4 @@ router.delete('/delete/facility', async (req, res) => {
     const result = await deleteFacilityController(req);
     res.send(result);
 });
-
 export default router;

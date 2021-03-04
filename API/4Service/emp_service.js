@@ -2,7 +2,6 @@ import { findCtcOfOneEmployeeInTheGivenYearController, findOneEmployeeController
 import {
     findOneEmployee,
     addEmployee,
-    updateEmployee,
     deleteEmployee,
     findAllEmployee,
     findAllEmployeeInTheGivenYear,
@@ -20,10 +19,6 @@ const addEmployeeDetails = async (req, res) => {
     return response;
 };
 
-const updateEmployeeDetails = async (req, res) => {
-    const response = await updateEmployee(req.body);
-    return response;
-};
 
 const deleteEmployeeDetails = async (req, res) => {
     const response =  await deleteEmployee(req.params.id);
@@ -79,7 +74,6 @@ const findOverheadOfOneEmployeeInTheGivenYearDetails = async(req,res) => {
 }
 export {
     addEmployeeDetails,
-    updateEmployeeDetails,
     deleteEmployeeDetails,
     findOneEmployeeDetails,
     findAllEmployeeDetails,

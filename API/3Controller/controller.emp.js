@@ -1,7 +1,6 @@
 //employee
 import {
     addEmployeeDetails,
-    updateEmployeeDetails,
     deleteEmployeeDetails,
     findAllEmployeeDetails,
     findOneEmployeeDetails,
@@ -89,7 +88,6 @@ const findYourEmployeeIdController = async(req,res) => {
 //export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor};
 export {
     addEmployeeController,
-    updateEmployeeController,
     deleteEmployeeController,
     findAllEmployeeController,
     findOneEmployeeController,

@@ -33,11 +33,6 @@ const addEmployee = async (object) => {
     return 'Record Inserted!\n';
 };
 
-const updateEmployee = async (object) => { 
-    const data = await request.query(`Update Employees set ${object.Column} = '${object.Detail}' where EmployeeID=${object.EmployeeID}`);
-    return 'Record Updated!';
-};
-
 //------NOT USING RN-------
 const deleteEmployee = async (id) => {
     const query = `Update  Employee 
@@ -132,7 +127,6 @@ const findOverheadOfOneEmployeeInTheGivenYear = async(year) =>{
 
 export { findOneEmployee,
          addEmployee,
-         updateEmployee, 
          deleteEmployee, 
          findAllEmployee, 
          findAllEmployeeInTheGivenYear , 
