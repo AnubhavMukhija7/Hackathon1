@@ -47,7 +47,7 @@ const deleteEmployee = async (object) => {
 };
 
 const findAllEmployeeInTheGivenYear = async (year) => {
-    const data = await request.query(`select Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
+    const data = await request.query(`Select Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
     EmployeeAddress.City,EmployeeAddress.District from Employee
     INNER JOIN EmployeeContact ON
     Employee.EmpId = EmployeeContact.EmpId

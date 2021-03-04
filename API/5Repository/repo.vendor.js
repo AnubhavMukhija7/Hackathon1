@@ -31,14 +31,14 @@ const getVendorForFacility = async (facility) => {
     return data.recordsets[0];
 };
 
-const getVendorsEarning = async (year) => {
-    const query = `
-    SELECT Vendor.VendorId,Vendor.VendorCompany,sum(VendorPayment.Amount)as Amount,VendorPayment.[Year] FROM
+const getVendorsEarning = async (year) =>
+{
+    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,sum(VendorPayment.Amount)as Amount,VendorPayment.[Year] FROM
     Vendor INNER JOIN Facilities ON
     Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
     Vendor.VendorId = VendorName.VendorId INNER JOIN VendorPayment ON
     VendorName.VendorId = VendorPayment.VendorId
-    where Vendor.EndDate Is NULL and VendorPayment.[Year] = ${year}
+    where VendorPayment.[Year] = ${year}
     GROUP BY Vendor.VendorId,Vendor.VendorCompany,VendorPayment.[Year]`;
     const data = await request.query(query);
     return data.recordsets[0];
