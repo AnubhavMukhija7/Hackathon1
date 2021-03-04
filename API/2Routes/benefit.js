@@ -57,15 +57,15 @@ router.get('/expense', async (req, res) => {
     res.send(result);
 });
 
-// Expense due to a particular benefit in the current year
-router.get('/expense/:benefitName', async (req, res) => {
-    const result = await benefitExpenseController(req.params.benefitName);
+// Expense due to benefits in given year
+router.get('/expense/year=:year', async (req, res) => {
+    const result = await getTotalExpenseForGivenYearController(parseInt(req.params.year));
     res.send(result);
 });
 
-// Expense due to benefits in given year
-router.get('/expense/:year', async (req, res) => {
-    const result = await getTotalExpenseForGivenYearController(parseInt(req.params.year));
+// Expense due to a particular benefit in the current year
+router.get('/expense/:benefitName', async (req, res) => {
+    const result = await benefitExpenseController(req.params.benefitName);
     res.send(result);
 });
 
