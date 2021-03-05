@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./expense.js"></script>
+        <title>Expense</title>
+    </head>
+    <body>
+        <h3>Expense Reports For Ex2 Services</h3>
+        <!--<div>
+        <h4>Total Revenue for Ex2 services</h4>
+        <form>
+            <label for='profitPercentage'>Enter Profit Percentage :</label>
+            <input type='text' id='profitPercentage' name='profitPercentage'><br><br>
+            <input type='submit' value='Calculate Revenue'>
+        </form>
+    </div>-->
+        <div id="showExpenses">
+            <table id="table"></table>
+        </div>
+        <select id="Year" onchange="filterExpensesOnChosenYear()">
+            <option>Select</option>
+        </select>
+        <div id="year"></div>
+    </body>
+</html>

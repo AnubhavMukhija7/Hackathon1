@@ -37,6 +37,7 @@ const addEmployee = async (object) => {
     return 'Record Inserted!\n';
 };
 
+//------NOT USING RN-------
 const deleteEmployee = async (id) => {
     const query = `Update  Employee 
                 set [Status] = 'Terminated'
@@ -90,11 +91,17 @@ const findAllNonBillableEmployee = async () => {
 };
 
 const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
-    const query = `select EmployeePayhead.EmpId,Employee.FirstName,Employee.LastName,sum(EmployeePayhead.Payhead) as TotalCompensation
+    const query = `Select Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
+    EmployeeAddress.City,EmployeeAddress.District,sum(EmployeePayhead.Payhead) as TotalCompensation
     from EmployeePayhead INNER JOIN Employee ON
-    Employee.EmpId = EmployeePayhead.EmpId where EmployeePayhead.Year = ${year}
-    AND Employee.EmpId= ${id}
-    GROUP BY EmployeePayhead.EmpId,Employee.FirstName,Employee.LastName`;
+    Employee.EmpId = EmployeePayhead.EmpId
+    INNER JOIN EmployeeContact ON
+    Employee.EmpId = EmployeeContact.EmpId
+    INNER JOIN EmployeeAddress ON
+    EmployeeContact.EmpId = EmployeeAddress.EmpId
+    where ((YEAR(Employee.LeavingDate) >=${year} OR YEAR(Employee.LeavingDate) Is NULL) AND YEAR(Employee.JoiningDate) <= ${year}) and Employee.EmpId = ${id}
+    GROUP BY Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
+    EmployeeAddress.City,EmployeeAddress.District`;
     const data = (await request.query(query)).recordsets[0];
     return convertToModel(data);
 };
@@ -120,15 +127,12 @@ const findCtcOfOneEmployeeInTheGivenYear = async (year, id) => {
 };
 
 const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
-    const empQuery = `select count(EmpId) as NumberOfEmp from Employee where LeavingDate Is NULL`;
-    const query = `select sum(FacilityAvailed.Amount) As OverheadCost
+    const query = `select sum(FacilityAvailed.Amount)/(select count(EmpId) from Employee where LeavingDate Is NULL) As OverheadCost
     from FacilityAvailed INNER JOIN Facilities ON
     FacilityAvailed.FacilityId = Facilities.FacilityId
     where Facilities.FacilityType = 'O' and FacilityAvailed.YEAR = ${year}`;
-
-    const numberofEmp = (await request.query(empQuery)).recordset[0]['NumberOfEmp'];
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
-    return [data, numberofEmp];
+    return data;
 };
 
 const convertToModel = (data) => {

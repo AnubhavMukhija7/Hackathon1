@@ -12,13 +12,13 @@ const app = express();
 const port = process.env.port || 3000;
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.resolve(dirname + '/../../FrontEnd')));
+app.use(express.static(path.resolve(dirname + '/../../FrontEnd/showcase')));
 
 app.use(express.json());
 app.use(pkg());
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(dirname + '/../../FrontEnd/index.html'));
+    res.sendFile(path.resolve(dirname + '/../../FrontEnd/showcase/index.html'));
 });
 app.use('/employee', employee);
 app.use('/vendor', vendor);
