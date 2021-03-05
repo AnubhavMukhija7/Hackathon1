@@ -27,5 +27,5 @@ app.use('/overhead', overHead);
 app.use('/totalExpense', totalExpense);
 
 app.listen(port, () => {
-    console.log(`I am listening at http://localhost:${port}`);
+    console.log(`Listening at http://localhost:${port}`);
 });

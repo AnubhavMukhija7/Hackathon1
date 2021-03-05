@@ -9,10 +9,9 @@ import {
     getVendorsEarningForFacility,
     vendorEarningInYear,
     vendorEarningForFacilityInYear,
-    addVendorFacility,
     updateVendorFacility,
     deleteFacility,
-    addVendor
+    addVendor,
 } from '../5Repository/repo.vendor.js';
 
 const getVendorDetails = async (id) => {
@@ -40,9 +39,6 @@ const vendorEarningForFacilityInYearDetails = (id, facility, year) => {
     return vendorEarningForFacilityInYear(id, facility, year);
 };
 
-const addVendorFacilityDetails = (object) => {
-    return addVendorFacility(object);
-};
 const addFacilityAddVendorDetails = async (body) => {
     return await addFacilityAddVendor(body);
 };
@@ -65,7 +61,7 @@ const deleteFacilityDetails = (body) => {
 
 const addVendorDetails = (body) => {
     return addVendor(body);
-}
+};
 export {
     getVendorDetails,
     getAllVendorsDetails,
@@ -74,11 +70,10 @@ export {
     getVendorsEarningForFacilityDetails,
     vendorEarningInYearDetails,
     vendorEarningForFacilityInYearDetails,
-    addVendorFacilityDetails,
     addFacilityAddVendorDetails,
     updateVendorDetails,
     updateVendorFacilityDetails,
     deleteVendorDetails,
     deleteFacilityDetails,
-    addVendorDetails
+    addVendorDetails,
 };

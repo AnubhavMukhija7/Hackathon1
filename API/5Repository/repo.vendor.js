@@ -1,5 +1,6 @@
 import { makeConnection } from '../6Connection/connection.js';
 import Vendor from '../../model/model.vendor.js';
+import Expense from '../../model/model.expense.js';
 const request = await makeConnection();
 
 const getVendor = async (id) => {
@@ -58,7 +59,7 @@ const getVendorsEarningForFacility = async (facility, year) => {
     Vendor.VendorId,Vendor.VendorCompany, Facilities.FacilityName,
     VendorName.FirstName,VendorMobile.PrimaryMobile,VendorPayment.[Year]`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const vendorEarningInYear = async (id, year) => {
@@ -85,15 +86,7 @@ const vendorEarningForFacilityInYear = async (id, facility, year) => {
     return convertToModel(data.recordsets[0]);
 };
 
-// extract vendor id from here
-const addVendorFacility = async (object) => {
-    const query = ``;
-    const data = await request.query(query);
-    return data.recordsets[0];
-};
-
 const addFacilityAddVendor = async (object) => {
-    console.log(object);
     const insertIntoFacilities = `Insert into Facilities(FacilityName,FacilityDescription,IsActive,FacilityType)
                             Values('${object.FacilityName}','${object.FacilityDescription}',1,'${object.FacilityType}')`;
     await request.query(insertIntoFacilities);
@@ -169,7 +162,10 @@ const deleteFacility = async (body) => {
 const convertToModel = (data) => {
     const result = [];
     for (const item of data) {
-        result.push(new Vendor(item.VendorId, item.VendorCompany, item.FacilityName, item.FirstName, item.PrimaryMobile, item.IsActive, item.Amount));
+        result.push({
+            ...new Vendor(item.VendorId, item.VendorCompany, item.FacilityName, item.FirstName, item.PrimaryMobile, item.IsActive),
+            ...new Expense(item.Amount),
+        });
     }
     return result;
 };
@@ -185,7 +181,6 @@ export {
     getVendorsEarningForFacility,
     vendorEarningInYear,
     vendorEarningForFacilityInYear,
-    addVendorFacility,
     updateVendorFacility,
     deleteFacility,
     addVendor,

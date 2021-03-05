@@ -1,10 +1,10 @@
-class Benefit {
+class Facility {
     constructor(id, name, description, isactive) {
-        this.BenefitID = id;
-        this.BenefitName = name;
+        this.FacilityID = id;
+        this.Name = name;
         this.Description = description;
         this.ActiveStatus = isactive;
     }
 }
 
-export default Benefit;
+export default Facility;

@@ -8,18 +8,16 @@ import {
     getVendorsEarningForFacilityController,
     vendorEarningInYearController,
     vendorEarningForFacilityInYearController,
-    addVendorFacilityController,
     addVendorController,
     addFacilityAddVendorController,
     updateVendorController,
     updateVendorFacilityController,
     deleteVendorController,
-    deleteFacilityController,
 } from '../3Controller/controller.vendor.js';
 
 const router = express.Router();
 
-// get all vendors for a particular facility... can add a 'sort' feature
+// get all vendors for a particular facility...
 router.get('/facility=:facility', async (req, res) => {
     const result = await getVendorForFacilityController(req.params.facility);
     res.send(result);
@@ -61,22 +59,16 @@ router.get('/:id/:facility/earning/:year', async (req, res) => {
     res.send(result);
 });
 
-// add facility for a particular vendor
-router.post('/add/facility', async (req, res) => {
-    const result = await addVendorFacilityController(req);
-    res.send(result);
-});
-
 // add vendor with a facility!
 router.post('/addFacilityAddvendor', async (req, res) => {
     const result = await addFacilityAddVendorController(req.body);
     res.send(result);
 });
 
-router.post('/addVendor',async(req,res)=>{
+router.post('/addVendor', async (req, res) => {
     const result = await addVendorController(req.body);
     res.send(result);
-})
+});
 
 // update vendor
 router.put('/update', async (req, res) => {
@@ -89,7 +81,6 @@ router.post('/update/facility', async (req, res) => {
     const result = await updateVendorFacilityController(req);
     res.send(result);
 });
-
 
 // set inactive for a particular vendor
 router.delete('/deleteVendor/id=:id', async (req, res) => {

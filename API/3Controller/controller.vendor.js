@@ -6,13 +6,12 @@ import {
     getVendorsEarningForFacilityDetails,
     vendorEarningInYearDetails,
     vendorEarningForFacilityInYearDetails,
-    addVendorFacilityDetails,
     addFacilityAddVendorDetails,
     updateVendorDetails,
     updateVendorFacilityDetails,
     deleteVendorDetails,
     deleteFacilityDetails,
-    addVendorDetails
+    addVendorDetails,
 } from '../4Service/vendor_service.js';
 
 const getVendorController = async (id) => {
@@ -40,10 +39,7 @@ const vendorEarningForFacilityInYearController = (id, facility, year) => {
     return vendorEarningForFacilityInYearDetails(id, facility, year);
 };
 
-const addVendorFacilityController = (object) => {
-    return addVendorFacilityDetails(object);
-};
-const addFacilityAddVendorController = async(body) => {
+const addFacilityAddVendorController = async (body) => {
     return await addFacilityAddVendorDetails(body);
 };
 
@@ -65,7 +61,7 @@ const deleteFacilityController = (body) => {
 
 const addVendorController = (body) => {
     return addVendorDetails(body);
-}
+};
 export {
     getVendorController,
     getAllVendorsController,
@@ -74,11 +70,10 @@ export {
     getVendorsEarningForFacilityController,
     vendorEarningInYearController,
     vendorEarningForFacilityInYearController,
-    addVendorFacilityController,
     addFacilityAddVendorController,
     updateVendorController,
     updateVendorFacilityController,
     deleteVendorController,
     deleteFacilityController,
-    addVendorController
+    addVendorController,
 };

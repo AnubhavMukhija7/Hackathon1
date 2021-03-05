@@ -1,5 +1,5 @@
 import { makeConnection } from '../6Connection/connection.js';
-import Employee from '../../model/model.employee.js';
+import { convertToModel } from '../../model/model.convert.js';
 const request = await makeConnection();
 const findAllEmployee = async () => {
     const query = `Select Employee.EmpId , Employee.Title,Employee.FirstName,
@@ -133,28 +133,6 @@ const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
     where Facilities.FacilityType = 'O' and FacilityAvailed.YEAR = ${year}`;
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
     return data;
-};
-
-const convertToModel = (data) => {
-    const result = [];
-    for (const item of data) {
-        result.push(
-            new Employee(
-                item.EmpId,
-                item.Title,
-                item.FirstName,
-                item.LastName,
-                item.Office,
-                item.Email,
-                item.Status,
-                item.District,
-                item.City,
-                item.TotalCompensation,
-                item.CTC
-            )
-        );
-    }
-    return result;
 };
 
 export {

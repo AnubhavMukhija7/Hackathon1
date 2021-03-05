@@ -1,34 +1,41 @@
 h1 {
-  text-align: center;
-  text-decoration: underline;
-  color: blanchedalmond;
+    text-align: center;
+    text-decoration: underline;
+    color: blanchedalmond;
 }
 p {
-  font-style: bold;
-  font-size: 25px;
-  color: whitesmoke;
+    font-style: bold;
+    font-size: 25px;
+    color: whitesmoke;
 }
 body {
-  background: #000;
-  color: white;
-  font-size:large;
+    background: #155;
+    color: white;
+    font-size: large;
 }
 LI {
-  font-size: 17px;
-  color: cornsilk;
+    font-size: 17px;
+    color: cornsilk;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 a:link {
-  color: rgb(235, 134, 209);
+    color: rgb(235, 134, 209);
 }
 a:visited {
-  color: rgb(137, 137, 241);
+    color: rgb(137, 137, 241);
 }
 a:hover {
-  color: wheat;
+    color: wheat;
 }
 a:active {
-  color: black;
+    color: black;
+}
+table,
+th,
+td {
+    border: 2px solid yellow;
+    padding: 1ch;
+    border-collapse: collapse;
 }
