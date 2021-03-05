@@ -1,8 +1,8 @@
 import { config } from '../7Configuration/db.config.js';
 import sql from 'mssql';
 
-export async function makeConnection() {
-  const pool = await sql.connect(config);
-  const req = await pool.request();
-  return req;
-}
+export const makeConnection = async () => {
+    let req = await sql.connect(config);
+    console.log('Connected to the database.');
+    return req;
+};

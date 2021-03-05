@@ -1,0 +1,41 @@
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    color: blanchedalmond;
+}
+p {
+    font-style: bold;
+    font-size: 25px;
+    color: whitesmoke;
+}
+body {
+    background: #155;
+    color: white;
+    font-size: large;
+}
+LI {
+    font-size: 17px;
+    color: cornsilk;
+}
+a {
+    text-decoration: none;
+}
+a:link {
+    color: rgb(235, 134, 209);
+}
+a:visited {
+    color: rgb(137, 137, 241);
+}
+a:hover {
+    color: wheat;
+}
+a:active {
+    color: black;
+}
+table,
+th,
+td {
+    border: 2px solid yellow;
+    padding: 1ch;
+    border-collapse: collapse;
+}
