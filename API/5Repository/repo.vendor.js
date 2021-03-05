@@ -1,5 +1,5 @@
-import { deleteVendorDetails } from '../4Service/vendor_service.js';
 import { makeConnection } from '../6Connection/connection.js';
+import Vendor from '../../model/model.vendor.js';
 const request = await makeConnection();
 
 const getVendor = async (id) => {
@@ -10,7 +10,7 @@ const getVendor = async (id) => {
     Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
     VendorName.VendorId = VendorMobile.VendorId where Vendor.VendorId = ${id}`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const getAllVendors = async () => {
@@ -18,7 +18,7 @@ const getAllVendors = async () => {
     Vendor INNER JOIN Facilities ON
     Vendor.FacilityId = Facilities.FacilityId`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const getVendorForFacility = async (facility) => {
@@ -29,11 +29,10 @@ const getVendorForFacility = async (facility) => {
     Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
     VendorName.VendorId = VendorMobile.VendorId where Vendor.EndDate Is NULL and Facilities.FacilityName = '${facility}'`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
-const getVendorsEarning = async (year) =>
-{
+const getVendorsEarning = async (year) => {
     const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,sum(VendorPayment.Amount)as Amount,VendorPayment.[Year] FROM
     Vendor INNER JOIN Facilities ON
     Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
@@ -42,7 +41,7 @@ const getVendorsEarning = async (year) =>
     where VendorPayment.[Year] = ${year}
     GROUP BY Vendor.VendorId,Vendor.VendorCompany,VendorPayment.[Year]`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const getVendorsEarningForFacility = async (facility, year) => {
@@ -71,7 +70,7 @@ const vendorEarningInYear = async (id, year) => {
     where Vendor.EndDate Is NULL and VendorPayment.[Year] = ${year} and Vendor.VendorId=${id}
     GROUP BY Vendor.VendorId,Vendor.VendorCompany,VendorPayment.[Year]`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const vendorEarningForFacilityInYear = async (id, facility, year) => {
@@ -83,7 +82,7 @@ const vendorEarningForFacilityInYear = async (id, facility, year) => {
     where Vendor.EndDate Is NULL and VendorPayment.[Year] = ${year} and Vendor.VendorId=${id} and Facilities.FacilityName = '${facility}'
     GROUP BY Vendor.VendorId,Vendor.VendorCompany,VendorPayment.[Year]`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 // extract vendor id from here
@@ -97,11 +96,11 @@ const addFacilityAddVendor = async (object) => {
     console.log(object);
     const insertIntoFacilities = `Insert into Facilities(FacilityName,FacilityDescription,IsActive,FacilityType)
                             Values('${object.FacilityName}','${object.FacilityDescription}',1,'${object.FacilityType}')`;
-    (await request.query(insertIntoFacilities));
+    await request.query(insertIntoFacilities);
     const newFacilityId = (await request.query(`Select * from Facilities`)).recordsets[0].length;
     const insertIntoVendor = `Insert into Vendor(VendorCompany,FacilityId,StartDate,EndDate,IsActive)
                               Values('${object.VendorCompany}',${newFacilityId},'${object.StartDate}',null,1)`;
-    (await request.query(insertIntoVendor));
+    await request.query(insertIntoVendor);
     const newVendorId = (await request.query(`Select * from Vendor`)).recordsets[0].length;
     const insertIntoVendorName = `Insert into VendorName(VendorId,Title,FirstName,MiddleName,LastName)
                             Values(${newVendorId},'${object.Title}','${object.FirstName}','${object.MiddleName}','${object.LastName}')`;
@@ -130,14 +129,13 @@ const updateVendorFacility = async (body) => {
     return 'Record Updated';
 };
 
-
-const addVendor = async(object) => {
+const addVendor = async (object) => {
     const getFacilityIdForFacilityName = `Select FacilityId From Facilities
                                         where FacilityName = '${object.FacilityName}'`;
-    const newFacilityId = ((await request.query(getFacilityIdForFacilityName)).recordset[0]['FacilityId']);
+    const newFacilityId = (await request.query(getFacilityIdForFacilityName)).recordset[0]['FacilityId'];
     const insertIntoVendor = `Insert into Vendor(VendorCompany,FacilityId,StartDate,EndDate,IsActive)
                               Values('${object.VendorCompany}',${newFacilityId},'${object.StartDate}',null,1)`;
-    (await request.query(insertIntoVendor));
+    await request.query(insertIntoVendor);
     const newVendorId = (await request.query(`Select * from Vendor`)).recordsets[0].length;
     const insertIntoVendorName = `Insert into VendorName(VendorId,Title,FirstName,MiddleName,LastName)
                             Values(${newVendorId},'${object.Title}','${object.FirstName}','${object.MiddleName}','${object.LastName}')`;
@@ -152,7 +150,7 @@ const addVendor = async(object) => {
                                         Values(${newVendorId},'${object.BankName}',${object.AccountNumber},'${object.IFSC}','${object.BranchName}','${object.PAN}')`;
     await request.query(insertIntoVendorBankDetails);
     return 'Record Inserted';
-}
+};
 
 const deleteVendor = async (id) => {
     const query = `Update Vendor
@@ -166,6 +164,14 @@ const deleteFacility = async (body) => {
     const query = ``;
     await request.query(query);
     return 'Facility Deleted';
+};
+
+const convertToModel = (data) => {
+    const result = [];
+    for (const item of data) {
+        result.push(new Vendor(item.VendorId, item.VendorCompany, item.FacilityName, item.FirstName, item.PrimaryMobile, item.IsActive, item.Amount));
+    }
+    return result;
 };
 
 export {
@@ -182,5 +188,5 @@ export {
     addVendorFacility,
     updateVendorFacility,
     deleteFacility,
-    addVendor
+    addVendor,
 };

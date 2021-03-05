@@ -1,19 +1,20 @@
 import { makeConnection } from '../6Connection/connection.js';
+import Employee from '../../model/model.employee.js';
 const request = await makeConnection();
 const findAllEmployee = async () => {
-    const query = `Select Employee.EmpId , Employee.Title,Employee.FirstName
-                  ,Employee.MiddleName , Employee.Lastname , Employee.Email,
+    const query = `Select Employee.EmpId , Employee.Title,Employee.FirstName,
+                 Employee.MiddleName , Employee.Lastname , Employee.Email,
                   Employee.Gender,Employee.Status,EmployeeAddress.City,
                   EmployeeAddress.State,EmployeeContact.Office
                   from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const findOneEmployee = async (id) => {
     const query = `Select Employee.EmpId, Employee.FirstName,Employee.LastName,EmployeeContact.Office,EmployeeAddress.City,EmployeeAddress.District from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId where Employee.EmpId = ${id}`;
     const data = await request.query(query);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const addEmployee = async (object) => {
@@ -52,7 +53,7 @@ const findAllEmployeeInTheGivenYear = async (year) => {
     INNER JOIN EmployeeAddress ON
     EmployeeContact.EmpId = EmployeeAddress.EmpId 
     where ((YEAR(Employee.LeavingDate) >= ${year} OR YEAR(Employee.LeavingDate) Is NULL) AND YEAR(Employee.JoiningDate) <= ${year})`);
-    return data.recordsets[0];
+    return convertToModel(data.recordsets[0]);
 };
 
 const updateEmployeeBankAccount = async (object, id) => {
@@ -77,7 +78,7 @@ const findAllBillableEmployee = async () => {
     FROM [ExpenseTracker].[dbo].[Employee]
     WHERE [ExpenseTracker].[dbo].[Employee].[IsBillable]=1`;
     const data = (await request.query(query)).recordset;
-    return data;
+    return convertToModel(data);
 };
 
 const findAllNonBillableEmployee = async () => {
@@ -85,7 +86,7 @@ const findAllNonBillableEmployee = async () => {
     FROM [ExpenseTracker].[dbo].[Employee]
     WHERE [ExpenseTracker].[dbo].[Employee].[IsBillable]= 0`;
     const data = (await request.query(query)).recordset;
-    return data;
+    return convertToModel(data);
 };
 
 const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
@@ -95,11 +96,11 @@ const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
     AND Employee.EmpId= ${id}
     GROUP BY EmployeePayhead.EmpId,Employee.FirstName,Employee.LastName`;
     const data = (await request.query(query)).recordsets[0];
-    return data;
+    return convertToModel(data);
 };
 
 const findCtcOfOneEmployeeInTheGivenYear = async (year, id) => {
-    const query = `select EmployeeId,sum(CTC) as CTC from
+    const query = `Select EmployeeId as EmpId,sum(CTC) as CTC from
     (select EmployeeId,TotalCompensation as CTC From
     (select EmployeePayhead.EmpId as EmployeeId,sum(EmployeePayhead.Payhead) as TotalCompensation
     from EmployeePayhead INNER JOIN Employee ON
@@ -115,7 +116,7 @@ const findCtcOfOneEmployeeInTheGivenYear = async (year, id) => {
     WHERE EmployeeId=${id}
     GROUP BY EmployeeId`;
     const data = (await request.query(query)).recordset;
-    return data;
+    return convertToModel(data);
 };
 
 const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
@@ -128,6 +129,28 @@ const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
     const numberofEmp = (await request.query(empQuery)).recordset[0]['NumberOfEmp'];
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
     return [data, numberofEmp];
+};
+
+const convertToModel = (data) => {
+    const result = [];
+    for (const item of data) {
+        result.push(
+            new Employee(
+                item.EmpId,
+                item.Title,
+                item.FirstName,
+                item.LastName,
+                item.Office,
+                item.Email,
+                item.Status,
+                item.District,
+                item.City,
+                item.TotalCompensation,
+                item.CTC
+            )
+        );
+    }
+    return result;
 };
 
 export {
