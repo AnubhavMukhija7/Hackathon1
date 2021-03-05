@@ -10,6 +10,8 @@ p {
 }
 body {
   background: #000;
+  color: white;
+  font-size:large;
 }
 LI {
   font-size: 17px;
