@@ -11,7 +11,7 @@ import {
     empExpenseForParticularBenefitController,
     benefitExpenseController,
     benefitExpenseForGivenYearController,
-} from '../3Controller/controller.benefits.js';
+} from '../Controller/controller.benefits.js';
 
 const router = express.Router();
 

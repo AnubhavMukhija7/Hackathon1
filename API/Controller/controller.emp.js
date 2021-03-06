@@ -12,7 +12,7 @@ import {
     findCompensationOfOneEmployeeInGivenYearDetails,
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails
-} from '../4Service/emp_service.js';
+} from '../Service/emp_service.js';
 
 //employee
 const addEmployeeController = async (req, res) => {

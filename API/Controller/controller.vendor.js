@@ -12,7 +12,7 @@ import {
     deleteVendorDetails,
     deleteFacilityDetails,
     addVendorDetails,
-} from '../4Service/vendor_service.js';
+} from '../Service/vendor_service.js';
 
 const getVendorController = async (id) => {
     return await getVendorDetails(id);

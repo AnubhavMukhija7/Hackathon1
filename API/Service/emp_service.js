@@ -1,4 +1,4 @@
-import { findCtcOfOneEmployeeInTheGivenYearController, findOneEmployeeController } from '../3Controller/controller.emp.js';
+import { findCtcOfOneEmployeeInTheGivenYearController, findOneEmployeeController } from '../Controller/controller.emp.js';
 import {
     findOneEmployee,
     addEmployee,
@@ -12,7 +12,7 @@ import {
     findCompensationOfOneEmployeeInGivenYear,
     findCtcOfOneEmployeeInTheGivenYear,
     findOverheadOfOneEmployeeInTheGivenYear
-} from '../5Repository/repo.emp.js';
+} from '../Repository/repo.emp.js';
 
 const addEmployeeDetails = async (req, res) => {
     const response = await addEmployee(req.body);

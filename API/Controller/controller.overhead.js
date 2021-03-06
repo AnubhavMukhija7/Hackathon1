@@ -3,7 +3,7 @@ import {
     getOverHeadWithAmountDetails,
     getOverHeadForFacilityDetails,
     getVendorForFacilityDetails,
-} from '../4Service/overhead_service.js';
+} from '../Service/overhead_service.js';
 
 const getOverHeadController = () => {
     return getOverHeadDetails();

@@ -1,5 +1,5 @@
 import express from 'express';
-import { totalExpenseController, totalExpenseForYearController } from '../3Controller/contoller.totalExpense.js';
+import { totalExpenseController, totalExpenseForYearController } from '../Controller/contoller.totalExpense.js';
 const router = express.Router();
 
 // total expense of current year

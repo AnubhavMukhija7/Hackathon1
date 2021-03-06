@@ -13,7 +13,7 @@ import {
   findCompensationOfOneEmployeeInGivenYearController,
   findCtcOfOneEmployeeInTheGivenYearController,
   findOverheadOfOneEmployeeInTheGivenYearController,
-} from '../3Controller/controller.emp.js';
+} from '../Controller/controller.emp.js';
 
 const router = express.Router();
 // get an employee with the given id

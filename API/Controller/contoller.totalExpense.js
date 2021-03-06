@@ -1,4 +1,4 @@
-import { totalExpenseDetails, totalExpenseForYearDetails } from '../4Service/totalExpense_service.js';
+import { totalExpenseDetails, totalExpenseForYearDetails } from '../Service/totalExpense_service.js';
 
 const totalExpenseController = async () => {
     return await totalExpenseDetails();

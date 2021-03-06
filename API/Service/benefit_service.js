@@ -9,7 +9,7 @@ import {
     empExpenseForParticularBenefit,
     benefitExpense,
     benefitExpenseForGivenYear,
-} from '../5Repository/repo.benefit.js';
+} from '../Repository/repo.benefit.js';
 
 const getAllBenefitDetails = async () => {
     return await getAllBenefit();

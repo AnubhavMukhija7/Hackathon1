@@ -9,7 +9,7 @@ import {
     empExpenseForParticularBenefitDetails,
     benefitExpenseDetails,
     benefitExpenseForGivenYearDetails,
-} from '../4Service/benefit_service.js';
+} from '../Service/benefit_service.js';
 
 const getAllBenefitController = () => {
     return getAllBenefitDetails();

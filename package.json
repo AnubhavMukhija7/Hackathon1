@@ -2,10 +2,10 @@
     "name": "Hackathon1",
     "version": "1.0.0",
     "description": "",
-    "main": "API/1Main/main.js",
+    "main": "API/Main/main.js",
     "type": "module",
     "scripts": {
-        "start": "nodemon API/1Main/main.js",
+        "start": "nodemon API/Main/main.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {

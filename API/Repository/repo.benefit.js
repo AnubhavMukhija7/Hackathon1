@@ -1,5 +1,5 @@
-import { makeConnection } from '../6Connection/connection.js';
-import { convertToModel } from '../../model/model.convert.js';
+import { makeConnection } from '../Connection/connection.js';
+import { convertToModel } from '../../Model/model.convert.js';
 const request = await makeConnection();
 
 const getAllBenefit = async () => {

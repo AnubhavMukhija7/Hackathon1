@@ -1,4 +1,4 @@
-import { totalExpense, totalExpenseForYear } from '../5Repository/repo.totalExp.js';
+import { totalExpense, totalExpenseForYear } from '../Repository/repo.totalExp.js';
 
 const totalExpenseDetails = async () => {
     return await totalExpense();

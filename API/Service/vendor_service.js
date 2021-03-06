@@ -12,7 +12,7 @@ import {
     updateVendorFacility,
     deleteFacility,
     addVendor,
-} from '../5Repository/repo.vendor.js';
+} from '../Repository/repo.vendor.js';
 
 const getVendorDetails = async (id) => {
     return await getVendor(id);

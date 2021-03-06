@@ -1,4 +1,4 @@
-import { config } from '../7Configuration/db.config.js';
+import { config } from '../Configuration/db.config.js';
 import sql from 'mssql';
 
 export const makeConnection = async () => {

@@ -13,7 +13,7 @@ import {
     updateVendorController,
     updateVendorFacilityController,
     deleteVendorController,
-} from '../3Controller/controller.vendor.js';
+} from '../Controller/controller.vendor.js';
 
 const router = express.Router();
 

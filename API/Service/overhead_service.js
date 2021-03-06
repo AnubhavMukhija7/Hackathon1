@@ -1,4 +1,4 @@
-import { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility } from '../5Repository/repo.overhead.js';
+import { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility } from '../Repository/repo.overhead.js';
 
 const getOverHeadDetails = () => {
     return getOverHead();

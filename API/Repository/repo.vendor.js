@@ -1,6 +1,6 @@
-import { makeConnection } from '../6Connection/connection.js';
-import Vendor from '../../model/model.vendor.js';
-import Expense from '../../model/model.expense.js';
+import { makeConnection } from '../Connection/connection.js';
+import Vendor from '../../Model/model.vendor.js';
+import Expense from '../../Model/model.expense.js';
 const request = await makeConnection();
 
 const getVendor = async (id) => {

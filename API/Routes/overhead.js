@@ -5,7 +5,7 @@ import {
     getOverHeadWithAmountController,
     getOverHeadForFacilityController,
     getVendorForFacilityController,
-} from '../3Controller/controller.overhead.js';
+} from '../Controller/controller.overhead.js';
 
 const router = express.Router();
 
