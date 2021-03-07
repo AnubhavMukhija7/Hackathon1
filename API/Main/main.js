@@ -22,10 +22,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve(dirname + '/../../Views/showcase/index.html'));
 });
 
-app.post('/quotes', (req, res) => {
-    console.log(req.body);
-    res.send('Hello!!' + req);
-});
 app.use('/employee', employee);
 app.use('/vendor', vendor);
 app.use('/benefit', benefits);
