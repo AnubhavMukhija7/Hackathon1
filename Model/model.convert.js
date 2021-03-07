@@ -9,7 +9,7 @@ const convertToModel = (data) => {
                 item.EmpId,
                 item.Title,
                 item.FirstName,
-                item.LastName,
+                item.Lastname,
                 item.Office,
                 item.PrimaryMobile,
                 item.Email,

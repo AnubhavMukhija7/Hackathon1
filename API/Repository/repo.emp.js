@@ -6,13 +6,16 @@ const findAllEmployee = async () => {
                  Employee.MiddleName , Employee.Lastname , Employee.Email,
                   Employee.Gender,Employee.Status,EmployeeAddress.City,
                   EmployeeAddress.State,EmployeeContact.Office
-                  from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId`;
+                  from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId
+                  INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
 };
 
 const findOneEmployee = async (id) => {
-    const query = `Select Employee.EmpId, Employee.FirstName,Employee.LastName,EmployeeContact.Office,EmployeeAddress.City,EmployeeAddress.District from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId where Employee.EmpId = ${id}`;
+    const query = `Select Employee.EmpId, Employee.FirstName,Employee.LastName,EmployeeContact.Office,EmployeeAddress.City,EmployeeAddress.District
+     from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId
+     INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId where Employee.EmpId = ${id}`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
 };
