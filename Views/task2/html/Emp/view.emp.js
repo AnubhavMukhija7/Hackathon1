@@ -1,10 +1,27 @@
 const divEl = document.querySelector('.results'),
-    tableEl = document.createElement('table');
+    tableEl = document.createElement('table'),
+    inputEl = document.createElement('input'),
+    paraEl = document.createElement('p'),
+    labelEl = document.createElement('label'),
+    submitEl = document.createElement('button');
+labelEl.textContent = 'Filter Employee by ID:';
+inputEl.type = 'text';
+inputEl.placeholder = 'Enter the Employee ID';
+inputEl.name = 'EmpId';
+submitEl.textContent = 'Submit';
 divEl.appendChild(tableEl);
-const getData = async () => {
-    const response = await fetch('http://localhost:3000/employee');
+divEl.appendChild(paraEl);
+divEl.appendChild(labelEl);
+divEl.appendChild(inputEl);
+divEl.appendChild(submitEl);
+const getData = async (param = '') => {
+    tableEl.innerHTML = '';
+    const response = await fetch('http://localhost:3000/employee' + param);
     if (response.ok) {
         let data = await response.json();
+        if (!data.length) {
+            return (tableEl.innerHTML = '<b>Data does not present!</b>');
+        }
         populateTable(data);
     } else {
         return console.log('HTTP-Error: ' + response.status);
@@ -32,10 +49,8 @@ const createTableHeading = () => {
 };
 
 const populateTable = (Data) => {
-    console.log('Data:', Data);
     createTableHeading();
     Data.forEach((data) => {
-        console.log(data);
         const row = tableEl.insertRow(0);
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);
@@ -54,5 +69,11 @@ const populateTable = (Data) => {
         tableEl.appendChild(row);
     });
 };
+
+submitEl.addEventListener('click', () => {
+    const param = '/id=' + inputEl.value;
+
+    getData(param);
+});
 
 getData();

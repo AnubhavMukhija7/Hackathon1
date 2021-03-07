@@ -39,3 +39,7 @@ td {
     padding: 1ch;
     border-collapse: collapse;
 }
+
+button {
+    margin:1em;
+}

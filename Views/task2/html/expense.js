@@ -5,7 +5,6 @@ const showExpense = async () => {
     response = await fetch('http://localhost:3000/totalExpense');
     if (response.ok) {
         expenseData = await response.json();
-        console.log('typeofExpensedata', typeof expenseData);
         createDOMTable(expenseData);
         addYears(expenseData);
     } else {
@@ -16,14 +15,11 @@ const showExpense = async () => {
 const filterExpensesOnChosenYear = () => {
     const input = document.getElementById('Year').value;
     expenseData.forEach((data) => {
-        console.log('expenseData:', expenseData);
-        console.log('input: ', input);
         if (data.Year === parseInt(input, 10)) {
             const arr = [];
             arr.push(data);
             document.getElementById('table').innerHTML = '';
             createDOMTable(arr);
-            //    document.getElementById('table').innerHTML= JSON.stringify(data);
         }
     });
 };
@@ -68,11 +64,9 @@ const createTableHeading = () => {
 };
 
 const createDOMTable = (getData) => {
-    console.log('getData:', getData);
     const table = document.querySelector('#table');
     createTableHeading();
     getData.forEach((data) => {
-        console.log(data);
         const row = table.insertRow(0);
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);

@@ -13,7 +13,10 @@ const findAllEmployee = async () => {
 };
 
 const findOneEmployee = async (id) => {
-    const query = `Select Employee.EmpId, Employee.FirstName,Employee.LastName,EmployeeContact.Office,EmployeeAddress.City,EmployeeAddress.District
+    const query = `Select Employee.EmpId , Employee.Title,Employee.FirstName,
+    Employee.MiddleName , Employee.Lastname , Employee.Email,
+     Employee.Gender,Employee.Status,EmployeeAddress.City,
+     EmployeeAddress.State,EmployeeContact.Office
      from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId
      INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId where Employee.EmpId = ${id}`;
     const data = await request.query(query);
