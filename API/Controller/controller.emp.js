@@ -12,16 +12,15 @@ import {
     findCompensationOfOneEmployeeInGivenYearDetails,
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
+<<<<<<< HEAD
     addingDetails,
+=======
+>>>>>>> 7cbd57d246c61c37bc48545b1db7afa11c20093f
 } from '../Service/emp_service.js';
 
 //employee
 const addEmployeeController = async (req, res) => {
     res.send(await addEmployeeDetails(req, res));
-};
-
-const updateEmployeeController = async (req, res) => {
-    res.send(await updateEmployeeDetails(req, res));
 };
 
 const deleteEmployeeController = async (req, res) => {
@@ -103,5 +102,8 @@ export {
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
+<<<<<<< HEAD
     addingController,
+=======
+>>>>>>> 7cbd57d246c61c37bc48545b1db7afa11c20093f
 };
