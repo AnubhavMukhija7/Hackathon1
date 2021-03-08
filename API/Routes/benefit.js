@@ -10,13 +10,8 @@ import {
     benefitAvailedController,
     empExpenseForParticularBenefitController,
     benefitExpenseController,
-<<<<<<< HEAD:API/2Routes/benefit.js
-    benefitExpenseForGivenYearController, 
-} from '../3Controller/controller.benefits.js';
-=======
     benefitExpenseForGivenYearController,
 } from '../Controller/controller.benefits.js';
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Routes/benefit.js
 
 const router = express.Router();
 

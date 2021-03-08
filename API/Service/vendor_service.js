@@ -1,4 +1,3 @@
-import { getActiveVendorAndTheirFacilitiesController } from '../3Controller/controller.vendor.js';
 import {
     getVendor,
     getAllVendors,
@@ -13,12 +12,7 @@ import {
     updateVendorFacility,
     deleteFacility,
     addVendor,
-<<<<<<< HEAD:API/4Service/vendor_service.js
-    getActiveVendorAndTheirFacilities
-} from '../5Repository/repo.vendor.js';
-=======
 } from '../Repository/repo.vendor.js';
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Service/vendor_service.js
 
 const getVendorDetails = async (id) => {
     return await getVendor(id);
@@ -67,15 +61,7 @@ const deleteFacilityDetails = (body) => {
 
 const addVendorDetails = (body) => {
     return addVendor(body);
-<<<<<<< HEAD:API/4Service/vendor_service.js
-}
-
-const getActiveVendorAndTheirFacilitiesDetails = (req,res) => {
-    return getActiveVendorAndTheirFacilities();
-}
-=======
 };
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Service/vendor_service.js
 export {
     getVendorDetails,
     getAllVendorsDetails,
@@ -90,8 +76,4 @@ export {
     deleteVendorDetails,
     deleteFacilityDetails,
     addVendorDetails,
-<<<<<<< HEAD:API/4Service/vendor_service.js
-    getActiveVendorAndTheirFacilitiesDetails
-=======
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Service/vendor_service.js
 };

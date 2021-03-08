@@ -12,12 +12,7 @@ import {
     deleteVendorDetails,
     deleteFacilityDetails,
     addVendorDetails,
-<<<<<<< HEAD:API/3Controller/controller.vendor.js
-    getActiveVendorAndTheirFacilitiesDetails
-} from '../4Service/vendor_service.js';
-=======
 } from '../Service/vendor_service.js';
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Controller/controller.vendor.js
 
 const getVendorController = async (id) => {
     return await getVendorDetails(id);
@@ -66,15 +61,7 @@ const deleteFacilityController = (body) => {
 
 const addVendorController = (body) => {
     return addVendorDetails(body);
-<<<<<<< HEAD:API/3Controller/controller.vendor.js
-}
-
-const getActiveVendorAndTheirFacilitiesController = (req,res) => {
-    return getActiveVendorAndTheirFacilitiesDetails(req,res);
-}
-=======
 };
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Controller/controller.vendor.js
 export {
     getVendorController,
     getAllVendorsController,
@@ -89,8 +76,4 @@ export {
     deleteVendorController,
     deleteFacilityController,
     addVendorController,
-<<<<<<< HEAD:API/3Controller/controller.vendor.js
-    getActiveVendorAndTheirFacilitiesController
-=======
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Controller/controller.vendor.js
 };

@@ -29,12 +29,7 @@ const addEmployee = async (object) => {
     await request.query(insertIntoEmp);
     let data = await request.query(`Select * from Employee`);
     data = data.recordsets[0];
-<<<<<<< HEAD:API/5Repository/repo.emp.js
-    const newEmpId = (data).length;
-    console.log('After');
-=======
     const newEmpId = data.length;
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Repository/repo.emp.js
     const insertIntoAddress = `Insert into EmployeeAddress (EmpId, StreetAddress1, StreetAddress2, City, District, PostalCode, State, Country, IsPermanent)  Values (${newEmpId}, '${object.StreetAddress1}', '${object.StreetAddress2}', '${object.City}', '${object.District}', ${object.PostalCode}, '${object.State}', '${object.Country}', ${object.IsPermanent})`;
     await request.query(insertIntoAddress);
     const insertIntoContact = `Insert into EmployeeContact (EmpId, Office,Mobile,LandLine) Values (${newEmpId}, ${object.Office},${object.Mobile},${object.LandLine})`;
@@ -145,26 +140,6 @@ const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
     where Facilities.FacilityType = 'O' and FacilityAvailed.YEAR = ${year}`;
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
     return data;
-<<<<<<< HEAD:API/5Repository/repo.emp.js
-}
-const adding = ()=>{
-    console.log('heelo')
-}
-export { findOneEmployee,
-         addEmployee,
-         deleteEmployee, 
-         findAllEmployee, 
-         findAllEmployeeInTheGivenYear , 
-         updateEmployeeBankAccount,
-         findYourEmployeeId , 
-         findAllBillableEmployee,
-         findAllNonBillableEmployee , 
-         findCompensationOfOneEmployeeInGivenYear,
-         findCtcOfOneEmployeeInTheGivenYear ,
-         findOverheadOfOneEmployeeInTheGivenYear,
-         adding
-        };
-=======
 };
 
 export {
@@ -181,4 +156,3 @@ export {
     findCtcOfOneEmployeeInTheGivenYear,
     findOverheadOfOneEmployeeInTheGivenYear,
 };
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Repository/repo.emp.js

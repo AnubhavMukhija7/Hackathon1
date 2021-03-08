@@ -10,8 +10,6 @@ import {
     vendorEarningForFacilityInYearController,
     addVendorController,
     addFacilityAddVendorController,
-    updateVendorController,
-    updateVendorFacilityController,
     getActiveVendorAndTheirFacilitiesController,
     deleteVendorController,
 } from '../Controller/controller.vendor.js';
@@ -36,13 +34,11 @@ router.get('/', async (req, res) => {
     res.send(result);
 });
 
-
 //get all active vendors and the facilities they are providing
-router.get('/activeVendorAndTheirFacilities',async(req,res)=>{
-    const result = await getActiveVendorAndTheirFacilitiesController(req,res);
+router.get('/activeVendorAndTheirFacilities', async (req, res) => {
+    const result = await getActiveVendorAndTheirFacilitiesController(req, res);
     res.send(result);
-})
-
+});
 
 // get earnings of all vendors in a particular year
 router.get('/earning/:year', async (req, res) => {
@@ -68,7 +64,6 @@ router.get('/:id/:facility/earning/:year', async (req, res) => {
     res.send(result);
 });
 
-<<<<<<< HEAD:API/2Routes/vendor.js
 // // add facility for a particular vendor
 // router.post('/add/facility', async (req, res) => {
 //     const result = await addVendorFacilityController(req);
@@ -76,20 +71,13 @@ router.get('/:id/:facility/earning/:year', async (req, res) => {
 // });
 
 // add new facility and a new vendor for that facility
-=======
-// add vendor with a facility!
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Routes/vendor.js
 router.post('/addFacilityAddvendor', async (req, res) => {
     const result = await addFacilityAddVendorController(req.body);
     res.send(result);
 });
 
-<<<<<<< HEAD:API/2Routes/vendor.js
 // add new vendor for an old facility
-router.post('/addVendor',async(req,res)=>{
-=======
 router.post('/addVendor', async (req, res) => {
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Routes/vendor.js
     const result = await addVendorController(req.body);
     res.send(result);
 });
