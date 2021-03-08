@@ -168,6 +168,16 @@ const deleteFacility = async (body) => {
     return 'Facility Deleted';
 };
 
+const getActiveVendorAndTheirFacilities = async() => {
+    const query =`SELECT Vendor.VendorId,Vendor.VendorCompany,Facilities.FacilityName,
+    VendorName.FirstName,VendorMobile.PrimaryMobile FROM
+    Vendor INNER JOIN Facilities ON
+    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
+    VendorName.VendorId = VendorMobile.VendorId where Vendor.EndDate Is NULL`;
+    return (await request.query(query)).recordsets[0];
+}
+
 export {
     getVendor,
     getAllVendors,
@@ -182,5 +192,6 @@ export {
     addVendorFacility,
     updateVendorFacility,
     deleteFacility,
-    addVendor
+    addVendor,
+    getActiveVendorAndTheirFacilities
 };

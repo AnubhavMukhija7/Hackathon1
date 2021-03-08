@@ -1,3 +1,4 @@
+import { getActiveVendorAndTheirFacilitiesController } from '../3Controller/controller.vendor.js';
 import {
     getVendor,
     getAllVendors,
@@ -12,7 +13,8 @@ import {
     addVendorFacility,
     updateVendorFacility,
     deleteFacility,
-    addVendor
+    addVendor,
+    getActiveVendorAndTheirFacilities
 } from '../5Repository/repo.vendor.js';
 
 const getVendorDetails = async (id) => {
@@ -66,6 +68,10 @@ const deleteFacilityDetails = (body) => {
 const addVendorDetails = (body) => {
     return addVendor(body);
 }
+
+const getActiveVendorAndTheirFacilitiesDetails = (req,res) => {
+    return getActiveVendorAndTheirFacilities();
+}
 export {
     getVendorDetails,
     getAllVendorsDetails,
@@ -80,5 +86,6 @@ export {
     updateVendorFacilityDetails,
     deleteVendorDetails,
     deleteFacilityDetails,
-    addVendorDetails
+    addVendorDetails,
+    getActiveVendorAndTheirFacilitiesDetails
 };

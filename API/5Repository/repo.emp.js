@@ -17,11 +17,13 @@ const findOneEmployee = async (id) => {
 };
 
 const addEmployee = async (object) => {
-    const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}',${object.JoiningDate},${object.LeavingDate})`;
+    const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) 
+                            Values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}','${object.JoiningDate}','${object.LeavingDate}')`;
     await request.query(insertIntoEmp);
     let data = await request.query(`Select * from Employee`);
     data = data.recordsets[0];
     const newEmpId = (data).length;
+    console.log('After');
     const insertIntoAddress = `Insert into EmployeeAddress (EmpId, StreetAddress1, StreetAddress2, City, District, PostalCode, State, Country, IsPermanent)  Values (${newEmpId}, '${object.StreetAddress1}', '${object.StreetAddress2}', '${object.City}', '${object.District}', ${object.PostalCode}, '${object.State}', '${object.Country}', ${object.IsPermanent})`;
     await request.query(insertIntoAddress);
     const insertIntoContact = `Insert into EmployeeContact (EmpId, Office,Mobile,LandLine) Values (${newEmpId}, ${object.Office},${object.Mobile},${object.LandLine})`;
@@ -59,7 +61,7 @@ const findAllEmployeeInTheGivenYear = async (year) => {
 const updateEmployeeBankAccount = async(object,id) => {
     const query = `UPDATE [ExpenseTracker].[dbo].[EmpBankDetails]
                    set BankName='${object.BankName}',AccountNo=${object.AccountNo},IFSC='${object.IFSC}',BranchName='${object.BranchName}'
-                   where EmpID = ${id};`;
+                   where EmpID = ${id}`;
     const data = await request.query(query);
     return 'Bank Record updated';
 }
@@ -127,7 +129,9 @@ const findOverheadOfOneEmployeeInTheGivenYear = async(year) =>{
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
     return data;
 }
-
+const adding = ()=>{
+    console.log('heelo')
+}
 export { findOneEmployee,
          addEmployee,
          deleteEmployee, 
@@ -139,5 +143,6 @@ export { findOneEmployee,
          findAllNonBillableEmployee , 
          findCompensationOfOneEmployeeInGivenYear,
          findCtcOfOneEmployeeInTheGivenYear ,
-         findOverheadOfOneEmployeeInTheGivenYear
+         findOverheadOfOneEmployeeInTheGivenYear,
+         adding
         };

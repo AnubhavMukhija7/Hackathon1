@@ -13,7 +13,8 @@ import
     findAllNonBillableEmployeeController,
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
-    findOverheadOfOneEmployeeInTheGivenYearController
+    findOverheadOfOneEmployeeInTheGivenYearController,
+    addingController
 } from '../3Controller/controller.emp.js';
 
 const router = express.Router();
@@ -72,5 +73,9 @@ router.get('/ctc/year=:year/id=:id',(req,res)=>{
 // Total overhead of an employee in a given year
 router.get('/overhead/year=:year',(req,res)=>{
     findOverheadOfOneEmployeeInTheGivenYearController(req,res);
+})
+
+router.post('/adding/FirstName=:FirstName/LastName=:LastName/email=:email',(req,res)=>{
+    addingController(req,res);
 })
 export default router;

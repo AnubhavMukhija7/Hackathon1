@@ -1,4 +1,4 @@
-import { findCtcOfOneEmployeeInTheGivenYearController, findOneEmployeeController } from '../3Controller/controller.emp.js';
+import { addingController, findCtcOfOneEmployeeInTheGivenYearController, findOneEmployeeController } from '../3Controller/controller.emp.js';
 import {
     findOneEmployee,
     addEmployee,
@@ -11,7 +11,8 @@ import {
     findAllNonBillableEmployee,
     findCompensationOfOneEmployeeInGivenYear,
     findCtcOfOneEmployeeInTheGivenYear,
-    findOverheadOfOneEmployeeInTheGivenYear
+    findOverheadOfOneEmployeeInTheGivenYear,
+    adding
 } from '../5Repository/repo.emp.js';
 
 const addEmployeeDetails = async (req, res) => {
@@ -72,6 +73,11 @@ const findOverheadOfOneEmployeeInTheGivenYearDetails = async(req,res) => {
     const response = await findOverheadOfOneEmployeeInTheGivenYear(req.params.year);
     return response;
 }
+
+const addingDetails = async(req,res)=>{
+    const response = await adding(req.params.FirstName,req.params.LastName,req.params.email);
+    return response;
+}
 export {
     addEmployeeDetails,
     deleteEmployeeDetails,
@@ -84,5 +90,6 @@ export {
     findAllNonBillableEmployeeDetails,
     findCompensationOfOneEmployeeInGivenYearDetails,
     findCtcOfOneEmployeeInTheGivenYearDetails,
-    findOverheadOfOneEmployeeInTheGivenYearDetails
+    findOverheadOfOneEmployeeInTheGivenYearDetails,
+    addingDetails
 };

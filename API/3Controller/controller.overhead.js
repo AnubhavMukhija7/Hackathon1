@@ -3,6 +3,7 @@ import {
     getOverHeadWithAmountDetails,
     getOverHeadForFacilityDetails,
     getVendorForFacilityDetails,
+    getOverheadCategoriesOfOneEmployeeInGivenYearDetails
 } from '../4Service/overhead_service.js';
 
 const getOverHeadController = () => {
@@ -20,4 +21,13 @@ const getVendorForFacilityController = (benefit, year) => {
     return getVendorForFacilityDetails(benefit, year);
 };
 
-export { getOverHeadController, getOverHeadWithAmountController, getOverHeadForFacilityController, getVendorForFacilityController };
+
+const getOverheadCategoriesOfOneEmployeeInGivenYearController = (year,id) => {
+    return getOverheadCategoriesOfOneEmployeeInGivenYearDetails(year,id);
+}
+export { getOverHeadController,
+     getOverHeadWithAmountController, 
+     getOverHeadForFacilityController, 
+     getVendorForFacilityController ,
+    getOverheadCategoriesOfOneEmployeeInGivenYearController
+    };

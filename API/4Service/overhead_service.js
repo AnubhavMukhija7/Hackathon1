@@ -1,4 +1,9 @@
-import { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility } from '../5Repository/repo.overhead.js';
+import { getOverHead, 
+    getOverHeadWithAmount, 
+    getOverHeadForFacility, 
+    getVendorForFacility ,
+    getOverheadCategoriesOfOneEmployeeInGivenYear
+ } from '../5Repository/repo.overhead.js';
 
 const getOverHeadDetails = () => {
     return getOverHead();
@@ -13,4 +18,13 @@ const getVendorForFacilityDetails = (benefit, year) => {
     return getVendorForFacility(benefit, year);
 };
 
-export { getOverHeadDetails, getOverHeadWithAmountDetails, getOverHeadForFacilityDetails, getVendorForFacilityDetails };
+const getOverheadCategoriesOfOneEmployeeInGivenYearDetails = (year,id) => {
+    return getOverheadCategoriesOfOneEmployeeInGivenYear(year,id);
+}
+
+export { getOverHeadDetails,
+     getOverHeadWithAmountDetails, 
+     getOverHeadForFacilityDetails, 
+     getVendorForFacilityDetails ,
+    getOverheadCategoriesOfOneEmployeeInGivenYearDetails
+ };

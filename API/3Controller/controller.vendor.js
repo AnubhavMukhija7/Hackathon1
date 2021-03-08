@@ -12,7 +12,8 @@ import {
     updateVendorFacilityDetails,
     deleteVendorDetails,
     deleteFacilityDetails,
-    addVendorDetails
+    addVendorDetails,
+    getActiveVendorAndTheirFacilitiesDetails
 } from '../4Service/vendor_service.js';
 
 const getVendorController = async (id) => {
@@ -66,6 +67,10 @@ const deleteFacilityController = (body) => {
 const addVendorController = (body) => {
     return addVendorDetails(body);
 }
+
+const getActiveVendorAndTheirFacilitiesController = (req,res) => {
+    return getActiveVendorAndTheirFacilitiesDetails(req,res);
+}
 export {
     getVendorController,
     getAllVendorsController,
@@ -80,5 +85,6 @@ export {
     updateVendorFacilityController,
     deleteVendorController,
     deleteFacilityController,
-    addVendorController
+    addVendorController,
+    getActiveVendorAndTheirFacilitiesController
 };
