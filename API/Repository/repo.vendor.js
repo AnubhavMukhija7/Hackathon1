@@ -159,17 +159,6 @@ const deleteFacility = async (body) => {
     return 'Facility Deleted';
 };
 
-<<<<<<< HEAD:API/5Repository/repo.vendor.js
-const getActiveVendorAndTheirFacilities = async() => {
-    const query =`SELECT Vendor.VendorId,Vendor.VendorCompany,Facilities.FacilityName,
-    VendorName.FirstName,VendorMobile.PrimaryMobile FROM
-    Vendor INNER JOIN Facilities ON
-    Vendor.FacilityId = Facilities.FacilityId INNER JOIN VendorName ON
-    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
-    VendorName.VendorId = VendorMobile.VendorId where Vendor.EndDate Is NULL`;
-    return (await request.query(query)).recordsets[0];
-}
-=======
 const convertToModel = (data) => {
     const result = [];
     for (const item of data) {
@@ -180,7 +169,6 @@ const convertToModel = (data) => {
     }
     return result;
 };
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Repository/repo.vendor.js
 
 export {
     getVendor,
@@ -196,8 +184,4 @@ export {
     updateVendorFacility,
     deleteFacility,
     addVendor,
-<<<<<<< HEAD:API/5Repository/repo.vendor.js
-    getActiveVendorAndTheirFacilities
-=======
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Repository/repo.vendor.js
 };

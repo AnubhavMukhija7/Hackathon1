@@ -63,7 +63,7 @@ router.get('/compensation/year=:year/id=:id', (req, res) => {
   findCompensationOfOneEmployeeInGivenYearController(req, res);
 });
 
-//CTC of each Employee in a given year
+// CTC of each Employee in a given year
 router.get('/ctc/year=:year/id=:id', (req, res) => {
   findCtcOfOneEmployeeInTheGivenYearController(req, res);
 });

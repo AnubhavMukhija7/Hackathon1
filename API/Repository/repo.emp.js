@@ -29,12 +29,7 @@ const addEmployee = async (object) => {
     await request.query(insertIntoEmp);
     let data = await request.query(`Select * from Employee`);
     data = data.recordsets[0];
-<<<<<<< HEAD:API/5Repository/repo.emp.js
-    const newEmpId = (data).length;
-    console.log('After');
-=======
     const newEmpId = data.length;
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Repository/repo.emp.js
     const insertIntoAddress = `Insert into EmployeeAddress (EmpId, StreetAddress1, StreetAddress2, City, District, PostalCode, State, Country, IsPermanent)  Values (${newEmpId}, '${object.StreetAddress1}', '${object.StreetAddress2}', '${object.City}', '${object.District}', ${object.PostalCode}, '${object.State}', '${object.Country}', ${object.IsPermanent})`;
     await request.query(insertIntoAddress);
     const insertIntoContact = `Insert into EmployeeContact (EmpId, Office,Mobile,LandLine) Values (${newEmpId}, ${object.Office},${object.Mobile},${object.LandLine})`;
@@ -49,6 +44,7 @@ const addEmployee = async (object) => {
     return 'Record Inserted!\n';
 };
 
+//------NOT USING RN-------
 const deleteEmployee = async (id) => {
     const query = `Update  Employee 
                 set [Status] = 'Terminated'
@@ -102,11 +98,17 @@ const findAllNonBillableEmployee = async () => {
 };
 
 const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
-    const query = `select EmployeePayhead.EmpId,Employee.FirstName,Employee.LastName,sum(EmployeePayhead.Payhead) as TotalCompensation
+    const query = `Select Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
+    EmployeeAddress.City,EmployeeAddress.District,sum(EmployeePayhead.Payhead) as TotalCompensation
     from EmployeePayhead INNER JOIN Employee ON
-    Employee.EmpId = EmployeePayhead.EmpId where EmployeePayhead.Year = ${year}
-    AND Employee.EmpId= ${id}
-    GROUP BY EmployeePayhead.EmpId,Employee.FirstName,Employee.LastName`;
+    Employee.EmpId = EmployeePayhead.EmpId
+    INNER JOIN EmployeeContact ON
+    Employee.EmpId = EmployeeContact.EmpId
+    INNER JOIN EmployeeAddress ON
+    EmployeeContact.EmpId = EmployeeAddress.EmpId
+    where ((YEAR(Employee.LeavingDate) >=${year} OR YEAR(Employee.LeavingDate) Is NULL) AND YEAR(Employee.JoiningDate) <= ${year}) and Employee.EmpId = ${id}
+    GROUP BY Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
+    EmployeeAddress.City,EmployeeAddress.District`;
     const data = (await request.query(query)).recordsets[0];
     return convertToModel(data);
 };
@@ -132,39 +134,12 @@ const findCtcOfOneEmployeeInTheGivenYear = async (year, id) => {
 };
 
 const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
-    const empQuery = `select count(EmpId) as NumberOfEmp from Employee where LeavingDate Is NULL`;
-    const query = `select sum(FacilityAvailed.Amount) As OverheadCost
+    const query = `select sum(FacilityAvailed.Amount)/(select count(EmpId) from Employee where LeavingDate Is NULL) As OverheadCost
     from FacilityAvailed INNER JOIN Facilities ON
     FacilityAvailed.FacilityId = Facilities.FacilityId
     where Facilities.FacilityType = 'O' and FacilityAvailed.YEAR = ${year}`;
-
-    const numberofEmp = (await request.query(empQuery)).recordset[0]['NumberOfEmp'];
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
-<<<<<<< HEAD:API/5Repository/repo.emp.js
-    return [data, numberofEmp];
-=======
     return data;
-<<<<<<< HEAD:API/5Repository/repo.emp.js
-}
-const adding = ()=>{
-    console.log('heelo')
-}
-export { findOneEmployee,
-         addEmployee,
-         deleteEmployee, 
-         findAllEmployee, 
-         findAllEmployeeInTheGivenYear , 
-         updateEmployeeBankAccount,
-         findYourEmployeeId , 
-         findAllBillableEmployee,
-         findAllNonBillableEmployee , 
-         findCompensationOfOneEmployeeInGivenYear,
-         findCtcOfOneEmployeeInTheGivenYear ,
-         findOverheadOfOneEmployeeInTheGivenYear,
-         adding
-        };
-=======
->>>>>>> bbfd09d844f8ecea250655d3fed35903f1a509e4:API/Repository/repo.emp.js
 };
 
 export {
@@ -181,4 +156,3 @@ export {
     findCtcOfOneEmployeeInTheGivenYear,
     findOverheadOfOneEmployeeInTheGivenYear,
 };
->>>>>>> 997d7cd72f33425bb710884ad3fd0a9e4108e2d2:API/Repository/repo.emp.js

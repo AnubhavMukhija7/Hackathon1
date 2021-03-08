@@ -42,15 +42,12 @@ const getVendorForFacility = async (overhead, year) => {
     return convertToModel(data.recordsets[0]);
 };
 
-const getOverheadCategoriesOfOneEmployeeInGivenYear = async(year,id) => {
+const getOverheadCategoriesOfOneEmployeeInGivenYear = async (year, id) => {
     const query = `select FacilityName from Facilities
     INNER JOIN FacilityAvailed ON
     Facilities.FacilityId = FacilityAvailed.FacilityId where AvailedFor = ${id} and Year = ${year} and Facilities.FacilityType='O'`;
     const data = await request.query(query);
     return data.recordsets[0];
-}
+};
 
-export { getOverHead, getOverHeadWithAmount,
-     getOverHeadForFacility, 
-     getVendorForFacility ,
-    getOverheadCategoriesOfOneEmployeeInGivenYear };
+export { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getOverheadCategoriesOfOneEmployeeInGivenYear };
