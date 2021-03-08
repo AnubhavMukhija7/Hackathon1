@@ -11,7 +11,7 @@ const addListElement = (type,labelName,placeholder,name,required) => {
     const div = document.createElement('div');
     label.setAttribute("for",`${labelName}`)
     label.textContent =`${labelName}`;
-    const input = document.createElement('input');[]
+    const input = document.createElement('input');
     input.setAttribute("id",`${labelName}`);
     input.setAttribute("type",`${type}`);
     input.setAttribute("name",`${name}`);
@@ -60,7 +60,7 @@ addSelectElement('Title',3,['','Mr','Ms'],['--Select--','Mr','Ms'],'Title',1);
 addSelectElement('Gender',4,['','M','F','O'],['--Select--','Male','Female','Others'],'Gender',1);
 addListElement('email','Email','Your Email Address','Email',1);
 addListElement('date','Joining Date','','JoiningDate',1);
-addListElement('date','Leaving Date','',0)
+addListElement('date','Leaving Date','','LeavingDate',0)
 addSelectElement('Billable',3,['',0,1],['--Select--',0,1],'Billable',1);
 addSelectElement('Status',5,['','Pending','Active','Terminated','On bench'],['--Select--','Pending','Active','Terminated','On bench'],'Status',1);
 const submit = document.createElement('input');
