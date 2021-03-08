@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(pkg());
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the financial bowling chart');
+    res.redirect('http://127.0.0.1:5500/FrontEnd/index.html');
 });
 app.use('/employee', employee);
 app.use('/vendor', vendor);
