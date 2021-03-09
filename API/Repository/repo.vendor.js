@@ -123,9 +123,9 @@ const updateVendorFacility = async (body) => {
 };
 
 const addVendor = async (object) => {
-    const getFacilityIdForFacilityName = `Select FacilityId From Facilities
-                                        where FacilityName = '${object.FacilityName}'`;
-    const newFacilityId = (await request.query(getFacilityIdForFacilityName)).recordset[0]['FacilityId'];
+    console.log('hiiiiii'); 
+    console.log(object);
+    const newFacilityId = object.FacilityId;
     const insertIntoVendor = `Insert into Vendor(VendorCompany,FacilityId,StartDate,EndDate,IsActive)
                               Values('${object.VendorCompany}',${newFacilityId},'${object.StartDate}',null,1)`;
     await request.query(insertIntoVendor);
