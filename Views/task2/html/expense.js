@@ -1,6 +1,5 @@
-let response;
-let expenseData;
-
+let response, expenseData;
+const tableEl = document.querySelector('#table');
 const showExpense = async () => {
     response = await fetch('http://localhost:3000/totalExpense');
     if (response.ok) {
@@ -42,47 +41,29 @@ const addYears = (getData) => {
     makeYearsDropDown(years);
 };
 
-const createTableHeading = () => {
-    const table = document.querySelector('#table');
-    const header = table.createTHead();
+const createTableHeading = (keys) => {
+    const header = tableEl.createTHead();
     const row = header.insertRow(0);
-    const cell1 = row.insertCell(0);
-    const cell2 = row.insertCell(1);
-    const cell3 = row.insertCell(2);
-    const cell4 = row.insertCell(3);
-    const cell5 = row.insertCell(4);
-    const cell6 = row.insertCell(5);
-    const cell7 = row.insertCell(6);
-    cell1.innerHTML = '<b>Year</b>    ';
-    cell2.innerHTML = '<b>Revenue</b>    ';
-    cell3.innerHTML = '<b>Balance</b>    ';
-    cell4.innerHTML = '<b>Financial Statement</b>    ';
-    cell5.innerHTML = '<b>Total Overhead</b>    ';
-    cell6.innerHTML = '<b>Total Benefit    </b>';
-    cell7.innerHTML = '<b>Total Compensation </b>   ';
-    table.appendChild(row);
+    let len = 0;
+    for (const item of keys) {
+        const cell1 = row.insertCell(len);
+        len += 1;
+        cell1.innerHTML = `<b>${item}</b>`;
+    }
+    tableEl.appendChild(row);
 };
 
-const createDOMTable = (getData) => {
-    const table = document.querySelector('#table');
-    createTableHeading();
-    getData.forEach((data) => {
-        const row = table.insertRow(0);
-        const cell1 = row.insertCell(0);
-        const cell2 = row.insertCell(1);
-        const cell3 = row.insertCell(2);
-        const cell4 = row.insertCell(3);
-        const cell5 = row.insertCell(4);
-        const cell6 = row.insertCell(5);
-        const cell7 = row.insertCell(6);
-        cell1.innerHTML = data.Year;
-        cell2.innerHTML = data.Revenue;
-        cell3.innerHTML = data.BalanceAmount;
-        cell4.innerHTML = data.Status;
-        cell5.innerHTML = data.OverheadAmount;
-        cell6.innerHTML = data.BenefitAmount;
-        cell7.innerHTML = data.CompensationAmount;
-        table.appendChild(row);
+const createDOMTable = (Data) => {
+    createTableHeading(Object.keys(Data[0]));
+    Data.forEach((data) => {
+        const row = tableEl.insertRow(0);
+        let len = 0;
+        for (const value of Object.values(data)) {
+            const cell = row.insertCell(len);
+            len++;
+            cell.innerHTML = value;
+        }
+        tableEl.appendChild(row);
     });
 };
 
