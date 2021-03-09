@@ -6,7 +6,7 @@ ul.setAttribute('class', 'list');
 const form = document.createElement('form');
 form.setAttribute('id', 'addEmployeeForm');
 form.setAttribute('method', 'POST');
-form.setAttribute('action', 'http://localhost:3000/temp');
+form.setAttribute('action', 'http://localhost:3000/employee/add');
 const addListElement = (type, labelName, placeholder, name, required) => {
     const li = document.createElement('li');
     const label = document.createElement('label');
@@ -62,14 +62,15 @@ addSelectElement('Gender', 4, ['', 'M', 'F', 'O'], ['--Select--', 'Male', 'Femal
 addListElement('email', 'Email', 'Your Email Address', 'Email', 1);
 addListElement('date', 'Joining Date', '', 'JoiningDate', 1);
 addListElement('date', 'Leaving Date', '', 'LeavingDate', 0);
-addSelectElement('Billable', 3, ['',0,1], ['--Select--', 'No', 'Yes'], 'IsBillable', 1);
+addSelectElement('Billable', 3, ['',0,1], ['--Select--', 'No', 'Yes'], 'isBillable', 1);
 addListElement('text','Street Address 1','Your Street Address1','StreetAddress1',1);
 addListElement('text','Street Address 2','Your Street Address2','StreetAddress2',0);
-addListElement('text','City','Your City','City',1);
-addListElement('text','District','Your District','District',0);
+addListElement('text', 'City', 'Your City', 'City', 1);
+addListElement('number','Postal Code','Your Postal Code','PostalCode',1);
+addListElement('text', 'Distrcit', 'Your District', 'District', 1);
 addListElement('text','State','Your State','State',1);
 addListElement('text','Country','Your Country','Country',1);
-addListElement('text','Is Employee Permanent','Is the Employee Permanent','IsPermanent',1);
+addSelectElement('Is Employee Permanent',3,['',0,1],['--Select--','Yes','No'],'IsPermanent',1);
 addListElement('number','Office Number','Your Office Number','Office',1);
 addListElement('number','Mobile Number','Your Mobile Number','Mobile',1);
 addListElement('number','LandLine Number','Your LandLine Number','LandLine',0);
@@ -86,6 +87,7 @@ addSelectElement(
     'Status',
     1
 );
+addListElement('number','Payhead','Your Payhead','Payhead',0);
 const submit = document.createElement('input');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Submit');
