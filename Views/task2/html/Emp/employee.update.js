@@ -88,7 +88,7 @@ const updateEmployeeForm = async(id) => {
     addListElement('text', 'Last Name', data.LastName, 'LastName', 0,1);
     addSelectElement('Title', 2, [`${data.Title}`,data.Title ==='Mr' ? 'Ms' : 'Mr'], [`${data.Title}`, data.Title ==='Mr' ? 'Ms' : 'Mr'], 'Title', 1);
     addSelectElement('Gender', 4, [data.Gender,'M','F','O'], [data.Gender ==='F' ? 'Female' : (data.Gender === 'M' ? 'Male' : 'Others'), 'Male', 'Female', 'Others'], 'Gender', 0);
-    addListElement('email', 'Email', data.Email, data.Email, 1,1);
+    addListElement('email', 'Email', data.Email, 'Email', 1,1);
     addListElement('date', 'Joining Date', data.JoiningDate.slice(0,10), 'JoiningDate', 1,1);
     addListElement('date', 'Leaving Date',data.LeavingDate===null ? null : data.LeavingDate.slice(0,10), 'LeavingDate', 0,0);
     addSelectElement('Billable', 2, [`${data.IsBillable}`,data.IsBillable === 0 ? 1 :0], [data.IsBillable === true ? 'Yes' : 'No',data.IsBillable === 0 ? 'Yes' :'No'], 'isBillable', 1,1);
