@@ -8,7 +8,7 @@ form.setAttribute('id', 'addEmployeeForm');
 form.setAttribute('method', 'POST');
 form.setAttribute('action', 'http://localhost:3000/employee/add');
 const addListElement = (type, labelName, placeholder, name, required) => {
-    const li = document.createElement('li');
+    const li = document.createElement('div');
     const label = document.createElement('label');
     const div = document.createElement('div');
     label.setAttribute('for', `${labelName}`);
@@ -27,7 +27,7 @@ const addListElement = (type, labelName, placeholder, name, required) => {
     li.style.marginTop = '20px';
 };
 const addSelectElement = (labelName, n, value, textContent, name, required) => {
-    const li = document.createElement('li');
+    const li = document.createElement('div');
     const label = document.createElement('label');
     const select = document.createElement('select');
     select.setAttribute('id', `${labelName}`);
@@ -66,16 +66,16 @@ addSelectElement('Billable', 3, ['', 0, 1], ['--Select--', 'No', 'Yes'], 'isBill
 addListElement('text', 'Street Address 1', 'Your Street Address1', 'StreetAddress1', 1);
 addListElement('text', 'Street Address 2', 'Your Street Address2', 'StreetAddress2', 0);
 addListElement('text', 'City', 'Your City', 'City', 1);
-addListElement('number', 'Postal Code', 'Your Postal Code', 'PostalCode', 1);
+addListElement('text', 'Postal Code', 'Your Postal Code', 'PostalCode', 1);
 addListElement('text', 'Distrcit', 'Your District', 'District', 1);
 addListElement('text', 'State', 'Your State', 'State', 1);
 addListElement('text', 'Country', 'Your Country', 'Country', 1);
 addSelectElement('Is Employee Permanent', 3, ['', 0, 1], ['--Select--', 'Yes', 'No'], 'IsPermanent', 1);
-addListElement('number', 'Office Number', 'Your Office Number', 'Office', 1);
-addListElement('number', 'Mobile Number', 'Your Mobile Number', 'Mobile', 1);
-addListElement('number', 'LandLine Number', 'Your LandLine Number', 'LandLine', 0);
+addListElement('tel', 'Office Number', 'Your Office Number', 'Office', 1);
+addListElement('tel', 'Mobile Number', 'Your Mobile Number', 'Mobile', 1);
+addListElement('tel', 'LandLine Number', 'Your LandLine Number', 'LandLine', 0);
 addListElement('text', 'Bank Name', 'Your Bank Name', 'BankName', 1);
-addListElement('number', 'Account No.', 'Your Account No.', 'AccountNo', 1);
+addListElement('text', 'Account No.', 'Your Account No.', 'AccountNo', 1);
 addListElement('text', 'IFSC', 'Your IFSC Code', 'IFSC', 1);
 addListElement('text', 'Branch Name', 'Your Branch Name', 'BranchName', 1);
 addListElement('text', 'PAN', 'Your Pan Number', 'PAN', 1);
