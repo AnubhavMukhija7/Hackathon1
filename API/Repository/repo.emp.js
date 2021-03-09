@@ -136,7 +136,6 @@ const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
     return data;
 };
 const findAllDetailsOfOneEmpoyee = async (id) => {
-    console.log(id);
     const query = `Select *
     from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId
     INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId

@@ -8,7 +8,7 @@ form.setAttribute('id', 'addVendorForm');
 form.setAttribute('method', 'POST');
 form.setAttribute('action', 'http://localhost:3000/vendor/addVendor');
 const addListElement = (type, labelName, placeholder, name, required) => {
-    const li = document.createElement('li');
+    const li = document.createElement('div');
     const label = document.createElement('label');
     const div = document.createElement('div');
     label.setAttribute('for', `${labelName}`);
@@ -27,7 +27,7 @@ const addListElement = (type, labelName, placeholder, name, required) => {
     li.style.marginTop = '20px';
 };
 const addSelectElement = (labelName, n, value, textContent, name, required) => {
-    const li = document.createElement('li');
+    const li = document.createElement('div');
     const label = document.createElement('label');
     const select = document.createElement('select');
     select.setAttribute('id', `${labelName}`);
@@ -54,7 +54,7 @@ heading.innerHTML = 'Add Vendor Details';
 document.body.appendChild(heading);
 form.appendChild(ul);
 ul.style.paddingLeft = '0px';
-addListElement('text','Vendor Company','Your Vendor Company Name','VendorCompany',1)
+addListElement('text', 'Vendor Company', 'Your Vendor Company Name', 'VendorCompany', 1);
 addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
 addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
 addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
@@ -70,13 +70,36 @@ addListElement('text', 'State', 'Your State', 'State', 1);
 addListElement('text', 'Country', 'Your Country', 'Country', 1);
 addListElement('text', 'Primary Mobile Number', 'Your Mobile Number', 'PrimaryMobile', 1);
 addListElement('text', 'LandLine Number', 'Your LandLine Number', 'LandLine', 0);
-addListElement('text','Alternate Mobile Number','Your Alternate Mobile Number','AlternateMobile',0);
+addListElement('text', 'Alternate Mobile Number', 'Your Alternate Mobile Number', 'AlternateMobile', 0);
 addListElement('text', 'Bank Name', 'Your Bank Name', 'BankName', 1);
 addListElement('text', 'Account No.', 'Your Account No.', 'AccountNumber', 1);
 addListElement('text', 'IFSC', 'Your IFSC Code', 'IFSC', 1);
 addListElement('text', 'Branch Name', 'Your Branch Name', 'BranchName', 1);
 addListElement('text', 'PAN', 'Your Pan Number', 'PAN', 1);
-addSelectElement('Facility Name',15,['',1,2,3,4,5,6,7,8,9,10,11,12,13,14],['--Select--','Life Insurance','Health Insurance', 'Accidential Insurance', 'Provident Fund', 'Employees State Insurance', 'Transport', 'Electricity', 'Housing', 'Recruitment', 'Events', 'Welfare', 'Meals', 'Internet', 'Call' ],'FacilityId',1);
+addSelectElement(
+    'Facility Name',
+    15,
+    ['', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    [
+        '--Select--',
+        'Life Insurance',
+        'Health Insurance',
+        'Accidential Insurance',
+        'Provident Fund',
+        'Employees State Insurance',
+        'Transport',
+        'Electricity',
+        'Housing',
+        'Recruitment',
+        'Events',
+        'Welfare',
+        'Meals',
+        'Internet',
+        'Call',
+    ],
+    'FacilityId',
+    1
+);
 const submit = document.createElement('input');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Submit');

@@ -123,8 +123,6 @@ const updateVendorFacility = async (body) => {
 };
 
 const addVendor = async (object) => {
-    console.log('hiiiiii'); 
-    console.log(object);
     const newFacilityId = object.FacilityId;
     const insertIntoVendor = `Insert into Vendor(VendorCompany,FacilityId,StartDate,EndDate,IsActive)
                               Values('${object.VendorCompany}',${newFacilityId},'${object.StartDate}',null,1)`;
@@ -142,7 +140,7 @@ const addVendor = async (object) => {
     const insertIntoVendorBankDetails = `Insert into VendorBankDetails(VendorId,BankName,AccountNumber,IFSC,BranchName,PAN)
                                         Values(${newVendorId},'${object.BankName}',${object.AccountNumber},'${object.IFSC}','${object.BranchName}','${object.PAN}')`;
     await request.query(insertIntoVendorBankDetails);
-    return 'Record Inserted';
+    return 'Record Inserted!';
 };
 
 const deleteVendor = async (id) => {
@@ -150,7 +148,7 @@ const deleteVendor = async (id) => {
                     set isActive=0
                     where VendorId=${id}`;
     await request.query(query);
-    return `record deleted`;
+    return `Record deleted!`;
 };
 
 const deleteFacility = async (body) => {
