@@ -62,23 +62,23 @@ addSelectElement('Gender', 4, ['', 'M', 'F', 'O'], ['--Select--', 'Male', 'Femal
 addListElement('email', 'Email', 'Your Email Address', 'Email', 1);
 addListElement('date', 'Joining Date', '', 'JoiningDate', 1);
 addListElement('date', 'Leaving Date', '', 'LeavingDate', 0);
-addSelectElement('Billable', 3, ['',0,1], ['--Select--', 'No', 'Yes'], 'isBillable', 1);
-addListElement('text','Street Address 1','Your Street Address1','StreetAddress1',1);
-addListElement('text','Street Address 2','Your Street Address2','StreetAddress2',0);
+addSelectElement('Billable', 3, ['', 0, 1], ['--Select--', 'No', 'Yes'], 'isBillable', 1);
+addListElement('text', 'Street Address 1', 'Your Street Address1', 'StreetAddress1', 1);
+addListElement('text', 'Street Address 2', 'Your Street Address2', 'StreetAddress2', 0);
 addListElement('text', 'City', 'Your City', 'City', 1);
-addListElement('number','Postal Code','Your Postal Code','PostalCode',1);
+addListElement('number', 'Postal Code', 'Your Postal Code', 'PostalCode', 1);
 addListElement('text', 'Distrcit', 'Your District', 'District', 1);
-addListElement('text','State','Your State','State',1);
-addListElement('text','Country','Your Country','Country',1);
-addSelectElement('Is Employee Permanent',3,['',0,1],['--Select--','Yes','No'],'IsPermanent',1);
-addListElement('number','Office Number','Your Office Number','Office',1);
-addListElement('number','Mobile Number','Your Mobile Number','Mobile',1);
-addListElement('number','LandLine Number','Your LandLine Number','LandLine',0);
-addListElement('text','Bank Name','Your Bank Name','BankName',1);
-addListElement('number','Account No.','Your Account No.','AccountNo',1);
-addListElement('text','IFSC','Your IFSC Code','IFSC',1);
-addListElement('text','Branch Name','Your Branch Name','BranchName',1);
-addListElement('text','PAN','Your Pan Number','PAN',1);
+addListElement('text', 'State', 'Your State', 'State', 1);
+addListElement('text', 'Country', 'Your Country', 'Country', 1);
+addSelectElement('Is Employee Permanent', 3, ['', 0, 1], ['--Select--', 'Yes', 'No'], 'IsPermanent', 1);
+addListElement('number', 'Office Number', 'Your Office Number', 'Office', 1);
+addListElement('number', 'Mobile Number', 'Your Mobile Number', 'Mobile', 1);
+addListElement('number', 'LandLine Number', 'Your LandLine Number', 'LandLine', 0);
+addListElement('text', 'Bank Name', 'Your Bank Name', 'BankName', 1);
+addListElement('number', 'Account No.', 'Your Account No.', 'AccountNo', 1);
+addListElement('text', 'IFSC', 'Your IFSC Code', 'IFSC', 1);
+addListElement('text', 'Branch Name', 'Your Branch Name', 'BranchName', 1);
+addListElement('text', 'PAN', 'Your Pan Number', 'PAN', 1);
 addSelectElement(
     'Status',
     5,
@@ -87,7 +87,7 @@ addSelectElement(
     'Status',
     1
 );
-addListElement('number','Payhead','Your Payhead','Payhead',0);
+addListElement('number', 'Payhead', 'Your Payhead', 'Payhead', 0);
 const submit = document.createElement('input');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Submit');
