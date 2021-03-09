@@ -12,10 +12,6 @@ import {
     findCompensationOfOneEmployeeInGivenYearDetails,
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
-<<<<<<< HEAD
-    addingDetails,
-=======
->>>>>>> 7cbd57d246c61c37bc48545b1db7afa11c20093f
 } from '../Service/emp_service.js';
 
 //employee
@@ -84,9 +80,6 @@ const findYourEmployeeIdController = async (req, res) => {
     res.send(String(data));
 };
 
-const addingController = async (req, res) => {
-    res.send(await addingDetails(req, res));
-};
 //export
 //export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor};
 export {
@@ -102,8 +95,4 @@ export {
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
-<<<<<<< HEAD
-    addingController,
-=======
->>>>>>> 7cbd57d246c61c37bc48545b1db7afa11c20093f
 };

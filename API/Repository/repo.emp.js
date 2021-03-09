@@ -24,8 +24,7 @@ const findOneEmployee = async (id) => {
 };
 
 const addEmployee = async (object) => {
-    const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) 
-                            Values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}','${object.JoiningDate}','${object.LeavingDate}')`;
+    const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}',${object.JoiningDate},${object.LeavingDate})`;
     await request.query(insertIntoEmp);
     let data = await request.query(`Select * from Employee`);
     data = data.recordsets[0];
@@ -67,7 +66,7 @@ const findAllEmployeeInTheGivenYear = async (year) => {
 const updateEmployeeBankAccount = async (object, id) => {
     const query = `UPDATE [ExpenseTracker].[dbo].[EmpBankDetails]
                    set BankName='${object.BankName}',AccountNo=${object.AccountNo},IFSC='${object.IFSC}',BranchName='${object.BranchName}'
-                   where EmpID = ${id}`;
+                   where EmpID = ${id};`;
     const data = await request.query(query);
     return 'Bank Record updated!' + data;
 };

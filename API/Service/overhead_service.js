@@ -13,13 +13,4 @@ const getVendorForFacilityDetails = (benefit, year) => {
     return getVendorForFacility(benefit, year);
 };
 
-const getOverheadCategoriesOfOneEmployeeInGivenYearDetails = (year,id) => {
-    return getOverheadCategoriesOfOneEmployeeInGivenYear(year,id);
-}
-
-export { getOverHeadDetails,
-     getOverHeadWithAmountDetails, 
-     getOverHeadForFacilityDetails, 
-     getVendorForFacilityDetails ,
-    getOverheadCategoriesOfOneEmployeeInGivenYearDetails
- };
+export { getOverHeadDetails, getOverHeadWithAmountDetails, getOverHeadForFacilityDetails, getVendorForFacilityDetails };

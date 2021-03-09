@@ -20,13 +20,4 @@ const getVendorForFacilityController = (benefit, year) => {
     return getVendorForFacilityDetails(benefit, year);
 };
 
-const getOverheadCategoriesOfOneEmployeeInGivenYearController = (year, id) => {
-    return getOverheadCategoriesOfOneEmployeeInGivenYearDetails(year, id);
-};
-export {
-    getOverHeadController,
-    getOverHeadWithAmountController,
-    getOverHeadForFacilityController,
-    getVendorForFacilityController,
-    getOverheadCategoriesOfOneEmployeeInGivenYearController,
-};
+export { getOverHeadController, getOverHeadWithAmountController, getOverHeadForFacilityController, getVendorForFacilityController };

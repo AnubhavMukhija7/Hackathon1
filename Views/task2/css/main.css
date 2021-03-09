@@ -9,7 +9,7 @@ p {
   color: whitesmoke;
 }
 body {
-  background: rgb(1, 7, 7);
+  background: rgb(3, 20, 20);
   color: white;
   font-size: large;
 }
@@ -32,11 +32,10 @@ a:hover {
 a:active {
   color: black;
 }
-
 table,
 th,
 td {
-  border: 2px solid rgb(61, 23, 12);
+  border: 2px solid rgb(85, 9, 34);
   padding: 1ch;
   border-collapse: collapse;
 }
