@@ -23,12 +23,9 @@ const findOneEmployee = async (id) => {
     return convertToModel(data.recordsets[0]);
 };
 
-const addEmployee = async (object) =>
-{
-    console.log('hi');
+const addEmployee = async (object) => {
     const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}','${object.JoiningDate}','${object.LeavingDate}')`;
     await request.query(insertIntoEmp);
-    console.log('hello');
     let data = await request.query(`Select * from Employee`);
     data = data.recordsets[0];
     const newEmpId = data.length;
@@ -138,7 +135,7 @@ const findOverheadOfOneEmployeeInTheGivenYear = async (year) => {
     const data = (await request.query(query)).recordset[0]['OverheadCost'];
     return data;
 };
-const findAllDetailsOfOneEmpoyee = async(id) => {
+const findAllDetailsOfOneEmpoyee = async (id) => {
     console.log(id);
     const query = `Select *
     from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId
@@ -147,7 +144,7 @@ const findAllDetailsOfOneEmpoyee = async(id) => {
     WHERE Employee.EmpId = ${id}`;
     const data = (await request.query(query)).recordsets[0];
     return data;
-}
+};
 export {
     findOneEmployee,
     addEmployee,
@@ -161,5 +158,5 @@ export {
     findCompensationOfOneEmployeeInGivenYear,
     findCtcOfOneEmployeeInTheGivenYear,
     findOverheadOfOneEmployeeInTheGivenYear,
-    findAllDetailsOfOneEmpoyee
+    findAllDetailsOfOneEmpoyee,
 };

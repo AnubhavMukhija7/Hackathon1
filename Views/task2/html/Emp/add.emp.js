@@ -87,10 +87,6 @@ addSelectElement(
     'Status',
     1
 );
-<<<<<<< HEAD:Views/task2/html/Emp/add.emp.js
-=======
-addListElement('number', 'Payhead', 'Your Payhead', 'Payhead', 0);
->>>>>>> 1b3bf18eed25ac9ba938e4cd4884cb23972ae33c:Views/task2/html/Emp/add.emp.js
 const submit = document.createElement('input');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Submit');
