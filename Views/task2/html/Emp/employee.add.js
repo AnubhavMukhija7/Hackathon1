@@ -70,7 +70,7 @@ addListElement('number','Postal Code','Your Postal Code','PostalCode',1);
 addListElement('text', 'Distrcit', 'Your District', 'District', 1);
 addListElement('text','State','Your State','State',1);
 addListElement('text','Country','Your Country','Country',1);
-addListElement('text','Is Employee Permanent','Is the Employee Permanent','IsPermanent',1);
+addSelectElement('Is Employee Permanent',3,['',0,1],['--Select--','Yes','No'],'IsPermanent',1);
 addListElement('number','Office Number','Your Office Number','Office',1);
 addListElement('number','Mobile Number','Your Mobile Number','Mobile',1);
 addListElement('number','LandLine Number','Your LandLine Number','LandLine',0);
@@ -87,6 +87,7 @@ addSelectElement(
     'Status',
     1
 );
+addListElement('number','Payhead','Your Payhead','Payhead',0);
 const submit = document.createElement('input');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Submit');
