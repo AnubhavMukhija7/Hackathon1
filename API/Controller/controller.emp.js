@@ -5,13 +5,14 @@ import {
     findAllEmployeeDetails,
     findOneEmployeeDetails,
     findAllEmployeeInTheGivenYearDetails,
-    updateEmployeeBankAccountDetails,
+    updateEmployeeDetails,
     findYourEmployeeIdDetails,
     findAllBillableEmployeeDetails,
     findAllNonBillableEmployeeDetails,
     findCompensationOfOneEmployeeInGivenYearDetails,
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
+    findAllDetailsOfOneEmpoyeeDetails
 } from '../Service/emp_service.js';
 
 //employee
@@ -31,8 +32,8 @@ const findOneEmployeeController = async (req, res) => {
     res.send(await findOneEmployeeDetails(req, res));
 };
 
-const updateEmployeeBankAccountController = async (req, res) => {
-    res.send(await updateEmployeeBankAccountDetails(req, res));
+const updateEmployeeController = async (req, res) => {
+    res.send(await updateEmployeeDetails(req, res));
 };
 
 const findAllBillableEmployeeController = async (req, res) => {
@@ -80,6 +81,11 @@ const findYourEmployeeIdController = async (req, res) => {
     res.send(String(data));
 };
 
+
+const findAllDetailsOfOneEmpoyeeController = async(req,res) => {
+    const data = await findAllDetailsOfOneEmpoyeeDetails(req,res);
+    res.send(data);
+}
 //export
 //export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor};
 export {
@@ -88,11 +94,12 @@ export {
     findAllEmployeeController,
     findOneEmployeeController,
     findAllEmployeeInTheGivenYearController,
-    updateEmployeeBankAccountController,
+    updateEmployeeController,
     findYourEmployeeIdController,
     findAllBillableEmployeeController,
     findAllNonBillableEmployeeController,
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
+    findAllDetailsOfOneEmpoyeeController
 };

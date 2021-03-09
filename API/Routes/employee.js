@@ -6,13 +6,14 @@ import {
     findAllEmployeeController,
     findOneEmployeeController,
     findAllEmployeeInTheGivenYearController,
-    updateEmployeeBankAccountController,
+    updateEmployeeController,
     findYourEmployeeIdController,
     findAllBillableEmployeeController,
     findAllNonBillableEmployeeController,
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
+    findAllDetailsOfOneEmpoyeeController
 } from '../Controller/controller.emp.js';
 
 const router = express.Router();
@@ -31,6 +32,10 @@ router.get('/', (req, res) => {
     findAllEmployeeController(req, res);
 });
 
+router.get('/allEmployeeDetails/id=:id',(req,res)=>{
+    findAllDetailsOfOneEmpoyeeController(req,res);
+})
+
 router.get('/billable', (req, res) => {
     findAllBillableEmployeeController(req, res);
 });
@@ -46,8 +51,8 @@ router.post('/add', (req, res) => {
 });
 
 // update bank account of employee
-router.put('/update/bankAccount/id=:id', (req, res) => {
-    updateEmployeeBankAccountController(req, res);
+router.put('/updateEmployee/id=:id', (req, res) => {
+    updateEmployeeController(req, res);
 });
 
 // delete employee

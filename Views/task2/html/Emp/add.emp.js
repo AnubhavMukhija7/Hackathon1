@@ -87,7 +87,6 @@ addSelectElement(
     'Status',
     1
 );
-addListElement('number','Payhead','Your Payhead','Payhead',0);
 const submit = document.createElement('input');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Submit');

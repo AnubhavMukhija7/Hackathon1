@@ -4,13 +4,14 @@ import {
     deleteEmployee,
     findAllEmployee,
     findAllEmployeeInTheGivenYear,
-    updateEmployeeBankAccount,
+    updateEmployee,
     findYourEmployeeId,
     findAllBillableEmployee,
     findAllNonBillableEmployee,
     findCompensationOfOneEmployeeInGivenYear,
     findCtcOfOneEmployeeInTheGivenYear,
     findOverheadOfOneEmployeeInTheGivenYear,
+    findAllDetailsOfOneEmpoyee
 } from '../Repository/repo.emp.js';
 
 const addEmployeeDetails = async (req, res) => {
@@ -38,8 +39,8 @@ const findAllEmployeeInTheGivenYearDetails = async (req, res, next) => {
     return resopnse;
 };
 
-const updateEmployeeBankAccountDetails = async (req, res) => {
-    const resopnse = await updateEmployeeBankAccount(req.body, req.params.id);
+const updateEmployeeDetails = async (req, res) => {
+    const resopnse = await updateEmployee(req.body, req.params.id);
     return resopnse;
 };
 const findYourEmployeeIdDetails = async (req, res) => {
@@ -70,17 +71,23 @@ const findOverheadOfOneEmployeeInTheGivenYearDetails = async (req, res) => {
     const response = await findOverheadOfOneEmployeeInTheGivenYear(req.params.year);
     return response;
 };
+
+const findAllDetailsOfOneEmpoyeeDetails = async(req,res) => {
+    const response = await findAllDetailsOfOneEmpoyee(req.params.id);
+    return response;
+}
 export {
     addEmployeeDetails,
     deleteEmployeeDetails,
     findOneEmployeeDetails,
     findAllEmployeeDetails,
     findAllEmployeeInTheGivenYearDetails,
-    updateEmployeeBankAccountDetails,
+    updateEmployeeDetails,
     findYourEmployeeIdDetails,
     findAllBillableEmployeeDetails,
     findAllNonBillableEmployeeDetails,
     findCompensationOfOneEmployeeInGivenYearDetails,
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
+    findAllDetailsOfOneEmpoyeeDetails
 };
