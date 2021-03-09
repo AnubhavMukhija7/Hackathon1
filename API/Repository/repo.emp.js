@@ -7,7 +7,7 @@ const findAllEmployee = async () => {
                   Employee.Gender,Employee.Status,EmployeeAddress.City,
                   EmployeeAddress.State,EmployeeContact.Office
                   from Employee INNER JOIN EmployeeContact ON Employee.EmpId = EmployeeContact.EmpId
-                  INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId`;
+                  INNER JOIN EmployeeAddress ON EmployeeContact.EmpId = EmployeeAddress.EmpId Order By Employee.EmpId ASC`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
 };
