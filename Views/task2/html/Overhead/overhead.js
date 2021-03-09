@@ -1,5 +1,5 @@
 const functionalities = document.querySelector('#functionality');
-const buttons = ['View Employee', 'Add Employee', 'Update Employee Details', 'Expenses for Employee'];
+const buttons = ['View Overheads', 'Add Ovherhead', 'Expenses on Overheads'];
 
 const createButtons = () => {
     buttons.forEach(function (item) {
@@ -14,11 +14,10 @@ const createButtons = () => {
 };
 
 const showData = async () => {
-    location.href = 'view.emp.html';
+    location.href = 'view.overhead.html';
 };
-
 const showExpense = async () => {
-    location.href = 'expense.emp.html';
+    location.href = 'expense.overhead.html';
 };
 
 const addFunctionality = () => {
