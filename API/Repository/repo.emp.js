@@ -23,9 +23,12 @@ const findOneEmployee = async (id) => {
     return convertToModel(data.recordsets[0]);
 };
 
-const addEmployee = async (object) => {
+const addEmployee = async (object) =>
+{
+    console.log('hi');
     const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}',${object.JoiningDate},${object.LeavingDate})`;
     await request.query(insertIntoEmp);
+    console.log('hello');
     let data = await request.query(`Select * from Employee`);
     data = data.recordsets[0];
     const newEmpId = data.length;
