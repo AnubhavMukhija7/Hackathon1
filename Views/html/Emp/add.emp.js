@@ -1,16 +1,14 @@
+const br = document.createElement('br');
+
 const heading = document.createElement('h2');
 heading.setAttribute('class', 'heading');
 heading.style.textAlign = 'centre';
-const ul = document.createElement('ul');
-ul.setAttribute('class', 'list');
 const form = document.createElement('form');
 form.setAttribute('id', 'addEmployeeForm');
 form.setAttribute('method', 'POST');
 form.setAttribute('action', 'http://localhost:3000/employee/add');
 const addListElement = (type, labelName, placeholder, name, required) => {
-    const li = document.createElement('div');
     const label = document.createElement('label');
-    const div = document.createElement('div');
     label.setAttribute('for', `${labelName}`);
     label.textContent = `${labelName}`;
     const input = document.createElement('input');
@@ -18,16 +16,12 @@ const addListElement = (type, labelName, placeholder, name, required) => {
     input.setAttribute('type', `${type}`);
     input.setAttribute('name', `${name}`);
     if (required === 1) input.required = true;
-    input.style.marginTop = '4px';
     input.setAttribute('placeholder', `${placeholder}`);
-    li.appendChild(label);
-    li.appendChild(div);
-    li.appendChild(input);
-    ul.appendChild(li);
-    li.style.marginTop = '20px';
+    form.appendChild(label);
+    form.appendChild(input);
+    form.appendChild(br.cloneNode());
 };
 const addSelectElement = (labelName, n, value, textContent, name, required) => {
-    const li = document.createElement('div');
     const label = document.createElement('label');
     const select = document.createElement('select');
     select.setAttribute('id', `${labelName}`);
@@ -42,18 +36,14 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
         select.required = true;
     }
     select.setAttribute('name', name);
-    li.appendChild(label);
-    li.appendChild(select);
     label.innerHTML = `${labelName}`;
-    select.style.marginLeft = '10px';
-    ul.appendChild(li);
-    li.style.marginTop = '20px';
+    form.appendChild(label);
+    form.appendChild(select);
+    form.appendChild(br.cloneNode());
 };
 
 heading.innerHTML = 'Add Employee Details';
 document.body.appendChild(heading);
-form.appendChild(ul);
-ul.style.paddingLeft = '0px';
 addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
 addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
 addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
@@ -90,5 +80,7 @@ addSelectElement(
 const submit = document.createElement('input');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Submit');
+form.appendChild(br.cloneNode());
 form.appendChild(submit);
+document.body.appendChild(heading);
 document.body.appendChild(form);
