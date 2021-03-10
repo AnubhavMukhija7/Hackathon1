@@ -13,69 +13,68 @@ import {
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
-    findAllDetailsOfOneEmpoyeeController
+    findAllDetailsOfOneEmpoyeeController,
 } from '../Controller/controller.emp.js';
 
 const router = express.Router();
 // get an employee with the given id
-router.get('/id=:id', (req, res) => {
-    findOneEmployeeController(req, res);
+router.get('/id=:id', async (req, res) => {
+    res.send(await findOneEmployeeController(req));
 });
 
 // get all employee for the given year
-router.get('/year=:year', (req, res, next) => {
-    findAllEmployeeInTheGivenYearController(req, res, next);
+router.get('/year=:year', async (req, res) => {
+    res.send(findAllEmployeeInTheGivenYearController(req));
 });
 
 // get all employees uptill now
-router.get('/', (req, res) => {
-    findAllEmployeeController(req, res);
+router.get('/', async (req, res) => {
+    res.send(await findAllEmployeeController(req));
 });
 
-router.get('/allEmployeeDetails/id=:id',(req,res)=>{
-    findAllDetailsOfOneEmpoyeeController(req,res);
-})
+router.get('/allEmployeeDetails/id=:id', async (req, res) => {
+    res.send(await findAllDetailsOfOneEmpoyeeController(req));
+});
 
-router.get('/billable', (req, res) => {
-    findAllBillableEmployeeController(req, res);
+router.get('/billable', async (req, res) => {
+    res.send(findAllBillableEmployeeController(req));
 });
 
 router.get('/nonBillable', (req, res) => {
-    findAllNonBillableEmployeeController(req, res);
+    res.send(findAllNonBillableEmployeeController(req));
 });
 
 // add record
-router.post('/add', (req, res) => {
-    console.log(req.body);
-    addEmployeeController(req, res);
+router.post('/add', async (req, res) => {
+    res.send(await addEmployeeController(req));
 });
 
 // update bank account of employee
-router.put('/updateEmployee/id=:id', (req, res) => {
-    updateEmployeeController(req, res);
+router.put('/updateEmployee/id=:id', async (req, res) => {
+    res.send(await updateEmployeeController(req));
 });
 
 // delete employee
-router.delete('/delete/id=:id', (req, res) => {
-    deleteEmployeeController(req, res);
+router.delete('/delete/id=:id', async (req, res) => {
+    res.send(await deleteEmployeeController(req));
 });
 // get you employee id corresponding to emailId
-router.get('/getEmployeeId/emailId=:emailId', (req, res) => {
-    findYourEmployeeIdController(req, res);
+router.get('/getEmployeeId/emailId=:emailId', async (req, res) => {
+    res.send(await findYourEmployeeIdController(req));
 });
 
 // Total Compensation of an employee in a year
-router.get('/compensation/year=:year/id=:id', (req, res) => {
-    findCompensationOfOneEmployeeInGivenYearController(req, res);
+router.get('/compensation/year=:year/id=:id', async (req, res) => {
+    res.send(await findCompensationOfOneEmployeeInGivenYearController(req));
 });
 
 //CTC of each Employee in a given year
-router.get('/ctc/year=:year/id=:id', (req, res) => {
-    findCtcOfOneEmployeeInTheGivenYearController(req, res);
+router.get('/ctc/year=:year/id=:id', async (req, res) => {
+    res.send(await findCtcOfOneEmployeeInTheGivenYearController(req));
 });
 
 // Total overhead of an employee in a given year
-router.get('/overhead/year=:year', (req, res) => {
-    findOverheadOfOneEmployeeInTheGivenYearController(req, res);
+router.get('/overhead/year=:year', async (req, res) => {
+    res.send(await findOverheadOfOneEmployeeInTheGivenYearController(req));
 });
 export default router;

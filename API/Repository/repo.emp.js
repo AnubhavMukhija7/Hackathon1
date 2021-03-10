@@ -92,8 +92,7 @@ const findAllNonBillableEmployee = async () => {
 };
 
 const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
-    const query = `Select Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
-    EmployeeAddress.City,EmployeeAddress.District,sum(EmployeePayhead.Payhead) as TotalCompensation
+    const query = `Select sum(EmployeePayhead.Payhead) as TotalCompensation
     from EmployeePayhead INNER JOIN Employee ON
     Employee.EmpId = EmployeePayhead.EmpId
     INNER JOIN EmployeeContact ON

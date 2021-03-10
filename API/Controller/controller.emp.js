@@ -12,80 +12,63 @@ import {
     findCompensationOfOneEmployeeInGivenYearDetails,
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
-    findAllDetailsOfOneEmpoyeeDetails
+    findAllDetailsOfOneEmpoyeeDetails,
 } from '../Service/emp_service.js';
 
 //employee
-const addEmployeeController = async (req, res) => {
-    res.send(await addEmployeeDetails(req, res));
+const addEmployeeController = async (req) => {
+    return await addEmployeeDetails(req);
 };
 
-const deleteEmployeeController = async (req, res) => {
-    res.send(await deleteEmployeeDetails(req, res));
+const deleteEmployeeController = async (req) => {
+    return await deleteEmployeeDetails(req);
 };
 
-const findAllEmployeeController = async (req, res) => {
-    res.send(await findAllEmployeeDetails(req, res));
+const findAllEmployeeController = async (req) => {
+    return await findAllEmployeeDetails(req);
 };
 
-const findOneEmployeeController = async (req, res) => {
-    res.send(await findOneEmployeeDetails(req, res));
+const findOneEmployeeController = async (req) => {
+    return await findOneEmployeeDetails(req);
 };
 
-const updateEmployeeController = async (req, res) => {
-    res.send(await updateEmployeeDetails(req, res));
+const updateEmployeeController = async (req) => {
+    return await updateEmployeeDetails(req);
 };
 
-const findAllBillableEmployeeController = async (req, res) => {
-    res.send(await findAllBillableEmployeeDetails(req, res));
+const findAllBillableEmployeeController = async () => {
+    return await findAllBillableEmployeeDetails();
 };
 
-const findAllNonBillableEmployeeController = async (req, res) => {
-    res.send(await findAllNonBillableEmployeeDetails(req, res));
+const findAllNonBillableEmployeeController = async () => {
+    return await findAllNonBillableEmployeeDetails();
 };
 
-const findCompensationOfOneEmployeeInGivenYearController = async (req, res) => {
-    res.send(await findCompensationOfOneEmployeeInGivenYearDetails(req, res));
+const findCompensationOfOneEmployeeInGivenYearController = async (req) => {
+    return await findCompensationOfOneEmployeeInGivenYearDetails(req);
 };
 
-const findCtcOfOneEmployeeInTheGivenYearController = async (req, res) => {
-    res.send(await findCtcOfOneEmployeeInTheGivenYearDetails(req, res));
+const findCtcOfOneEmployeeInTheGivenYearController = async (req) => {
+    return await findCtcOfOneEmployeeInTheGivenYearDetails(req);
 };
 
-const findOverheadOfOneEmployeeInTheGivenYearController = async (req, res) => {
-    res.send(String(await findOverheadOfOneEmployeeInTheGivenYearDetails(req, res)));
-};
-// // for vendors
-// const addVendorController = async (req, res) => {
-//   res.send(await addVendorDetails(req.body));
-// };
-
-// const updateVendorController = async (req, res) => {
-//   res.send(await updateVendorDetails(req.body));
-// };
-
-// const deleteVendorController = async (req, res) => {
-//   res.send(await deleteVendorDetails(req.body));
-// };
-
-// const findAllVendorController = async (req, res) => {
-//    res.send(await findAllVendorDetails());
-// };
-
-const findAllEmployeeInTheGivenYearController = async (req, res, next) => {
-    res.send(await findAllEmployeeInTheGivenYearDetails(req, res, next));
+const findOverheadOfOneEmployeeInTheGivenYearController = async (req) => {
+    return String(await findOverheadOfOneEmployeeInTheGivenYearDetails(req));
 };
 
-const findYourEmployeeIdController = async (req, res) => {
-    const data = await findYourEmployeeIdDetails(req, res);
-    res.send(String(data));
+const findAllEmployeeInTheGivenYearController = async (req) => {
+    return await findAllEmployeeInTheGivenYearDetails(req);
 };
 
+const findYourEmployeeIdController = async (req) => {
+    const data = await findYourEmployeeIdDetails(req);
+    return String(data);
+};
 
-const findAllDetailsOfOneEmpoyeeController = async(req,res) => {
-    const data = await findAllDetailsOfOneEmpoyeeDetails(req,res);
-    res.send(data);
-}
+const findAllDetailsOfOneEmpoyeeController = async (req) => {
+    const data = await findAllDetailsOfOneEmpoyeeDetails(req);
+    return data;
+};
 //export
 //export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor};
 export {
@@ -101,5 +84,5 @@ export {
     findCompensationOfOneEmployeeInGivenYearController,
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
-    findAllDetailsOfOneEmpoyeeController
+    findAllDetailsOfOneEmpoyeeController,
 };
