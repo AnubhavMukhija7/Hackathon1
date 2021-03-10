@@ -111,9 +111,10 @@ const addFacilityAddVendor = async (object) => {
 };
 
 const updateVendor = async (body) => {
-    const query = `Update Vendors set ${body.Column} = '${body.Detail}' where VendorID=${body.VendorID}`;
-    await request.query(query);
-    return 'Record Updated';
+    console.log('ping me');
+    // const query = `Update Vendors set ${body.Column} = '${body.Detail}' where VendorID=${body.VendorID}`;
+    // await request.query(query);
+    // return 'Record Updated';
 };
 
 const updateVendorFacility = async (body) => {

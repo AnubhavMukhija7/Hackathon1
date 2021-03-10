@@ -73,6 +73,7 @@ router.post('/addVendor', async (req, res) => {
 
 // update vendor
 router.put('/update', async (req, res) => {
+    console.log('look up');
     const result = await updateVendorController(req);
     res.send(result);
 });

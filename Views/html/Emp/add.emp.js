@@ -1,5 +1,4 @@
 const br = document.createElement('br');
-
 const heading = document.createElement('h2');
 heading.setAttribute('class', 'heading');
 heading.style.textAlign = 'centre';

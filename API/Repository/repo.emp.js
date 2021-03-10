@@ -58,12 +58,42 @@ const findAllEmployeeInTheGivenYear = async (year) => {
     return convertToModel(data.recordsets[0]);
 };
 
-const updateEmployee = async (object, id) => {
-    const query = `UPDATE [ExpenseTracker].[dbo].[EmpBankDetails]
-                   set BankName='${object.BankName}',AccountNo=${object.AccountNo},IFSC='${object.IFSC}',BranchName='${object.BranchName}'
-                   where EmpID = ${id};`;
-    const data = await request.query(query);
-    return 'Bank Record updated!' + data;
+const updateEmployee = async (object) => {
+    console.log(object);
+    const id = object.id;
+    object = new Map(Object.entries(object));
+    object = object = Array.from(object);
+    console.log(object);
+    const tablesObjectQuery = `SELECT * FROM information_schema.tables`;
+    const tablesObject = await(request.query(tablesObjectQuery));
+    console.log('All tables',tablesObject.recordset);
+    const tablesArray = [];
+    for(let i=0;i<tablesObject.recordset.length;i++){
+        if(tablesObject.recordset[i].TABLE_NAME.includes('Emp')){
+            tablesArray.push(tablesObject.recordset[i].TABLE_NAME);
+        }
+    }
+    for(let i=0;i<tablesArray.length;i++){
+        for(let j=0;j<object.length-1;j++){
+            let updateQuery;
+            const checkquery = `SELECT COL_LENGTH ('${tablesArray[i]}','${object[j][0]}')`;
+            // console.log('checkQuery',checkquery);
+            const checkResult = await(request.query(checkquery));
+            // console.log('CheckResult',checkResult.recordset[0]['']);
+            const go = checkResult.recordset[0][''];
+            // console.log('Go',go);
+            if(go>0){
+                // console.log(`${object[j][0]} = ${object[j][1]}`);
+                if(typeof(`${object[j][1]}`)===Number){
+                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = ${object[j][1]} where EmpId = ${object[object.length-1][1]}`;
+                }
+                else{
+                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = '${object[j][1]}' where EmpId = ${object[object.length-1][1]}`;
+                }
+                const result = await (request.query(updateQuery));
+            }
+        }
+    }
 };
 
 const findYourEmployeeId = async (emailId) => {
