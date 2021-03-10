@@ -66,6 +66,7 @@ router.post('/addFacilityAddvendor', async (req, res) => {
 });
 
 router.post('/addVendor', async (req, res) => {
+    console.log('baby');
     const result = await addVendorController(req.body);
     res.send(result);
 });
