@@ -5,6 +5,7 @@ import {
     getOverHeadWithAmountController,
     getOverHeadForFacilityController,
     getVendorForFacilityController,
+    getAllFacilitiesController,
 } from '../Controller/controller.overhead.js';
 
 const router = express.Router();
@@ -32,6 +33,11 @@ router.get('/facility=:facility/expense/:year', async (req, res) => {
 // get vendors for overhead facility.. not working yet
 router.get('/:facility/vendors/:year', async (req, res) => {
     const result = await getVendorForFacilityController(req.params.facility, req.params.year);
+    res.send(result);
+});
+
+router.get('/facilities', async (req, res) => {
+    const result = await getAllFacilitiesController();
     res.send(result);
 });
 

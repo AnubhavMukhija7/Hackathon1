@@ -42,4 +42,10 @@ const getVendorForFacility = async (overhead, year) => {
     return convertToModel(data.recordsets[0]);
 };
 
-export { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility };
+const getAllFacilities = async () => {
+    const query = `Select FacilityId, FacilityName from Facilities`;
+    const data = await request.query(query);
+    return data.recordsets[0];
+};
+
+export { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getAllFacilities };

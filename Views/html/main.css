@@ -3,13 +3,13 @@ input::placeholder {
     color: #641ce9;
 }
 select {
-    appearance: none;
-    font-family: sans-serif;
-    font-size: inherit;
-    padding: 0;
-    border-width: 2px;
-    width: 100%;
-    flex: 1;
+    cursor:pointer;
+    display:inline-block;
+    position:relative;
+    font:normal 11px/22px Arial, Sans-Serif;
+    color:black;
+    border:1px solid #ccc;
+    width: auto;
 }
 
 input {
@@ -21,8 +21,11 @@ input {
     height: 30px;
     display: inline-block;
 }
+input:focus {
+    background-color: white;
+}
 input[type='submit'] {
-    background: dimgrey;
+    background: blueviolet;
 }
 label {
     padding-left: 10px;
@@ -32,11 +35,12 @@ label {
 body {
     background: #04000c;
     text-align: center;
+    text-decoration: double;
 }
 form {
     width: 30%;
     margin: 5px auto;
-    background: rgba(52, 247, 230, 0.472);
+    background: rgba(1, 247, 230, 0.472);
     padding: 30px 60px 40px 60px;
     text-align: center;
     -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);

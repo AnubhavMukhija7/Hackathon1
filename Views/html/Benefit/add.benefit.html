@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../main.css">
+        <title>Document</title>
+        <script> 
+        </script>
+    </head>
+    <body>
+        <form method="POST" action="http://localhost:3000/vendor/addFacility">
+            <input type="text" id="fname" name="FacilityName" placeholder="Facility Name.." />
+        </br>
+            <input type="text" id="lname" name="FacilityDescription" placeholder="Facility Description.." />
+        </br>
+            <label for="country">Facility Type: </label>
+            <select name="FacilityType">
+                <option value="B">Benefit</option>
+                <option value="O">Overhead</option>
+            </select>
+        </br>
+            <input type="submit" value="Add Vendor for this Facility"  >
+        </form>
+        
+    </body>
+</html>
