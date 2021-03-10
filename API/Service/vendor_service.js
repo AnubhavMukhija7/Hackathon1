@@ -1,7 +1,7 @@
 import {
     getVendor,
     getAllVendors,
-    addFacilityAddVendor,
+    addFacility,
     updateVendor,
     deleteVendor,
     getVendorForFacility,
@@ -39,8 +39,8 @@ const vendorEarningForFacilityInYearDetails = (id, facility, year) => {
     return vendorEarningForFacilityInYear(id, facility, year);
 };
 
-const addFacilityAddVendorDetails = async (body) => {
-    return await addFacilityAddVendor(body);
+const addFacilityDetails = async (body) => {
+    return await addFacility(body);
 };
 
 const updateVendorDetails = (body) => {
@@ -70,7 +70,7 @@ export {
     getVendorsEarningForFacilityDetails,
     vendorEarningInYearDetails,
     vendorEarningForFacilityInYearDetails,
-    addFacilityAddVendorDetails,
+    addFacilityDetails,
     updateVendorDetails,
     updateVendorFacilityDetails,
     deleteVendorDetails,

@@ -9,7 +9,7 @@ import {
     vendorEarningInYearController,
     vendorEarningForFacilityInYearController,
     addVendorController,
-    addFacilityAddVendorController,
+    addFacilityController,
     updateVendorController,
     updateVendorFacilityController,
     deleteVendorController,
@@ -59,10 +59,10 @@ router.get('/:id/:facility/earning/:year', async (req, res) => {
     res.send(result);
 });
 
-// add vendor with a facility!
-router.post('/addFacilityAddvendor', async (req, res) => {
-    const result = await addFacilityAddVendorController(req.body);
-    res.send(result);
+// add facility!
+router.post('/addFacility', async (req, res) => {
+    await addFacilityController(req.body);
+    res.redirect('http://localhost:3000/Vendor/add.vendor.html');
 });
 
 router.post('/addVendor', async (req, res) => {

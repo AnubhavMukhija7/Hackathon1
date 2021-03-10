@@ -122,16 +122,8 @@ const findAllNonBillableEmployee = async () => {
 };
 
 const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
-    const query = `Select sum(EmployeePayhead.Payhead) as TotalCompensation
-    from EmployeePayhead INNER JOIN Employee ON
-    Employee.EmpId = EmployeePayhead.EmpId
-    INNER JOIN EmployeeContact ON
-    Employee.EmpId = EmployeeContact.EmpId
-    INNER JOIN EmployeeAddress ON
-    EmployeeContact.EmpId = EmployeeAddress.EmpId
-    where ((YEAR(Employee.LeavingDate) >=${year} OR YEAR(Employee.LeavingDate) Is NULL) AND YEAR(Employee.JoiningDate) <= ${year}) and Employee.EmpId = ${id}
-    GROUP BY Employee.EmpId,Employee.FirstName,Employee.LastName,EmployeeContact.Office,
-    EmployeeAddress.City,EmployeeAddress.District`;
+    const query = `Select SUM(Payhead) as TotalCompensation from EmployeePayhead where Year = ${year} and EmpId = ${id}
+    GROUP BY EmpId;`;
     const data = (await request.query(query)).recordsets[0];
     return convertToModel(data);
 };

@@ -6,7 +6,7 @@ import {
     getVendorsEarningForFacilityDetails,
     vendorEarningInYearDetails,
     vendorEarningForFacilityInYearDetails,
-    addFacilityAddVendorDetails,
+    addFacilityDetails,
     updateVendorDetails,
     updateVendorFacilityDetails,
     deleteVendorDetails,
@@ -39,8 +39,8 @@ const vendorEarningForFacilityInYearController = (id, facility, year) => {
     return vendorEarningForFacilityInYearDetails(id, facility, year);
 };
 
-const addFacilityAddVendorController = async (body) => {
-    return await addFacilityAddVendorDetails(body);
+const addFacilityController = async (body) => {
+    return await addFacilityDetails(body);
 };
 
 const updateVendorController = (body) => {
@@ -70,7 +70,7 @@ export {
     getVendorsEarningForFacilityController,
     vendorEarningInYearController,
     vendorEarningForFacilityInYearController,
-    addFacilityAddVendorController,
+    addFacilityController,
     updateVendorController,
     updateVendorFacilityController,
     deleteVendorController,
