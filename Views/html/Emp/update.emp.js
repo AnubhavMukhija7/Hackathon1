@@ -156,7 +156,7 @@ const updateEmployeeForm = async (id) => {
     document.body.appendChild(form);
 };
 submit.addEventListener('click', () => {
-    id = input.value;
+    const id = input.value;
     div.remove();
     updateEmployeeForm(id);
 });
