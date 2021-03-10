@@ -20,12 +20,19 @@ const showExpense = async () => {
     location.href = 'expense.overhead.html';
 };
 
+const addFacility = async () => {
+    console.log('hhha');
+    location.href = '../Benefit/add.benefit.html';
+};
+
 const addFunctionality = () => {
     const viewEl = document.querySelector('.View');
     viewEl.addEventListener('click', showData);
 
     const expenseEl = document.querySelector('.Expenses');
     expenseEl.addEventListener('click', showExpense);
+    const addEl = document.querySelector('.Add');
+    addEl.addEventListener('click', addFacility);
 };
 
 createButtons();

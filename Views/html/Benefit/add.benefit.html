@@ -8,12 +8,12 @@
     </head>
     <body>
         <form method="POST" action="http://localhost:3000/vendor/addFacility">
-            <input type="text" id="fname" name="FacilityName" placeholder="Facility Name.." />
+            <input type="text" id="fname" name="FacilityName" required placeholder="Facility Name.." />
         </br>
-            <input type="text" id="lname" name="FacilityDescription" placeholder="Facility Description.." />
+            <input type="text" id="lname" name="FacilityDescription" required placeholder="Facility Description.." />
         </br>
             <label for="country">Facility Type: </label>
-            <select name="FacilityType">
+            <select name="FacilityType" required>
                 <option value="B">Benefit</option>
                 <option value="O">Overhead</option>
             </select>

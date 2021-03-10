@@ -1,5 +1,5 @@
 const functionalities = document.querySelector('#functionality');
-const buttons = ['View Benfits', 'Add Benefit', 'Update Benefit', 'Expenses due to Benefits'];
+const buttons = ['View Benfits', 'Add Benefit', 'Expenses due to Benefits'];
 
 const createButtons = () => {
     buttons.forEach(function (item) {
