@@ -14,7 +14,7 @@ divEl.appendChild(paraEl);
 divEl.appendChild(labelEl);
 divEl.appendChild(inputEl);
 divEl.appendChild(submitEl);
-let ctcdata;
+let ctcdata, Data;
 
 const getData = async (eID, year = 2021) => {
     tableEl.innerHTML = '';
@@ -22,15 +22,15 @@ const getData = async (eID, year = 2021) => {
     const response = await fetch(`http://localhost:3000/benefit/employee/${eID}/expense`);
     const ctcresponse = await fetch(`http://localhost:3000/employee/compensation/year=${year}/id=${eID}`);
     if (response.ok) {
-        let data = await response.json();
+        Data = await response.json();
         ctcdata = await ctcresponse.json();
-        if (data.length === 1 && Object.values(data[0])[0] === null) {
+        if (Data.length === 1 && Object.values(Data[0])[0] === null && ctcdata.length === 0) {
             return (tableEl.innerHTML = '<b>Data does not present!</b>');
         }
-        if (!data.length) {
+        if (!Data.length && !ctcdata.length) {
             return (tableEl.innerHTML = '<b>Data does not present!</b>');
         }
-        populateTable(data);
+        populateTable();
     } else {
         return console.log('HTTP-Error: ' + response.status);
     }
@@ -48,7 +48,8 @@ const createTableHeading = (keys) => {
     tableEl.appendChild(row);
 };
 
-const populateTable = (Data) => {
+const populateTable = () => {
+    if (Data.length) {
     createTableHeading(Object.keys(Data[0]));
     Data.forEach((data) => {
         const row = tableEl.insertRow(0);
@@ -60,15 +61,15 @@ const populateTable = (Data) => {
         }
         tableEl.appendChild(row);
     });
+    }
     ctcdata.forEach((data) => {
         const row = tableEl.insertRow(0);
-        let len = 0;
         for (const value of Object.values(data)) {
-            const cell = row.insertCell(len);
+            const cell = row.insertCell(0);
             cell.innerHTML = value;
         }
         for (const value of Object.keys(data)) {
-            const cell = row.insertCell(len);
+            const cell = row.insertCell(0);
             cell.innerHTML = value;
         }
         tableEl.appendChild(row);
