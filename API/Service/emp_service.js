@@ -13,6 +13,7 @@ import {
     findOverheadOfOneEmployeeInTheGivenYear,
     findAllDetailsOfOneEmpoyee,
     getUniques,
+    getExpenseReport,
 } from '../Repository/repo.emp.js';
 
 const validateData = async (data) => {
@@ -107,6 +108,11 @@ const findAllDetailsOfOneEmpoyeeDetails = async (req) => {
     const response = await findAllDetailsOfOneEmpoyee(req.params.id);
     return response;
 };
+
+const getExpenseDetails = async (req) => {
+    return await getExpenseReport(req.params.year);
+};
+
 export {
     addEmployeeDetails,
     deleteEmployeeDetails,
@@ -121,4 +127,5 @@ export {
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
     findAllDetailsOfOneEmpoyeeDetails,
+    getExpenseDetails,
 };

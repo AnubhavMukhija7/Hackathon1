@@ -14,6 +14,7 @@ import {
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
     findAllDetailsOfOneEmpoyeeController,
+    getExpenseDetailsController,
 } from '../Controller/controller.emp.js';
 
 const router = express.Router();
@@ -77,5 +78,9 @@ router.get('/ctc/year=:year/id=:id', async (req, res) => {
 // Total overhead of an employee in a given year
 router.get('/overhead/year=:year', async (req, res) => {
     res.send(await findOverheadOfOneEmployeeInTheGivenYearController(req));
+});
+
+router.get('/expenseDetails/year=:year', async (req, res) => {
+    res.send(await getExpenseDetailsController(req));
 });
 export default router;

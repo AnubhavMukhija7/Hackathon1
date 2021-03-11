@@ -161,6 +161,17 @@ const getUniques = async () => {
     return { eMailDetails, panDetails, accDetails, officeDetails };
 };
 
+const getExpenseReport = async (year) => {
+    const query = `Use EmployeesCompensationForYear
+    GO
+    SELECT * FROM EmployeesCompensationForYear WHERE [Year] = ${year}
+    GO`;
+    console.log(query);
+    const data = (await request.query(query)).recordsets[0];
+    console.log('data', data);
+    return convertToModel(data);
+};
+
 export {
     findOneEmployee,
     addEmployee,
@@ -176,4 +187,5 @@ export {
     findOverheadOfOneEmployeeInTheGivenYear,
     findAllDetailsOfOneEmpoyee,
     getUniques,
+    getExpenseReport,
 };
