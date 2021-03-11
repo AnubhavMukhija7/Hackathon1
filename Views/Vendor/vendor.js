@@ -19,6 +19,9 @@ const showData = async () => {
 const addVendor = async () => {
     location.href = 'add.vendor.html';
 };
+const updateVendor = async () => {
+    location.href = 'update.vendor.html';
+};
 
 const addFunctionality = () => {
     const viewEl = document.querySelector('.View');
@@ -26,6 +29,9 @@ const addFunctionality = () => {
 
     const addEl = document.querySelector('.Add');
     addEl.addEventListener('click', addVendor);
+
+    const updateEl = document.querySelector('.Update');
+    updateEl.addEventListener('click', updateVendor);
 };
 
 createButtons();
