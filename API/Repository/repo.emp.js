@@ -123,21 +123,10 @@ const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
 };
 
 const findCtcOfOneEmployeeInTheGivenYear = async (year, id) => {
-    const query = `Select EmployeeId as EmpId,sum(CTC) as CTC from
-    (select EmployeeId,TotalCompensation as CTC From
-    (select EmployeePayhead.EmpId as EmployeeId,sum(EmployeePayhead.Payhead) as TotalCompensation
-    from EmployeePayhead INNER JOIN Employee ON
-    Employee.EmpId = EmployeePayhead.EmpId  and EmployeePayhead.Year = ${year} 
-    GROUP BY EmployeePayhead.EmpId) Compensation
-    UNION
-    select EmployeeId,TotalBenefitAmountOfEmployeeForTheYear From
-    (select FacilityAvailed.AvailedFor as EmployeeId,sum(FacilityAvailed.Amount) as TotalBenefitAmountOfEmployeeForTheYear
-    from FacilityAvailed INNER JOIN Facilities ON
-    FacilityAvailed.FacilityId = Facilities.FacilityId
-    where Facilities.FacilityType = 'B' and FacilityAvailed.YEAR = ${year}
-    GROUP BY FacilityAvailed.AvailedFor) TotalBenefitOfEmployee )  CTC
-    WHERE EmployeeId=${id}
-    GROUP BY EmployeeId`;
+    const query = `Use EmployeesCompensationForYear
+    GO
+    SELECT * FROM EmployeesCompensationForYear  WHERE [Year] = ${year} and EmployeeId=${id}
+    GO`;
     const data = (await request.query(query)).recordset;
     return convertToModel(data);
 };
