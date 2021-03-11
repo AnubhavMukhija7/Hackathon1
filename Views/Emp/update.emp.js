@@ -11,6 +11,7 @@ const addListElement = (type, labelName, value, name, required, readOnly) => {
     }
     const label = document.createElement('label');
     label.setAttribute('for', `${labelName}`);
+    label.setAttribute('id',`${labelName}`);
     label.textContent = `${labelName}`;
     const input = document.createElement('input');
     input.setAttribute('id', `${labelName}`);
@@ -22,7 +23,16 @@ const addListElement = (type, labelName, value, name, required, readOnly) => {
     input.addEventListener('change', () => {
         console.log('hi');
         input.setAttribute('name', `${name}`);
+        if(name === 'LeavingDate'){
+            const Status = document.querySelectorAll('#Status');
+            console.log('hip hip');
+           for(let i of Status){
+               i.remove();
+           }
+        }
     });
+    
+    console.log('him');
     form.appendChild(label);
     form.appendChild(br.cloneNode());
     form.appendChild(input);
@@ -30,6 +40,7 @@ const addListElement = (type, labelName, value, name, required, readOnly) => {
 const addSelectElement = (labelName, n, value, textContent, name, required) => {
     const label = document.createElement('label');
     const select = document.createElement('select');
+    label.setAttribute('id',`${labelName}`);
     select.setAttribute('id', `${labelName}`);
     const option = [];
     for (let i = 0; i < n; i++) {
@@ -45,7 +56,7 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
     select.addEventListener('change', () => {
         console.log('hi');
         select.setAttribute('name', `${name}`);
-        console.log('him');
+        
     });
     label.innerHTML = `${labelName}`;
     form.appendChild(label);
@@ -87,10 +98,10 @@ const updateEmployeeForm = async (id) => {
     addSelectElement(
         'Gender',
         4,
-        [data.Gender, 'M', 'F', 'O'],
-        [data.Gender === 'F' ? 'Female' : data.Gender === 'M' ? 'Male' : 'Others', 'Male', 'Female', 'Others'],
+        ['', 'M', 'F', 'O'],
+        ['--Select--','Male','Female','Others'],
         'Gender',
-        0
+        1
     );
     addListElement('email', 'Email', data.Email, 'Email', 1, 1);
     addListElement('date', 'Joining Date', data.JoiningDate.slice(0, 10), 'JoiningDate', 1, 1);
@@ -112,9 +123,9 @@ const updateEmployeeForm = async (id) => {
     addListElement('text', 'Country', data.Country, 'Country', 1, 0);
     addSelectElement(
         'Is Employee Permanent',
-        3,
-        [`${data.IsPermanent}`, 0, 1],
-        [data.IsPermanent === 0 ? 'No' : 'Yes', 'No', 'Yes'],
+        2,
+        [data.IsPermanent, data.IsPermanent===0 ? 1 : 0],
+        [data.IsPermanent===true ? 'Yes' : 'No',data.IsPermanent===false ? 'Yes' :'No'],
         'IsPermanent',
         1
     );
