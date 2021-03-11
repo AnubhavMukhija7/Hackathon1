@@ -98,10 +98,10 @@ const updateEmployeeForm = async (id) => {
     addSelectElement(
         'Gender',
         4,
-        [data.Gender, 'M', 'F', 'O'],
-        [data.Gender === 'F' ? 'Female' : data.Gender === 'M' ? 'Male' : 'Others', 'Male', 'Female', 'Others'],
+        ['', 'M', 'F', 'O'],
+        ['--Select--','Male','Female','Others'],
         'Gender',
-        0
+        1
     );
     addListElement('email', 'Email', data.Email, 'Email', 1, 1);
     addListElement('date', 'Joining Date', data.JoiningDate.slice(0, 10), 'JoiningDate', 1, 1);
@@ -123,9 +123,9 @@ const updateEmployeeForm = async (id) => {
     addListElement('text', 'Country', data.Country, 'Country', 1, 0);
     addSelectElement(
         'Is Employee Permanent',
-        3,
-        [`${data.IsPermanent}`, 0, 1],
-        [data.IsPermanent === 0 ? 'No' : 'Yes', 'No', 'Yes'],
+        2,
+        [data.IsPermanent, data.IsPermanent===0 ? 1 : 0],
+        [data.IsPermanent===true ? 'Yes' : 'No',data.IsPermanent===false ? 'Yes' :'No'],
         'IsPermanent',
         1
     );

@@ -113,13 +113,9 @@ const updateVendor = async (object) => {
         for(let j=0;j<object.length-1;j++){
             let updateQuery;
             const checkquery = `SELECT COL_LENGTH ('${tablesArray[i]}','${object[j][0]}')`;
-            // console.log('checkQuery',checkquery);
             const checkResult = await(request.query(checkquery));
-            // console.log('CheckResult',checkResult.recordset[0]['']);
             const go = checkResult.recordset[0][''];
-            // console.log('Go',go);
             if(go>0){
-                // console.log(`${object[j][0]} = ${object[j][1]}`);
                 if(typeof(`${object[j][1]}`)===Number){
                     updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = ${object[j][1]} where VendorId = ${object[object.length-1][1]}`;
                 }
