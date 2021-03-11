@@ -156,14 +156,9 @@ const getUniques = async () => {
 };
 
 const getExpenseReport = async (year) => {
-    const query = `Use EmployeesCompensationForYear
-    GO
-    SELECT * FROM EmployeesCompensationForYear WHERE [Year] = ${year}
-    GO`;
-    console.log(query);
+    const query = `SELECT * FROM EmployeesCompensationForYear WHERE [Year] = ${year}`;
     const data = (await request.query(query)).recordsets[0];
-    console.log('data', data);
-    return convertToModel(data);
+    return data;
 };
 
 export {

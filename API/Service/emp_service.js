@@ -110,7 +110,12 @@ const findAllDetailsOfOneEmpoyeeDetails = async (req) => {
 };
 
 const getExpenseDetails = async (req) => {
-    return await getExpenseReport(req.params.year);
+    const response = await getExpenseReport(req.params.year);
+    let TotalExpense = 0;
+    for (const item of response) {
+        TotalExpense += item.CTC * parseFloat(req.params.per);
+    }
+    return { TotalExpense };
 };
 
 export {

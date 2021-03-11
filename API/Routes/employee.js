@@ -80,7 +80,8 @@ router.get('/overhead/year=:year', async (req, res) => {
     res.send(await findOverheadOfOneEmployeeInTheGivenYearController(req));
 });
 
-router.get('/expenseDetails/year=:year', async (req, res) => {
-    res.send(await getExpenseDetailsController(req));
+router.get('/expenseDetails/year=:year/profit=:per', async (req, res) => {
+    const result = await getExpenseDetailsController(req);
+    res.send(result);
 });
 export default router;
