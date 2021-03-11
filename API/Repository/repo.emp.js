@@ -82,6 +82,10 @@ const updateEmployee = async (object) => {
                     updateQuery = `UPDATE ${item} SET ${object[j][0]} = ${object[j][1]} where EmpId = ${object[object.length - 1][1]}`;
                 } else {
                     updateQuery = `UPDATE ${item} SET ${object[j][0]} = '${object[j][1]}' where EmpId = ${object[object.length - 1][1]}`;
+                    if(object[j][0] === 'LeavingDate'){
+                        const update = `UPDATE ${item} SET Status='Terminated' WHERE EmpId=${object[object.length-1][1]}`;
+                        await(request.query(update));
+                    }
                 }
                 await request.query(updateQuery);
             }

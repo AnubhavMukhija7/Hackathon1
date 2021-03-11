@@ -95,7 +95,7 @@ const updateEmployeeForm = async (id) => {
     addListElement('text', 'Last Name', data.LastName, 'LastName', 0, 1);
     addSelectElement('Title', 2, ['Mr', 'Ms'], ['Mr', 'Ms'], 'Title', 1);
     addListElement('date', 'Joining Date', data.StartDate.slice(0, 10), 'StartDate', 0, 1);
-    addListElement('date', 'Leaving Date', data.EndDate === null ? null : data.LeavingDate.slice(0, 10), 'EndDate', 0, 0);
+    addListElement('date', 'Leaving Date', data.EndDate === null ? null : data.EndDate.slice(0, 10), 'EndDate', 0, 0);
     addListElement('text', 'Street Address 1', data.StreetAddress1, 'StreetAddress1', 1, 0);
     addListElement('text', 'Street Address 2', data.StreetAddress2, 'StreetAddress2', 0, 0);
     addListElement('text', 'City', data.City, 'City', 1, 0);
