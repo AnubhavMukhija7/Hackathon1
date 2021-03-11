@@ -94,10 +94,22 @@ const addFacility = async (object) => {
 };
 
 const updateVendor = async (body) => {
-    console.log('ping me');
+    console.log('Update Vendor!');
     // const query = `Update Vendors set ${body.Column} = '${body.Detail}' where VendorID=${body.VendorID}`;
     // await request.query(query);
     // return 'Record Updated';
+};
+
+const getUniques = async () => {
+    const query1 = `Select VendorCompany from Vendor`;
+    const query2 = `Select PAN from VendorBankDetails`;
+    const query3 = `Select AccountNumber from VendorBankDetails`;
+    const query4 = `Select PrimaryMobile from VendorMobile`;
+    const companyDetails = (await request.query(query1)).recordsets[0];
+    const panDetails = (await request.query(query2)).recordsets[0];
+    const accDetails = (await request.query(query3)).recordsets[0];
+    const officeMobileDetails = (await request.query(query4)).recordsets[0];
+    return { companyDetails, panDetails, accDetails, officeMobileDetails };
 };
 
 const updateVendorFacility = async (body) => {
@@ -166,4 +178,5 @@ export {
     updateVendorFacility,
     deleteFacility,
     addVendor,
+    getUniques,
 };
