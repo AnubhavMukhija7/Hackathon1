@@ -13,13 +13,13 @@ const app = express();
 const port = process.env.port || 3000;
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.resolve(dirname + '/../../Views/html')));
+app.use(express.static(path.resolve(dirname + '/../../Views')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(pkg());
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(dirname + '/../../Views/html/home.html'));
+    res.sendFile(path.resolve(dirname + '/../../Views/home.html'));
 });
 
 app.use('/employee', employee);

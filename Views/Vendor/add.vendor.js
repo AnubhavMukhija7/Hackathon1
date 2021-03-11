@@ -5,7 +5,6 @@ const getData = async () => {
     const response = await fetch('http://localhost:3000/overhead/facilities');
     if (response.ok) {
         data = await response.json();
-        console.log(Object.keys(data));
     } else {
         return console.log('HTTP-Error: ' + response.status);
     }

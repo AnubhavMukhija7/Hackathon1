@@ -1,8 +1,7 @@
+const br = document.createElement('br');
 const heading = document.createElement('h2');
 heading.setAttribute('class', 'heading');
 heading.style.textAlign = 'centre';
-const ul = document.createElement('ul');
-ul.setAttribute('class', 'list');
 const form = document.createElement('form');
 form.setAttribute('id', 'updateEmployeeForm');
 form.setAttribute('method', 'POST');
@@ -10,9 +9,7 @@ const addListElement = (type, labelName, value, name, required, readOnly) => {
     if (value === null) {
         value='';
     }
-    const li = document.createElement('li');
     const label = document.createElement('label');
-    const div = document.createElement('div');
     label.setAttribute('for', `${labelName}`);
     label.textContent = `${labelName}`;
     const input = document.createElement('input');
@@ -26,14 +23,11 @@ const addListElement = (type, labelName, value, name, required, readOnly) => {
         console.log('hi');
         input.setAttribute('name', `${name}`);
     });
-    li.appendChild(label);
-    li.appendChild(div);
-    li.appendChild(input);
-    ul.appendChild(li);
-    li.style.marginTop = '20px';
+    form.appendChild(label);
+    form.appendChild(br.cloneNode());
+    form.appendChild(input);
 };
 const addSelectElement = (labelName, n, value, textContent, name, required) => {
-    const li = document.createElement('li');
     const label = document.createElement('label');
     const select = document.createElement('select');
     select.setAttribute('id', `${labelName}`);
@@ -53,12 +47,11 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
         select.setAttribute('name', `${name}`);
         console.log('him');
     });
-    li.appendChild(label);
-    li.appendChild(select);
     label.innerHTML = `${labelName}`;
-    select.style.marginLeft = '10px';
-    ul.appendChild(li);
-    li.style.marginTop = '20px';
+    form.appendChild(label);
+    form.appendChild(br.cloneNode());
+    form.appendChild(select);
+    form.appendChild(br.cloneNode());
 };
 const div = document.createElement('div');
 const p = document.createElement('p');
@@ -84,8 +77,6 @@ const updateEmployeeForm = async (id) => {
     console.log(id);
     heading.innerHTML = 'Update Employee Details';
     document.body.appendChild(heading);
-    form.appendChild(ul);
-    ul.style.paddingLeft = '0px';
     let data = (await getData(id))[0];
     console.log(data);
     form.setAttribute(`action`, `http://localhost:3000/employee/updateEmployee`);
