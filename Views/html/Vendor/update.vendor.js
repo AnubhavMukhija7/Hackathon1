@@ -4,11 +4,11 @@ heading.style.textAlign = 'centre';
 const ul = document.createElement('ul');
 ul.setAttribute('class', 'list');
 const form = document.createElement('form');
-form.setAttribute('id', 'updateEmployeeForm');
+form.setAttribute('id', 'updateVendorForm');
 form.setAttribute('method', 'POST');
 const addListElement = (type, labelName, value, name, required, readOnly) => {
     if (value === null) {
-        value='';
+        value = '';
     }
     const li = document.createElement('li');
     const label = document.createElement('label');
@@ -62,7 +62,7 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
 };
 const div = document.createElement('div');
 const p = document.createElement('p');
-p.innerHTML = 'Enter Your Employee Id :';
+p.innerHTML = 'Enter Your Vendor Id :';
 p.style.float = 'left';
 const input = document.createElement('input');
 input.style.margin = '14px';
@@ -76,42 +76,26 @@ div.appendChild(submit);
 div.style.margin = '30px';
 document.body.appendChild(div);
 const getData = async (id) => {
-    let data = await fetch(`http://localhost:3000/employee/allEmployeeDetails/id=${id}`);
+    let data = await fetch(`http://localhost:3000/vendor/allVendorDetails/id=${id}`);
     data = await data.json();
     return data;
 };
 const updateEmployeeForm = async (id) => {
     console.log(id);
-    heading.innerHTML = 'Update Employee Details';
+    heading.innerHTML = 'Update Vendor Details';
     document.body.appendChild(heading);
     form.appendChild(ul);
     ul.style.paddingLeft = '0px';
     let data = (await getData(id))[0];
     console.log(data);
-    form.setAttribute(`action`, `http://localhost:3000/employee/updateEmployee`);
+    form.setAttribute(`action`, `http://localhost:3000/vendor/updateVendor`);
+    addListElement('text','Vendor Company',data.VendorCompany,'VendorCompany',1,1);
     addListElement('text', 'First Name', data.FirstName, 'FirstName', 1, 1);
     addListElement('text', 'Middle Name', data.MiddleName, 'MiddleName', 0, 1);
     addListElement('text', 'Last Name', data.LastName, 'LastName', 0, 1);
     addSelectElement('Title', 2, ['Mr', 'Ms'], ['Mr', 'Ms'], 'Title', 1);
-    addSelectElement(
-        'Gender',
-        4,
-        [data.Gender, 'M', 'F', 'O'],
-        [data.Gender === 'F' ? 'Female' : data.Gender === 'M' ? 'Male' : 'Others', 'Male', 'Female', 'Others'],
-        'Gender',
-        0
-    );
-    addListElement('email', 'Email', data.Email, 'Email', 1, 1);
-    addListElement('date', 'Joining Date', data.JoiningDate.slice(0, 10), 'JoiningDate', 1, 1);
-    addListElement('date', 'Leaving Date', data.LeavingDate === null ? null : data.LeavingDate.slice(0, 10), 'LeavingDate', 0, 0);
-    addSelectElement(
-        'Billable',
-        2,
-        [`${data.IsBillable}`, data.IsBillable === 0 ? 1 : 0],
-        [data.IsBillable === true ? 'Yes' : 'No', data.IsBillable === false ? 'Yes' : 'No'],
-        'isBillable',
-        1
-    );
+    addListElement('date', 'Joining Date', data.StartDate.slice(0, 10), 'StartDate', 0, 1);
+    addListElement('date', 'Leaving Date', data.EndDate === null ? null : data.LeavingDate.slice(0, 10), 'EndDate', 0, 0);
     addListElement('text', 'Street Address 1', data.StreetAddress1, 'StreetAddress1', 1, 0);
     addListElement('text', 'Street Address 2', data.StreetAddress2, 'StreetAddress2', 0, 0);
     addListElement('text', 'City', data.City, 'City', 1, 0);
@@ -119,30 +103,14 @@ const updateEmployeeForm = async (id) => {
     addListElement('text', 'District', data.District, 'District', 1, 0);
     addListElement('text', 'State', data.State, 'State', 1, 0);
     addListElement('text', 'Country', data.Country, 'Country', 1, 0);
-    addSelectElement(
-        'Is Employee Permanent',
-        3,
-        [`${data.IsPermanent}`, 0, 1],
-        [data.IsPermanent === 0 ? 'No' : 'Yes', 'No', 'Yes'],
-        'IsPermanent',
-        1
-    );
-    addListElement('number', 'Office Number', data.Office, 'Office', 1, 0);
-    addListElement('number', 'Mobile Number', data.Mobile, 'Mobile', 1, 0);
+    addListElement('number', 'Mobile Number', data.PrimaryMobile, 'Mobile', 1, 0);
     addListElement('number', 'LandLine Number', data.LandLine, 'LandLine', 0, 0);
+    addListElement('number','Alternate Mobile NUmber',data.AlternateMobie,'AlternateMobile',0,0);
     addListElement('text', 'Bank Name', data.BankName, 'BankName', 1, 0);
-    addListElement('number', 'Account No.', data.AccountNo, 'AccountNo', 1, 0);
+    addListElement('number', 'Account No.', data.AccountNumber, 'AccountNumber', 1, 0);
     addListElement('text', 'IFSC', data.IFSC, 'IFSC', 1, 0);
     addListElement('text', 'Branch Name', data.BranchName, 'BranchName', 1, 0);
     addListElement('text', 'PAN', data.PAN, 'PAN', 1, 1);
-    addSelectElement(
-        'Status',
-        5,
-        ['', 'Pending', 'Active', 'Terminated', 'On bench'],
-        ['--Select--', 'Pending', 'Active', 'Terminated', 'On bench'],
-        'Status',
-        1
-    );
     const input = document.createElement('input');
     input.setAttribute('name', `id`);
     input.setAttribute('value', `${id}`);

@@ -1,3 +1,4 @@
+import { findAllDetailsOfOneVendorController } from '../Controller/controller.vendor.js';
 import {
     getVendor,
     getAllVendors,
@@ -12,6 +13,7 @@ import {
     updateVendorFacility,
     deleteFacility,
     addVendor,
+    findAllDetailsOfOneVendor
 } from '../Repository/repo.vendor.js';
 
 const getVendorDetails = async (id) => {
@@ -43,8 +45,8 @@ const addFacilityDetails = async (body) => {
     return await addFacility(body);
 };
 
-const updateVendorDetails = (body) => {
-    return updateVendor(body);
+const updateVendorDetails = (req) => {
+    return updateVendor(req.body);
 };
 
 const updateVendorFacilityDetails = (body) => {
@@ -62,6 +64,10 @@ const deleteFacilityDetails = (body) => {
 const addVendorDetails = (body) => {
     return addVendor(body);
 };
+
+const findAllDetailsOfOneVendorDetails = async(req) => {
+    return await findAllDetailsOfOneVendor(req.params.id);
+}
 export {
     getVendorDetails,
     getAllVendorsDetails,
@@ -76,4 +82,5 @@ export {
     deleteVendorDetails,
     deleteFacilityDetails,
     addVendorDetails,
+    findAllDetailsOfOneVendorDetails
 };

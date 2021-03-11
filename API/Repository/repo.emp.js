@@ -84,11 +84,14 @@ const updateEmployee = async (object) => {
             // console.log('Go',go);
             if(go>0){
                 // console.log(`${object[j][0]} = ${object[j][1]}`);
-                if(typeof(`${object[j][1]}`)===Number){
-                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = ${object[j][1]} where EmpId = ${object[object.length-1][1]}`;
+                if(object[j][0] ==='IsBillable'|| object[j][0] ==='PostalCode' || object[j][0] ==='IsPermanent'|| object[j][0] ==='Office'|| object[j][0] ==='Mobile' || object[j][0] ==='LandLine'|| object[j][0] ==='AccountNo'){
+                    const num = parseInt(object[j][1]);
+                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = ${num} where EmpId = ${object[object.length-1][1]}`;
+                    console.log(updateQuery);
                 }
                 else{
                     updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = '${object[j][1]}' where EmpId = ${object[object.length-1][1]}`;
+                    console.log(updateQuery);
                 }
                 const result = await (request.query(updateQuery));
             }

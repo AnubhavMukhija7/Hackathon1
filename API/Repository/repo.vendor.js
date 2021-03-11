@@ -1,6 +1,7 @@
 import { makeConnection } from '../Connection/connection.js';
 import Vendor from '../../Model/model.vendor.js';
 import Expense from '../../Model/model.expense.js';
+import { findAllDetailsOfOneVendorDetails } from '../Service/vendor_service.js';
 const request = await makeConnection();
 
 const getVendor = async (id) => {
@@ -93,11 +94,46 @@ const addFacility = async (object) => {
     return 'Record Inserted';
 };
 
-const updateVendor = async (body) => {
-    console.log('ping me');
-    // const query = `Update Vendors set ${body.Column} = '${body.Detail}' where VendorID=${body.VendorID}`;
-    // await request.query(query);
-    // return 'Record Updated';
+const updateVendor = async (object) => {
+    console.log(object);
+    const id = object.id;
+    object = new Map(Object.entries(object));
+    object = object = Array.from(object);
+    console.log(object);
+    const tablesObjectQuery = `SELECT * FROM information_schema.tables`;
+    const tablesObject = await(request.query(tablesObjectQuery));
+    console.log('All tables',tablesObject.recordset);
+    const tablesArray = [];
+    for(let i=0;i<tablesObject.recordset.length;i++){
+        if(tablesObject.recordset[i].TABLE_NAME.includes('Vendor')){
+            tablesArray.push(tablesObject.recordset[i].TABLE_NAME);
+        }
+    }
+    for(let i=0;i<tablesArray.length;i++){
+        for(let j=0;j<object.length-1;j++){
+            let updateQuery;
+            const checkquery = `SELECT COL_LENGTH ('${tablesArray[i]}','${object[j][0]}')`;
+            // console.log('checkQuery',checkquery);
+            const checkResult = await(request.query(checkquery));
+            // console.log('CheckResult',checkResult.recordset[0]['']);
+            const go = checkResult.recordset[0][''];
+            // console.log('Go',go);
+            if(go>0){
+                // console.log(`${object[j][0]} = ${object[j][1]}`);
+                if(typeof(`${object[j][1]}`)===Number){
+                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = ${object[j][1]} where VendorId = ${object[object.length-1][1]}`;
+                }
+                else{
+                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = '${object[j][1]}' where VendorId = ${object[object.length-1][1]}`;
+                        if(object[j][0] === 'EndDate'){
+                            const update = `UPDATE ${tablesArray[i]} SET IsActive=0 WHERE VendorId=${object[object.length-1][1]}`;
+                            await(request.query(update));
+                        }
+                }
+                const result = await (request.query(updateQuery));
+            }
+        }
+    }
 };
 
 const updateVendorFacility = async (body) => {
@@ -141,6 +177,17 @@ const deleteFacility = async (body) => {
     return 'Facility Deleted';
 };
 
+const findAllDetailsOfOneVendor = async(id) => {
+    const query = `Select *
+    from Vendor INNER JOIN VendorMobile ON Vendor.VendorId = VendorMobile.VendorId
+    INNER JOIN VendorAddress ON Vendor.VendorId = VendorAddress.VendorId
+    INNER JOIN VendorBankDetails ON Vendor.VendorId = VendorBankDetails.VendorId
+    INNER JOIN VendorName ON Vendor.VendorId = VendorName.VendorId
+    WHERE Vendor.VendorId = ${id}`;
+    const data = await request.query(query);
+    return data.recordsets[0];
+}
+
 const convertToModel = (data) => {
     const result = [];
     for (const item of data) {
@@ -166,4 +213,5 @@ export {
     updateVendorFacility,
     deleteFacility,
     addVendor,
+    findAllDetailsOfOneVendor
 };
