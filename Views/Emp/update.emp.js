@@ -100,7 +100,7 @@ const updateEmployeeForm = async (id) => {
         'Billable',
         2,
         [`${data.IsBillable}`, data.IsBillable === 0 ? 1 : 0],
-        [data.IsBillable === 1 ? 'Yes' : 'No', data.IsBillable === 0 ? 'Yes' : 'No'],
+        [data.IsBillable === true ? 'Yes' : 'No', data.IsBillable === false ? 'Yes' : 'No'],
         'isBillable',
         1
     );
