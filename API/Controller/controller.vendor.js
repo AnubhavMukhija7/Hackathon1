@@ -12,6 +12,7 @@ import {
     deleteVendorDetails,
     deleteFacilityDetails,
     addVendorDetails,
+    findAllDetailsOfOneVendorDetails
 } from '../Service/vendor_service.js';
 
 const getVendorController = async (id) => {
@@ -43,8 +44,8 @@ const addFacilityController = async (body) => {
     return await addFacilityDetails(body);
 };
 
-const updateVendorController = (body) => {
-    return updateVendorDetails(body);
+const updateVendorController = (req) => {
+    return updateVendorDetails(req);
 };
 
 const updateVendorFacilityController = (body) => {
@@ -54,14 +55,13 @@ const updateVendorFacilityController = (body) => {
 const deleteVendorController = (id) => {
     return deleteVendorDetails(id);
 };
-
-const deleteFacilityController = (body) => {
-    return deleteFacilityDetails(body);
-};
-
 const addVendorController = (body) => {
     return addVendorDetails(body);
 };
+
+const findAllDetailsOfOneVendorController = async (req) => {
+    return await findAllDetailsOfOneVendorDetails(req);
+}
 export {
     getVendorController,
     getAllVendorsController,
@@ -74,6 +74,6 @@ export {
     updateVendorController,
     updateVendorFacilityController,
     deleteVendorController,
-    deleteFacilityController,
+    findAllDetailsOfOneVendorController,
     addVendorController,
 };

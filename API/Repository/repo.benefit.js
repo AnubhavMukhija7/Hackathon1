@@ -47,10 +47,11 @@ const getEmpsForBenefitForGivenYear = async (benefit, year) => {
 };
 
 const benefitExpenseForEmp = async (id) => {
-    const query = `Select FacilityName,  FacilityAvailed.Amount from Facilities 
+    const query = `Select FacilityName,  SUM(FacilityAvailed.Amount) as Amount from Facilities 
     INNER JOIN FacilityAvailed ON
     Facilities.FacilityId = FacilityAvailed.FacilityId
-    where Facilities.FacilityType = 'B' and AvailedFor = ${id}`;
+    where Facilities.FacilityType = 'B' and AvailedFor = ${id} and [Year] = YEAR(GETDATE())
+    Group By FacilityName`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
 };
@@ -58,7 +59,8 @@ const benefitExpenseForEmp = async (id) => {
 const benefitAvailed = async (id) => {
     const query = `Select Facilities.FacilityName from FacilityAvailed
     INNER JOIN Facilities ON Facilities.FacilityId = FacilityAvailed.FacilityId
-    where FacilityType = 'B' and [Year] = 2021 and AvailedFor =  ${id}`;
+    where FacilityType = 'B' and [Year] = YEAR(GETDATE()) and AvailedFor =  ${id}
+    Group By FacilityName`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
 };
@@ -66,7 +68,7 @@ const benefitAvailed = async (id) => {
 const empExpenseForParticularBenefit = async (id, benefit) => {
     const query = `select Amount from FacilityAvailed 
     INNER JOIN Facilities ON Facilities.FacilityId = FacilityAvailed.FacilityId
-    where FacilityName = '${benefit}' and [Year] = 2021 and AvailedFor = ${id}`;
+    where FacilityName = '${benefit}' and [Year] = YEAR(GETDATE()) and AvailedFor = ${id}`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
 };

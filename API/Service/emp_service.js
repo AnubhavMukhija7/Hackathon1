@@ -12,11 +12,42 @@ import {
     findCtcOfOneEmployeeInTheGivenYear,
     findOverheadOfOneEmployeeInTheGivenYear,
     findAllDetailsOfOneEmpoyee,
+    getUniques,
 } from '../Repository/repo.emp.js';
 
+const validateData = async (data) => {
+    const { eMailDetails, panDetails, accDetails, officeDetails } = await getUniques();
+    const phoneno = /^\d{10}$/;
+    if (!data.Office.match(phoneno)) {
+        return "'PrimaryMobile' should be valid and should contain 10 digits.";
+    }
+    if (data.FirstName.length < 2) {
+        return "Length of 'FirstName' should be greater than 2";
+    }
+    if (eMailDetails.indexOf({ Email: data.Email })) {
+        return `Employee with Email: ${data.Email} already exists. Email Address should be unique.`;
+    }
+    if (data.LeavingDate.length > 1 && data.LeavingDate < data.JoiningDate) {
+        return 'Leaving date should occur after Joining date';
+    }
+    if (panDetails.indexOf({ PAN: data.PAN })) {
+        return `Employee with PAN: ${data.PAN} already exists. PAN Number should be unique.`;
+    }
+    if (accDetails.indexOf({ AccountNo: data.AccountNo })) {
+        return `Employee with Account Number: ${data.AccountNo} already exists. Account Number should be unique.`;
+    }
+    if (officeDetails.indexOf({ Office: data.Office })) {
+        return `Office Number: ${data.Office} already exists. Office Number should be unique.`;
+    }
+    return 'Correct!';
+};
+
 const addEmployeeDetails = async (req) => {
-    const response = await addEmployee(req.body);
-    return response;
+    let result = validateData(req.body);
+    if (result === 'Correct!') {
+        result = await addEmployee(req.body);
+    }
+    return result;
 };
 
 const deleteEmployeeDetails = async (req) => {

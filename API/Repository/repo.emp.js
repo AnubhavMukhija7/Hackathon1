@@ -56,41 +56,35 @@ const findAllEmployeeInTheGivenYear = async (year) => {
 };
 
 const updateEmployee = async (object) => {
-    console.log(object);
-    const id = object.id;
     object = new Map(Object.entries(object));
-    object = object = Array.from(object);
+    object = Array.from(object);
     console.log(object);
     const tablesObjectQuery = `SELECT * FROM information_schema.tables`;
-    const tablesObject = await(request.query(tablesObjectQuery));
-    console.log('All tables',tablesObject.recordset);
+    const tablesObject = await request.query(tablesObjectQuery);
+    console.log('All tables', tablesObject.recordset);
     const tablesArray = [];
-    for(let i=0;i<tablesObject.recordset.length;i++){
-        if(tablesObject.recordset[i].TABLE_NAME.includes('Emp')){
-            tablesArray.push(tablesObject.recordset[i].TABLE_NAME);
+    for (const item of tablesObject.recordset) {
+        if (item.TABLE_NAME.includes('Emp')) {
+            tablesArray.push(item.TABLE_NAME);
         }
     }
-    for(let i=0;i<tablesArray.length;i++){
-        for(let j=0;j<object.length-1;j++){
+    for (const item of tablesArray) {
+        for (let j = 0; j < object.length - 1; j++) {
             let updateQuery;
-            const checkquery = `SELECT COL_LENGTH ('${tablesArray[i]}','${object[j][0]}')`;
-            // console.log('checkQuery',checkquery);
-            const checkResult = await(request.query(checkquery));
-            // console.log('CheckResult',checkResult.recordset[0]['']);
+            const checkquery = `SELECT COL_LENGTH ('${item}','${object[j][0]}')`;
+            const checkResult = await request.query(checkquery);
             const go = checkResult.recordset[0][''];
-            // console.log('Go',go);
-            if(go>0){
-                // console.log(`${object[j][0]} = ${object[j][1]}`);
-                if(typeof(`${object[j][1]}`)===Number){
-                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = ${object[j][1]} where EmpId = ${object[object.length-1][1]}`;
+            if (go > 0) {
+                if (typeof `${object[j][1]}` === Number) {
+                    updateQuery = `UPDATE ${item} SET ${object[j][0]} = ${object[j][1]} where EmpId = ${object[object.length - 1][1]}`;
+                } else {
+                    updateQuery = `UPDATE ${item} SET ${object[j][0]} = '${object[j][1]}' where EmpId = ${object[object.length - 1][1]}`;
                 }
-                else{
-                    updateQuery = `UPDATE ${tablesArray[i]} SET ${object[j][0]} = '${object[j][1]}' where EmpId = ${object[object.length-1][1]}`;
-                }
-                const result = await (request.query(updateQuery));
+                await request.query(updateQuery);
             }
         }
     }
+    return 'Record updated!';
 };
 
 const findYourEmployeeId = async (emailId) => {
@@ -148,6 +142,19 @@ const findAllDetailsOfOneEmpoyee = async (id) => {
     const data = (await request.query(query)).recordsets[0];
     return data;
 };
+
+const getUniques = async () => {
+    const query1 = `Select Email from Employee`;
+    const query2 = `Select PAN from EmpBankDetails`;
+    const query3 = `Select AccountNo from EmpBankDetails`;
+    const query4 = `Select Office from EmployeeContact`;
+    const eMailDetails = (await request.query(query1)).recordsets[0];
+    const panDetails = (await request.query(query2)).recordsets[0];
+    const accDetails = (await request.query(query3)).recordsets[0];
+    const officeDetails = (await request.query(query4)).recordsets[0];
+    return { eMailDetails, panDetails, accDetails, officeDetails };
+};
+
 export {
     findOneEmployee,
     addEmployee,
@@ -162,4 +169,5 @@ export {
     findCtcOfOneEmployeeInTheGivenYear,
     findOverheadOfOneEmployeeInTheGivenYear,
     findAllDetailsOfOneEmpoyee,
+    getUniques,
 };

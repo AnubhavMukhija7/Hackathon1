@@ -2,13 +2,18 @@ input::placeholder {
     text-align: center;
     color: #641ce9;
 }
+body {
+    background: rgb(100, 165, 255);
+    text-align: center;
+    text-decoration: double;
+}
 select {
-    cursor:pointer;
-    display:inline-block;
-    position:relative;
-    font:normal 11px/22px Arial, Sans-Serif;
-    color:black;
-    border:1px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    font: normal 11px/22px Arial, Sans-Serif;
+    color: black;
+    border: 1px solid #ccc;
     width: auto;
 }
 
@@ -32,11 +37,7 @@ label {
     padding-right: 10px;
     display: inline-block;
 }
-body {
-    background: #04000c;
-    text-align: center;
-    text-decoration: double;
-}
+
 form {
     width: 30%;
     margin: 5px auto;
@@ -80,11 +81,6 @@ p {
     font-size: 25px;
     color: whitesmoke;
 }
-body {
-    background: rgb(3, 134, 117);
-    color: white;
-    font-size: large;
-}
 LI {
     font-size: 17px;
     color: cornsilk;
@@ -94,7 +90,7 @@ a {
 }
 a:link,
 a:visited {
-    color: #fb6542;
+    color: #5a071c9d;
 }
 
 a:hover {
@@ -116,4 +112,9 @@ ul {
 
 button {
     margin: 1em;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

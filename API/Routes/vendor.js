@@ -12,7 +12,7 @@ import {
     addFacilityController,
     updateVendorController,
     updateVendorFacilityController,
-    deleteVendorController,
+    findAllDetailsOfOneVendorController
 } from '../Controller/controller.vendor.js';
 
 const router = express.Router();
@@ -62,18 +62,20 @@ router.get('/:id/:facility/earning/:year', async (req, res) => {
 // add facility!
 router.post('/addFacility', async (req, res) => {
     await addFacilityController(req.body);
-    res.redirect('http://localhost:3000/Vendor/add.vendor.html');
+    if (req.body.Choice === 'YES') {
+        res.redirect('http://localhost:3000/Vendor/add.vendor.html');
+    }
+
+    res.status(200).send('Facility Added!');
 });
 
 router.post('/addVendor', async (req, res) => {
-    console.log('baby');
     const result = await addVendorController(req.body);
     res.send(result);
 });
 
 // update vendor
-router.put('/update', async (req, res) => {
-    console.log('look up');
+router.post('/updateVendor', async (req, res) => {
     const result = await updateVendorController(req);
     res.send(result);
 });
@@ -84,10 +86,12 @@ router.post('/update/facility', async (req, res) => {
     res.send(result);
 });
 
-// set inactive for a particular vendor
-router.delete('/deleteVendor/id=:id', async (req, res) => {
-    const result = await deleteVendorController(req.params.id);
+router.get('/allVendorDetails/id=:id',async(req,res)=>{
+    const result = await findAllDetailsOfOneVendorController(req);
     res.send(result);
-});
+})
+
+
+
 
 export default router;
