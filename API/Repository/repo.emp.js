@@ -24,17 +24,14 @@ const findOneEmployee = async (id) => {
 };
 
 const addEmployee = async (object) => {
-    const insertIntoEmp = `Insert into Employee (FirstName, LastName, Title, Gender, isBillable, Status, Email,JoiningDate,LeavingDate) values ('${object.FirstName}', '${object.LastName}', '${object.Title}', '${object.Gender}', ${object.isBillable}, '${object.Status}', '${object.Email}','${object.JoiningDate}','${object.LeavingDate}')`;
+    const insertIntoEmp = `EXEC InsertEmployee
+    @Title='${object.Title}',@FirstName='${object.FirstName}',@MiddleName='${object.MiddleName}',@LastName='${object.LastName}',
+    @Email='${object.Email}',@Gender='${object.Gender}',@IsBillable='${object.isBillable}',@Status='${object.Status}',@JoiningDate='${object.JoiningDate}',
+    @LeavingDate='${object.LeavingDate}',@Office='${object.Office}',@Mobile='${object.Mobile}',@LandLine='${object.LandLine}',@StreetAddress1='${object.StreetAddress1}',
+    @StreetAddress2='${object.StreetAddress2}',@City='${object.City}',@District='${object.District}',@PostalCode='${object.PostalCode}',@State='${object.State}',
+    @Country='${object.Country}',@IsPermanent='${object.IsPermanent}',@BankName='${object.BankName}',@AccountNo='${object.AccountNo}',@IFSC='${object.IFSC}',
+    @BranchName='${object.BranchName}',@PAN='${object.PAN}'`;
     await request.query(insertIntoEmp);
-    let data = await request.query(`Select * from Employee`);
-    data = data.recordsets[0];
-    const newEmpId = data.length;
-    const insertIntoAddress = `Insert into EmployeeAddress (EmpId, StreetAddress1, StreetAddress2, City, District, PostalCode, State, Country, IsPermanent)  Values (${newEmpId}, '${object.StreetAddress1}', '${object.StreetAddress2}', '${object.City}', '${object.District}', ${object.PostalCode}, '${object.State}', '${object.Country}', ${object.IsPermanent})`;
-    await request.query(insertIntoAddress);
-    const insertIntoContact = `Insert into EmployeeContact (EmpId, Office,Mobile,LandLine) Values (${newEmpId}, ${object.Office},${object.Mobile},${object.LandLine})`;
-    await request.query(insertIntoContact);
-    const insertIntoEmpBankDetails = `Insert into EmpBankDetails (EmpId,BankName,AccountNo,IFSC,BranchName,PAN ) Values (${newEmpId},'${object.BankName}',${object.AccountNo},'${object.IFSC}','${object.BranchName}','${object.PAN}')`;
-    await request.query(insertIntoEmpBankDetails);
     return 'Record Inserted!\n';
 };
 
@@ -129,21 +126,7 @@ const findCompensationOfOneEmployeeInGivenYear = async (year, id) => {
 };
 
 const findCtcOfOneEmployeeInTheGivenYear = async (year, id) => {
-    const query = `Select EmployeeId as EmpId,sum(CTC) as CTC from
-    (select EmployeeId,TotalCompensation as CTC From
-    (select EmployeePayhead.EmpId as EmployeeId,sum(EmployeePayhead.Payhead) as TotalCompensation
-    from EmployeePayhead INNER JOIN Employee ON
-    Employee.EmpId = EmployeePayhead.EmpId  and EmployeePayhead.Year = ${year} 
-    GROUP BY EmployeePayhead.EmpId) Compensation
-    UNION
-    select EmployeeId,TotalBenefitAmountOfEmployeeForTheYear From
-    (select FacilityAvailed.AvailedFor as EmployeeId,sum(FacilityAvailed.Amount) as TotalBenefitAmountOfEmployeeForTheYear
-    from FacilityAvailed INNER JOIN Facilities ON
-    FacilityAvailed.FacilityId = Facilities.FacilityId
-    where Facilities.FacilityType = 'B' and FacilityAvailed.YEAR = ${year}
-    GROUP BY FacilityAvailed.AvailedFor) TotalBenefitOfEmployee )  CTC
-    WHERE EmployeeId=${id}
-    GROUP BY EmployeeId`;
+    const query = `SELECT * FROM EmployeesCompensationForYear WHERE [Year] = ${year} and EmployeeId= ${id}`;
     const data = (await request.query(query)).recordset;
     return convertToModel(data);
 };
