@@ -73,7 +73,8 @@ const updateEmployee = async (object) => {
             const checkResult = await request.query(checkquery);
             const go = checkResult.recordset[0][''];
             if (go > 0) {
-                if (typeof `${object[j][1]}` === Number) {
+                if (object[j][0]==='IsBillable'||object[j][0]==='PostalCode'||object[j][0]==='IsPermanent'||object[j][0]==='Office'||object[j][0]==='Mobile'||
+                object[j][0]==='LandLine'||object[j][0]==='AccountNo') {
                     updateQuery = `UPDATE ${item} SET ${object[j][0]} = ${object[j][1]} where EmpId = ${object[object.length - 1][1]}`;
                 } else {
                     updateQuery = `UPDATE ${item} SET ${object[j][0]} = '${object[j][1]}' where EmpId = ${object[object.length - 1][1]}`;
