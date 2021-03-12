@@ -51,7 +51,11 @@ const populateTable = (Data) => {
 const start = () => {
     const profit = document.getElementById('profit').value;
     const year = document.getElementById('year').value;
-    getData(year, profit);
+    if (profit === '' || year === '') {
+        window.alert('Enter complete details!');
+    } else {
+        getData(year, profit);
+    }
 };
 const buttonEl = document.querySelector('button');
 buttonEl.addEventListener('click', start);

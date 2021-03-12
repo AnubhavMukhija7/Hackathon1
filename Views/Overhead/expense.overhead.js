@@ -60,7 +60,11 @@ const populateTable = (Data) => {
 };
 
 submitEl.addEventListener('click', () => {
-    getData(inputEl.value);
+    if (inputEl.value === '') {
+        window.alert('Enter the Year!');
+    } else {
+        getData(inputEl.value);
+    }
 });
 
 getData();

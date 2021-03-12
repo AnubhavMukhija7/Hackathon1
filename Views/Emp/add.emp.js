@@ -49,11 +49,7 @@ addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
 addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
 addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
 addSelectElement('Title', 4, ['', 'Mr', 'Ms','Mrs'], ['--Select--', 'Mr', 'Ms','Mrs'], 'Title', 1);
-<<<<<<< HEAD
 addSelectElement('Gender', 4, ['', 'M', 'F', 'O'], ['--Select--', 'Male', 'Female', 'Others'], 'Gender', 1);
-=======
-addSelectElement('Gender', 4, ['', 'M', 'F', 'O'], ['--Select--', 'Male', 'Female', 'Other'], 'Gender', 1);
->>>>>>> 32cf3ab9708917cd1706e73671b19d3d09d6aaa2
 addListElement('email', 'Email', 'Your Email Address', 'Email', 1);
 addListElement('date', 'Joining Date', '', 'JoiningDate', 1);
 addListElement('date', 'Leaving Date', '', 'LeavingDate', 0);
@@ -66,15 +62,9 @@ addListElement('text', 'District', 'Your District', 'District', 1);
 addListElement('text', 'State', 'Your State', 'State', 1);
 addListElement('text', 'Country', 'Your Country', 'Country', 1);
 addSelectElement('Is Address Permanent', 3, ['', 1, 0], ['--Select--', 'Yes', 'No'], 'IsPermanent', 1);
-<<<<<<< HEAD
 addListElement('number', 'Office Number', 'Your Office Number', 'Office', 1);
 addListElement('number', 'Mobile Number', 'Your Mobile Number', 'Mobile', 1);
 addListElement('number', 'LandLine Number', 'Your LandLine Number', 'LandLine', 0);
-=======
-addListElement('tel', 'Office Number', 'Your Office Number', 'Office', 1);
-addListElement('tel', 'Mobile Number', 'Your Mobile Number', 'Mobile', 1);
-addListElement('tel', 'LandLine Number', 'Your LandLine Number', 'LandLine', 0);
->>>>>>> 32cf3ab9708917cd1706e73671b19d3d09d6aaa2
 addListElement('text', 'Bank Name', 'Your Bank Name', 'BankName', 1);
 addListElement('text', 'Account No.', 'Your Account No.', 'AccountNo', 1);
 addListElement('text', 'IFSC', 'Your IFSC Code', 'IFSC', 1);

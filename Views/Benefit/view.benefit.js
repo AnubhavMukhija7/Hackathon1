@@ -56,8 +56,11 @@ const populateTable = (Data) => {
 
 submitEl.addEventListener('click', () => {
     const param = '/employee/' + inputEl.value;
-
-    getData(param);
+    if (inputEl.value === '') {
+        window.alert('Enter the employee id');
+    } else {
+        getData(param);
+    }
 });
 
 getData();

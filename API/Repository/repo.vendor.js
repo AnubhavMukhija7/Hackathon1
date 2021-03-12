@@ -154,7 +154,7 @@ const addVendor = async object => {
     @IsActive=1,@Title='${object.Title}',@FirstName='${object.FirstName}',@MiddleName='${object.MiddleName}',@LastName='${object.LastName}',
     @PrimaryMobile='${object.PrimaryMobile}',@AlternateMobile='${object.AlternateMobile}',@LandLine='${object.LandLine}',@StreetAddress1='${object.StreetAddress1}',
     @StreetAddress2='${object.StreetAddress2}',@City='${object.City}',@District='${object.District}',@PostalCode='${object.PostalCode}',@State='${object.State}',
-    @Country='${object.Country}',@BankName='${object.BankName}',@AccountNo='${object.AccountNo}',@IFSC='${object.IFSC}',@BranchName='${object.BranchName}',@PAN='${object.PAN}'`;
+    @Country='${object.Country}',@BankName='${object.BankName}',@AccountNumber='${object.AccountNumber}',@IFSC='${object.IFSC}',@BranchName='${object.BranchName}',@PAN='${object.PAN}'`;
     await request.query(insertIntoVendor);
     return 'Record Inserted!';
 };

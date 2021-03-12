@@ -70,19 +70,19 @@ const validateData = async (data) => {
     if (data.FirstName.length < 2) {
         return "Length of 'FirstName' should be greater than 2";
     }
-    if (companyDetails.indexOf({ VendorCompany: data.VendorCompany })) {
+    if (companyDetails.indexOf({ VendorCompany: data.VendorCompany }) > -1) {
         return `Company name ${data.VendorCompany} already exists. Company Name should be unique.`;
     }
-    if (data.EndDate.length > 1 && data.StartDate < data.JoiningDate) {
+    if (data.EndDate.length > 1 && data.EndDate < data.StartDate) {
         return 'End date should occur after Start date';
     }
-    if (panDetails.indexOf({ PAN: data.PAN })) {
+    if (panDetails.indexOf({ PAN: data.PAN }) > -1) {
         return `Vendor with PAN: ${data.PAN} already exists. PAN Number should be unique.`;
     }
-    if (accDetails.indexOf({ AccountNumber: data.AccountNumber })) {
+    if (accDetails.indexOf({ AccountNumber: data.AccountNumber }) > -1) {
         return `Vendor with Account Number: ${data.AccountNumber} already exists. Account Number should be unique.`;
     }
-    if (officeMobileDetails.indexOf({ PrimaryMobile: data.PrimaryMobile })) {
+    if (officeMobileDetails.indexOf({ PrimaryMobile: data.PrimaryMobile }) > -1) {
         return `Contact Number: ${data.PrimaryMobile} already exists. PrimaryNumber should be unique.`;
     }
     return 'Correct!';
@@ -90,7 +90,6 @@ const validateData = async (data) => {
 
 const addVendorDetails = async (body) => {
     let result = await validateData(body);
-    console.log('Results:', result);
     if (result === 'Correct!') {
         return await addVendor(body);
     }

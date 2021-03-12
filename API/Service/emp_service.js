@@ -25,26 +25,26 @@ const validateData = async (data) => {
     if (data.FirstName.length < 2) {
         return "Length of 'FirstName' should be greater than 2";
     }
-    if (eMailDetails.indexOf({ Email: data.Email })) {
+    if (eMailDetails.indexOf({ Email: data.Email }) > -1) {
         return `Employee with Email: ${data.Email} already exists. Email Address should be unique.`;
     }
     if (data.LeavingDate.length > 1 && data.LeavingDate < data.JoiningDate) {
         return 'Leaving date should occur after Joining date';
     }
-    if (panDetails.indexOf({ PAN: data.PAN })) {
+    if (panDetails.indexOf({ PAN: data.PAN }) > -1) {
         return `Employee with PAN: ${data.PAN} already exists. PAN Number should be unique.`;
     }
-    if (accDetails.indexOf({ AccountNo: data.AccountNo })) {
+    if (accDetails.indexOf({ AccountNo: data.AccountNo }) > -1) {
         return `Employee with Account Number: ${data.AccountNo} already exists. Account Number should be unique.`;
     }
-    if (officeDetails.indexOf({ Office: data.Office })) {
+    if (officeDetails.indexOf({ Office: data.Office }) > -1) {
         return `Office Number: ${data.Office} already exists. Office Number should be unique.`;
     }
     return 'Correct!';
 };
 
 const addEmployeeDetails = async (req) => {
-    let result = validateData(req.body);
+    let result = await validateData(req.body);
     if (result === 'Correct!') {
         result = await addEmployee(req.body);
     }

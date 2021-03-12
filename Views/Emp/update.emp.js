@@ -7,11 +7,11 @@ form.setAttribute('id', 'updateEmployeeForm');
 form.setAttribute('method', 'POST');
 const addListElement = (type, labelName, value, name, required, readOnly) => {
     if (value === null) {
-        value='';
+        value = '';
     }
     const label = document.createElement('label');
     label.setAttribute('for', `${labelName}`);
-    label.setAttribute('id',`${labelName}`);
+    label.setAttribute('id', `${labelName}`);
     label.textContent = `${labelName}`;
     const input = document.createElement('input');
     input.setAttribute('id', `${labelName}`);
@@ -23,15 +23,15 @@ const addListElement = (type, labelName, value, name, required, readOnly) => {
     input.addEventListener('change', () => {
         console.log('hi');
         input.setAttribute('name', `${name}`);
-        if(name === 'LeavingDate'){
+        if (name === 'LeavingDate') {
             const Status = document.querySelectorAll('#Status');
             console.log('hip hip');
-           for(let i of Status){
-               i.remove();
-           }
+            for (let i of Status) {
+                i.remove();
+            }
         }
     });
-    
+
     console.log('him');
     form.appendChild(label);
     form.appendChild(br.cloneNode());
@@ -40,52 +40,45 @@ const addListElement = (type, labelName, value, name, required, readOnly) => {
 const addSelectElement = (labelName, n, value, textContent, name, required) => {
     const label = document.createElement('label');
     const select = document.createElement('select');
-    label.setAttribute('id',`${labelName}`);
-    select.setAttribute('id', `${labelName}`)
-    if(labelName === `Title`){
+    label.setAttribute('id', `${labelName}`);
+    select.setAttribute('id', `${labelName}`);
+    if (labelName === `Title`) {
         const newValue = [];
         newValue.push(value);
-        if(value === 'Mr'){
+        if (value === 'Mr') {
             newValue.push('Ms');
             newValue.push('Mrs');
-        }
-        else if(value === 'Ms'){
+        } else if (value === 'Ms') {
             newValue.push('Mr');
             newValue.push('Mrs');
-        }
-        else{
+        } else {
             newValue.push('Mr');
             newValue.push('Ms');
         }
         value = newValue;
         textContent = newValue;
-    }
-    else if(labelName === `Status`){
+    } else if (labelName === `Status`) {
         const newValue = [];
         newValue.push(value);
-        if(value === 'Intern'){
+        if (value === 'Intern') {
             newValue.push('Active');
             newValue.push('On bench');
             newValue.push('Terminated');
-        }
-        else if(value === 'Terminated'){
+        } else if (value === 'Terminated') {
             newValue.push('Active');
             newValue.push('Intern');
             newValue.push('On Bench');
-        }
-        else if(value === 'Active'){
+        } else if (value === 'Active') {
             newValue.push('Intern');
             newValue.push('On Bench');
             newValue.push('Terminated');
-        }
-        else{
+        } else {
             newValue.push('Active');
             newValue.push('Intern');
             newValue.push('Terminated');
         }
         value = newValue;
         textContent = newValue;
-
     }
     const option = [];
     for (let i = 0; i < n; i++) {
@@ -101,7 +94,6 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
     select.addEventListener('change', () => {
         console.log('hi');
         select.setAttribute('name', `${name}`);
-        
     });
     label.innerHTML = `${labelName}`;
     form.appendChild(label);
@@ -139,7 +131,7 @@ const updateEmployeeForm = async (id) => {
     addListElement('text', 'First Name', data.FirstName, 'FirstName', 1, 1);
     addListElement('text', 'Middle Name', data.MiddleName, 'MiddleName', 0, 1);
     addListElement('text', 'Last Name', data.LastName, 'LastName', 0, 1);
-    addSelectElement('Title', 3, data.Title,[], 'Title', 1);
+    addSelectElement('Title', 3, data.Title, [], 'Title', 1);
     addListElement('email', 'Email', data.Email, 'Email', 1, 1);
     addListElement('date', 'Joining Date', data.JoiningDate.slice(0, 10), 'JoiningDate', 1, 1);
     addListElement('date', 'Leaving Date', data.LeavingDate === null ? null : data.LeavingDate.slice(0, 10), 'LeavingDate', 0, 0);
@@ -161,8 +153,8 @@ const updateEmployeeForm = async (id) => {
     addSelectElement(
         'Is Address Permanent',
         2,
-        [data.IsPermanent, data.IsPermanent===0 ? 1 : 0],
-        [data.IsPermanent===true ? 'Yes' : 'No',data.IsPermanent===false ? 'Yes' :'No'],
+        [data.IsPermanent, data.IsPermanent === 0 ? 1 : 0],
+        [data.IsPermanent === true ? 'Yes' : 'No', data.IsPermanent === false ? 'Yes' : 'No'],
         'IsPermanent',
         1
     );
@@ -174,14 +166,7 @@ const updateEmployeeForm = async (id) => {
     addListElement('text', 'IFSC', data.IFSC, 'IFSC', 1, 0);
     addListElement('text', 'Branch Name', data.BranchName, 'BranchName', 1, 0);
     addListElement('text', 'PAN', data.PAN, 'PAN', 1, 1);
-    addSelectElement(
-        'Status',
-        4,
-        data.Status,
-        [],
-        'Status',
-        1
-    );
+    addSelectElement('Status', 4, data.Status, [], 'Status', 1);
     const input = document.createElement('input');
     input.setAttribute('name', `id`);
     input.setAttribute('value', `${id}`);
@@ -195,6 +180,10 @@ const updateEmployeeForm = async (id) => {
 };
 submit.addEventListener('click', () => {
     const id = input.value;
-    div.remove();
-    updateEmployeeForm(id);
+    if (id === '') {
+        window.alert('Enter the employee id');
+    } else {
+        div.remove();
+        updateEmployeeForm(id);
+    }
 });
