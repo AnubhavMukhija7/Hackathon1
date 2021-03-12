@@ -24,6 +24,7 @@ const findOneEmployee = async (id) => {
 };
 
 const addEmployee = async (object) => {
+    console.log(object);        
     const insertIntoEmp = `EXEC InsertEmployee
     @Title='${object.Title}',@FirstName='${object.FirstName}',@MiddleName='${object.MiddleName}',@LastName='${object.LastName}',
     @Email='${object.Email}',@Gender='${object.Gender}',@IsBillable='${object.isBillable}',@Status='${object.Status}',@JoiningDate='${object.JoiningDate}',
