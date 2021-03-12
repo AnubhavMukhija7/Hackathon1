@@ -1,6 +1,6 @@
 let data;
-let idArray = [];
-let nameArray = [];
+const idArray = [];
+const nameArray = [];
 const getData = async () => {
     const response = await fetch('http://localhost:3000/overhead/facilities');
     if (response.ok) {
@@ -19,6 +19,7 @@ const createPage = () => {
     form.setAttribute('id', 'addVendorForm');
     form.setAttribute('method', 'POST');
     form.setAttribute('action', 'http://localhost:3000/vendor/addVendor');
+    form.autocomplete='off';
 
     const addListElement = (type, labelName, placeholder, name, required) => {
         const li = document.createElement('div');
@@ -30,7 +31,9 @@ const createPage = () => {
         input.setAttribute('id', `${labelName}`);
         input.setAttribute('type', `${type}`);
         input.setAttribute('name', `${name}`);
-        if (required === 1) input.required = true;
+        if (required === 1){
+            input.required = true;
+        }
         input.style.marginTop = '4px';
         input.setAttribute('placeholder', `${placeholder}`);
         li.appendChild(label);
@@ -72,14 +75,14 @@ const createPage = () => {
     addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
     addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
     addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
-    addSelectElement('Title',  4, ['', 'Mr', 'Ms','Mrs'], ['--Select--', 'Mr', 'Ms','Mrs'], 'Title', 1);
+    addSelectElement('Title', 4, ['', 'Mr', 'Ms','Mrs'], ['--Select--', 'Mr', 'Ms','Mrs'], 'Title', 1);
     addListElement('date', 'Starting Date', '', 'StartDate', 1);
     addListElement('date', 'Leaving Date', '', 'EndDate', 0);
     addListElement('text', 'Street Address 1', 'Your Street Address1', 'StreetAddress1', 1);
     addListElement('text', 'Street Address 2', 'Your Street Address2', 'StreetAddress2', 0);
     addListElement('text', 'City', 'Your City', 'City', 1);
     addListElement('text', 'Postal Code', 'Your Postal Code', 'PostalCode', 1);
-    addListElement('text', 'Distrcit', 'Your District', 'District', 1);
+    addListElement('text', 'District', 'Your District', 'District', 1);
     addListElement('text', 'State', 'Your State', 'State', 1);
     addListElement('text', 'Country', 'Your Country', 'Country', 1);
     addListElement('text', 'Primary Mobile Number', 'Your Mobile Number', 'PrimaryMobile', 1);
