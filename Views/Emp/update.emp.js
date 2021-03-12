@@ -195,6 +195,11 @@ const updateEmployeeForm = async (id) => {
 };
 submit.addEventListener('click', () => {
     const id = input.value;
-    div.remove();
-    updateEmployeeForm(id);
+    if(id === ''){
+        window.alert('Enter the employee id');
+    }
+    else{
+        div.remove();
+        updateEmployeeForm(id);
+    }
 });
