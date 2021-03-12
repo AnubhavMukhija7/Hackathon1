@@ -14,7 +14,9 @@ const addListElement = (type, labelName, placeholder, name, required) => {
     input.setAttribute('id', `${labelName}`);
     input.setAttribute('type', `${type}`);
     input.setAttribute('name', `${name}`);
-    if (required === 1) input.required = true;
+    if (required === 1){
+        input.required = true;
+    }
     input.setAttribute('placeholder', `${placeholder}`);
     form.appendChild(label);
     form.appendChild(input);
@@ -46,12 +48,12 @@ document.body.appendChild(heading);
 addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
 addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
 addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
-addSelectElement('Title', 3, ['', 'Mr', 'Ms'], ['--Select--', 'Mr', 'Ms'], 'Title', 1);
-addSelectElement('Gender', 4, ['', 'M', 'F', 'O'], ['--Select--', 'Male', 'Female', 'Others'], 'Gender', 1);
+addSelectElement('Title', 4, ['', 'Mr', 'Ms','Mrs'], ['--Select--', 'Mr', 'Ms','Mrs'], 'Title', 1);
+addSelectElement('Gender', 4, ['', 'M', 'F', 'O'], ['--Select--', 'Male', 'Female', 'Other'], 'Gender', 1);
 addListElement('email', 'Email', 'Your Email Address', 'Email', 1);
 addListElement('date', 'Joining Date', '', 'JoiningDate', 1);
 addListElement('date', 'Leaving Date', '', 'LeavingDate', 0);
-addSelectElement('Billable', 3, ['', 0, 1], ['--Select--', 'No', 'Yes'], 'isBillable', 1);
+addSelectElement('Billable', 3, ['', 1, 0], ['--Select--', 'Yes', 'No'], 'isBillable', 1);
 addListElement('text', 'Street Address 1', 'Your Street Address1', 'StreetAddress1', 1);
 addListElement('text', 'Street Address 2', 'Your Street Address2', 'StreetAddress2', 0);
 addListElement('text', 'City', 'Your City', 'City', 1);
@@ -59,7 +61,7 @@ addListElement('text', 'Postal Code', 'Your Postal Code', 'PostalCode', 1);
 addListElement('text', 'Distrcit', 'Your District', 'District', 1);
 addListElement('text', 'State', 'Your State', 'State', 1);
 addListElement('text', 'Country', 'Your Country', 'Country', 1);
-addSelectElement('Is Employee Permanent', 3, ['', 0, 1], ['--Select--', 'Yes', 'No'], 'IsPermanent', 1);
+addSelectElement('Is Address Permanent', 3, ['', 1, 0], ['--Select--', 'Yes', 'No'], 'IsPermanent', 1);
 addListElement('tel', 'Office Number', 'Your Office Number', 'Office', 1);
 addListElement('tel', 'Mobile Number', 'Your Mobile Number', 'Mobile', 1);
 addListElement('tel', 'LandLine Number', 'Your LandLine Number', 'LandLine', 0);
@@ -71,8 +73,8 @@ addListElement('text', 'PAN', 'Your Pan Number', 'PAN', 1);
 addSelectElement(
     'Status',
     5,
-    ['', 'Pending', 'Active', 'Terminated', 'On bench'],
-    ['--Select--', 'Pending', 'Active', 'Terminated', 'On bench'],
+    ['', 'Intern', 'Active', 'Terminated', 'On bench'],
+    ['--Select--', 'Intern', 'Active', 'Terminated', 'On bench'],
     'Status',
     1
 );

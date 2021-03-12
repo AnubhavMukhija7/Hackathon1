@@ -158,7 +158,7 @@ const getUniques = async () => {
     return { eMailDetails, panDetails, accDetails, officeDetails };
 };
 
-const getExpenseReport = async (year) => {
+const getExpenseReport = async year => {
     const query = `SELECT * FROM EmployeesCompensationForYear WHERE [Year] = ${year}`;
     const data = (await request.query(query)).recordsets[0];
     return data;
