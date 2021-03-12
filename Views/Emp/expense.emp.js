@@ -50,17 +50,17 @@ const createTableHeading = (keys) => {
 
 const populateTable = () => {
     if (Data.length) {
-    createTableHeading(Object.keys(Data[0]));
-    Data.forEach((data) => {
-        const row = tableEl.insertRow(0);
-        let len = 0;
-        for (const value of Object.values(data)) {
-            const cell = row.insertCell(len);
-            len++;
-            cell.innerHTML = value;
-        }
-        tableEl.appendChild(row);
-    });
+        createTableHeading(Object.keys(Data[0]));
+        Data.forEach((data) => {
+            const row = tableEl.insertRow(0);
+            let len = 0;
+            for (const value of Object.values(data)) {
+                const cell = row.insertCell(len);
+                len++;
+                cell.innerHTML = value;
+            }
+            tableEl.appendChild(row);
+        });
     }
     ctcdata.forEach((data) => {
         const row = tableEl.insertRow(0);
@@ -77,6 +77,9 @@ const populateTable = () => {
 };
 
 submitEl.addEventListener('click', () => {
+    if (inputEl.value === '') {
+        window.alert('Enter the employee id');
+    }
     getData(inputEl.value);
 });
 
