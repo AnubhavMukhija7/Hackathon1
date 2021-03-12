@@ -13,6 +13,7 @@ import {
     findOverheadOfOneEmployeeInTheGivenYear,
     findAllDetailsOfOneEmpoyee,
     getUniques,
+    getExpenseReport,
 } from '../Repository/repo.emp.js';
 
 const validateData = async (data) => {
@@ -107,6 +108,16 @@ const findAllDetailsOfOneEmpoyeeDetails = async (req) => {
     const response = await findAllDetailsOfOneEmpoyee(req.params.id);
     return response;
 };
+
+const getExpenseDetails = async (req) => {
+    const response = await getExpenseReport(req.params.year);
+    let TotalExpense = 0;
+    for (const item of response) {
+        TotalExpense += item.CTC * parseFloat(req.params.per);
+    }
+    return { TotalExpense };
+};
+
 export {
     addEmployeeDetails,
     deleteEmployeeDetails,
@@ -121,4 +132,5 @@ export {
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
     findAllDetailsOfOneEmpoyeeDetails,
+    getExpenseDetails,
 };

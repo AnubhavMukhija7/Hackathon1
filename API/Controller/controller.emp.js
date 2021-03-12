@@ -13,6 +13,7 @@ import {
     findCtcOfOneEmployeeInTheGivenYearDetails,
     findOverheadOfOneEmployeeInTheGivenYearDetails,
     findAllDetailsOfOneEmpoyeeDetails,
+    getExpenseDetails,
 } from '../Service/emp_service.js';
 
 //employee
@@ -69,8 +70,11 @@ const findAllDetailsOfOneEmpoyeeController = async (req) => {
     const data = await findAllDetailsOfOneEmpoyeeDetails(req);
     return data;
 };
-//export
-//export { addVendor, updateVendor, deleteVendor, findAllVendor, findOneVendor};
+
+const getExpenseDetailsController = async (req) => {
+    return await getExpenseDetails(req);
+};
+
 export {
     addEmployeeController,
     deleteEmployeeController,
@@ -85,4 +89,5 @@ export {
     findCtcOfOneEmployeeInTheGivenYearController,
     findOverheadOfOneEmployeeInTheGivenYearController,
     findAllDetailsOfOneEmpoyeeController,
+    getExpenseDetailsController,
 };
