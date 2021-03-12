@@ -72,7 +72,7 @@ const createPage = () => {
     addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
     addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
     addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
-    addSelectElement('Title', 3, ['', 'Mr', 'Ms'], ['--Select--', 'Mr', 'Ms'], 'Title', 1);
+    addSelectElement('Title',  4, ['', 'Mr', 'Ms','Mrs'], ['--Select--', 'Mr', 'Ms','Mrs'], 'Title', 1);
     addListElement('date', 'Starting Date', '', 'StartDate', 1);
     addListElement('date', 'Leaving Date', '', 'EndDate', 0);
     addListElement('text', 'Street Address 1', 'Your Street Address1', 'StreetAddress1', 1);

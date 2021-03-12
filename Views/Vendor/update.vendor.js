@@ -30,6 +30,24 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
     const label = document.createElement('label');
     const select = document.createElement('select');
     select.setAttribute('id', `${labelName}`);
+    if(labelName === `Title`){
+        const newValue = [];
+        newValue.push(value);
+        if(value === 'Mr'){
+            newValue.push('Ms');
+            newValue.push('Mrs');
+        }
+        else if(value === 'Ms'){
+            newValue.push('Mr');
+            newValue.push('Mrs');
+        }
+        else{
+            newValue.push('Mr');
+            newValue.push('Ms');
+        }
+        value = newValue;
+        textContent = newValue;
+    }
     const option = [];
     for (let i = 0; i < n; i++) {
         option[i] = document.createElement('option');
@@ -45,9 +63,12 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
         select.setAttribute('name', `${name}`);
     });
     form.appendChild(label);
+    form.appendChild(label);
     form.appendChild(select);
+    form.appendChild(br.cloneNode());
     label.innerHTML = `${labelName}`;
 };
+const form1 = document.createElement('form');
 const div = document.createElement('div');
 const p = document.createElement('p');
 p.innerHTML = 'Enter Your Vendor Id :';
@@ -55,14 +76,17 @@ p.style.float = 'left';
 const input = document.createElement('input');
 input.style.margin = '14px';
 input.setAttribute('type', 'number');
-const submit = document.createElement('button');
+const submit = document.createElement('input');
 submit.type = 'submit';
 submit.textContent = 'Submit';
+input.required = true;
+console.log(input.required);
 div.appendChild(p);
 div.appendChild(input);
 div.appendChild(submit);
 div.style.margin = '30px';
-document.body.appendChild(div);
+form1.appendChild(div);
+document.body.appendChild(form1);
 const getData = async (id) => {
     let data = await fetch(`http://localhost:3000/vendor/allVendorDetails/id=${id}`);
     data = await data.json();
@@ -77,7 +101,7 @@ const updateEmployeeForm = async (id) => {
     addListElement('text', 'First Name', data.FirstName, 'FirstName', 1, 1);
     addListElement('text', 'Middle Name', data.MiddleName, 'MiddleName', 0, 1);
     addListElement('text', 'Last Name', data.LastName, 'LastName', 0, 1);
-    addSelectElement('Title', 2, ['Mr', 'Ms'], ['Mr', 'Ms'], 'Title', 1);
+    addSelectElement('Title', 3, data.Title,[], 'Title', 1);
     addListElement('date', 'Joining Date', data.StartDate.slice(0, 10), 'StartDate', 0, 1);
     addListElement('date', 'Leaving Date', data.EndDate === null ? null : data.EndDate.slice(0, 10), 'EndDate', 0, 0);
     addListElement('text', 'Street Address 1', data.StreetAddress1, 'StreetAddress1', 1, 0);
@@ -108,6 +132,11 @@ const updateEmployeeForm = async (id) => {
 };
 submit.addEventListener('click', () => {
     const id = input.value;
-    div.remove();
-    updateEmployeeForm(id);
+    if(id===''){
+        window.alert('Enter the Vendor id');
+    }
+    else{
+        form1.remove();
+        updateEmployeeForm(id);
+    }
 });
