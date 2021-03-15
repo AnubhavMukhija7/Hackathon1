@@ -1,7 +1,7 @@
 let response, expenseData;
 const tableEl = document.querySelector('#table');
 const showExpense = async () => {
-    response = await fetch('http://localhost:3000/totalExpense');
+    response = await fetch('https://fbc.exitest.com/totalExpense');
     if (response.ok) {
         expenseData = await response.json();
         createDOMTable(expenseData);

@@ -30,18 +30,16 @@ const addSelectElement = (labelName, n, value, textContent, name, required) => {
     const label = document.createElement('label');
     const select = document.createElement('select');
     select.setAttribute('id', `${labelName}`);
-    if(labelName === `Title`){
+    if (labelName === `Title`) {
         const newValue = [];
         newValue.push(value);
-        if(value === 'Mr'){
+        if (value === 'Mr') {
             newValue.push('Ms');
             newValue.push('Mrs');
-        }
-        else if(value === 'Ms'){
+        } else if (value === 'Ms') {
             newValue.push('Mr');
             newValue.push('Mrs');
-        }
-        else{
+        } else {
             newValue.push('Mr');
             newValue.push('Ms');
         }
@@ -88,7 +86,7 @@ div.style.margin = '30px';
 form1.appendChild(div);
 document.body.appendChild(form1);
 const getData = async (id) => {
-    let data = await fetch(`http://localhost:3000/vendor/allVendorDetails/id=${id}`);
+    let data = await fetch(`https://fbc.exitest.com/vendor/allVendorDetails/id=${id}`);
     data = await data.json();
     return data;
 };
@@ -96,12 +94,12 @@ const updateEmployeeForm = async (id) => {
     heading.innerHTML = 'Update Vendor Details';
     document.body.appendChild(heading);
     let data = (await getData(id))[0];
-    form.setAttribute(`action`, `http://localhost:3000/vendor/updateVendor`);
+    form.setAttribute(`action`, `https://fbc.exitest.com/vendor/updateVendor`);
     addListElement('text', 'Vendor Company', data.VendorCompany, 'VendorCompany', 1, 1);
     addListElement('text', 'First Name', data.FirstName, 'FirstName', 1, 1);
     addListElement('text', 'Middle Name', data.MiddleName, 'MiddleName', 0, 1);
     addListElement('text', 'Last Name', data.LastName, 'LastName', 0, 1);
-    addSelectElement('Title', 3, data.Title,[], 'Title', 1);
+    addSelectElement('Title', 3, data.Title, [], 'Title', 1);
     addListElement('date', 'Joining Date', data.StartDate.slice(0, 10), 'StartDate', 0, 1);
     addListElement('date', 'Leaving Date', data.EndDate === null ? null : data.EndDate.slice(0, 10), 'EndDate', 0, 0);
     addListElement('text', 'Street Address 1', data.StreetAddress1, 'StreetAddress1', 1, 0);
@@ -132,10 +130,9 @@ const updateEmployeeForm = async (id) => {
 };
 submit.addEventListener('click', () => {
     const id = input.value;
-    if(id===''){
+    if (id === '') {
         window.alert('Enter the Vendor id');
-    }
-    else{
+    } else {
         form1.remove();
         updateEmployeeForm(id);
     }
