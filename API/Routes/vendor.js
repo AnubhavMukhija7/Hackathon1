@@ -63,7 +63,7 @@ router.get('/:id/:facility/earning/:year', async (req, res) => {
 router.post('/addFacility', async (req, res) => {
     await addFacilityController(req.body);
     if (req.body.Choice === 'YES') {
-        res.redirect('http://localhost:3000/Vendor/add.vendor.html');
+        res.redirect('http://fbc.exitest.com/Vendor/add.vendor.html');
     }
 
     res.status(200).send('Facility Added!');
@@ -90,8 +90,5 @@ router.get('/allVendorDetails/id=:id',async(req,res)=>{
     const result = await findAllDetailsOfOneVendorController(req);
     res.send(result);
 })
-
-
-
 
 export default router;
