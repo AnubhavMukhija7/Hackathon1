@@ -5,7 +5,7 @@ heading.style.textAlign = 'centre';
 const form = document.createElement('form');
 form.setAttribute('id', 'addEmployeeForm');
 form.setAttribute('method', 'POST');
-form.setAttribute('action', 'http://localhost:3000/employee/add');
+form.setAttribute('action', 'https://fbc.exitest.com/employee/add');
 const addListElement = (type, labelName, placeholder, name, required) => {
     const label = document.createElement('label');
     label.setAttribute('for', `${labelName}`);
@@ -14,7 +14,7 @@ const addListElement = (type, labelName, placeholder, name, required) => {
     input.setAttribute('id', `${labelName}`);
     input.setAttribute('type', `${type}`);
     input.setAttribute('name', `${name}`);
-    if (required === 1){
+    if (required === 1) {
         input.required = true;
     }
     input.setAttribute('placeholder', `${placeholder}`);
@@ -48,7 +48,7 @@ document.body.appendChild(heading);
 addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
 addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
 addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
-addSelectElement('Title', 4, ['', 'Mr', 'Ms','Mrs'], ['--Select--', 'Mr', 'Ms','Mrs'], 'Title', 1);
+addSelectElement('Title', 4, ['', 'Mr', 'Ms', 'Mrs'], ['--Select--', 'Mr', 'Ms', 'Mrs'], 'Title', 1);
 addSelectElement('Gender', 4, ['', 'M', 'F', 'O'], ['--Select--', 'Male', 'Female', 'Others'], 'Gender', 1);
 addListElement('email', 'Email', 'Your Email Address', 'Email', 1);
 addListElement('date', 'Joining Date', '', 'JoiningDate', 1);
