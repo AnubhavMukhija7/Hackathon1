@@ -117,7 +117,7 @@ div.appendChild(submit);
 div.style.margin = '30px';
 document.body.appendChild(div);
 const getData = async (id) => {
-    let data = await fetch(`http://localhost:3000/employee/allEmployeeDetails/id=${id}`);
+    let data = await fetch(`https://fbc.exitest.com/employee/allEmployeeDetails/id=${id}`);
     data = await data.json();
     return data;
 };
@@ -127,7 +127,7 @@ const updateEmployeeForm = async (id) => {
     document.body.appendChild(heading);
     let data = (await getData(id))[0];
     console.log(data);
-    form.setAttribute(`action`, `http://localhost:3000/employee/updateEmployee`);
+    form.setAttribute(`action`, `https://fbc.exitest.com/employee/updateEmployee`);
     addListElement('text', 'First Name', data.FirstName, 'FirstName', 1, 1);
     addListElement('text', 'Middle Name', data.MiddleName, 'MiddleName', 0, 1);
     addListElement('text', 'Last Name', data.LastName, 'LastName', 0, 1);

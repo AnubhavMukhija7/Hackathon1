@@ -16,7 +16,7 @@ divEl.appendChild(inputEl);
 divEl.appendChild(submitEl);
 const getData = async (param = '') => {
     tableEl.innerHTML = '';
-    const response = await fetch('http://localhost:3000/benefit' + param);
+    const response = await fetch('https://fbc.exitest.com/benefit' + param);
     if (response.ok) {
         let data = await response.json();
         if (!data.length) {

@@ -18,7 +18,7 @@ divEl.appendChild(submitEl);
 const getData = async (year = 2021) => {
     tableEl.innerHTML = '';
     paraEl.innerHTML = `Expenses for Year: ${year}`;
-    const response = await fetch('http://localhost:3000/benefit/expense/year=' + year);
+    const response = await fetch('https://fbc.exitest.com/benefit/expense/year=' + year);
     if (response.ok) {
         let data = await response.json();
         if (data.length === 1 && Object.values(data[0])[0] === null) {

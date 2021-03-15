@@ -8,7 +8,7 @@ divEl.appendChild(paraEl);
 const getData = async (year = 2021, per = 15) => {
     tableEl.innerHTML = '';
     // paraEl.innerHTML = `Expenses for Year: ${year}`;
-    const response = await fetch(`http://localhost:3000/employee/expenseDetails/year=${year}/profit=${per}`);
+    const response = await fetch(`https://fbc.exitest.com/employee/expenseDetails/year=${year}/profit=${per}`);
     if (response.ok) {
         let data = await response.json();
         let newData = [];

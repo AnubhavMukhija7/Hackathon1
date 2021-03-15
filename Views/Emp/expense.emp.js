@@ -19,8 +19,8 @@ let ctcdata, Data;
 const getData = async (eID, year = 2021) => {
     tableEl.innerHTML = '';
     paraEl.innerHTML = `Expenses for EmployeeID: ${eID}`;
-    const response = await fetch(`http://localhost:3000/benefit/employee/${eID}/expense`);
-    const ctcresponse = await fetch(`http://localhost:3000/employee/compensation/year=${year}/id=${eID}`);
+    const response = await fetch(`https://fbc.exitest.com/benefit/employee/${eID}/expense`);
+    const ctcresponse = await fetch(`https://fbc.exitest.com/employee/compensation/year=${year}/id=${eID}`);
     if (response.ok) {
         Data = await response.json();
         ctcdata = await ctcresponse.json();

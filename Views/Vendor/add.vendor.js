@@ -2,7 +2,7 @@ let data;
 const idArray = [];
 const nameArray = [];
 const getData = async () => {
-    const response = await fetch('http://localhost:3000/overhead/facilities');
+    const response = await fetch('https://fbc.exitest.com/overhead/facilities');
     if (response.ok) {
         data = await response.json();
     } else {
@@ -18,8 +18,8 @@ const createPage = () => {
     const form = document.createElement('form');
     form.setAttribute('id', 'addVendorForm');
     form.setAttribute('method', 'POST');
-    form.setAttribute('action', 'http://localhost:3000/vendor/addVendor');
-    form.autocomplete='off';
+    form.setAttribute('action', 'https://fbc.exitest.com/vendor/addVendor');
+    form.autocomplete = 'off';
 
     const addListElement = (type, labelName, placeholder, name, required) => {
         const li = document.createElement('div');
@@ -31,7 +31,7 @@ const createPage = () => {
         input.setAttribute('id', `${labelName}`);
         input.setAttribute('type', `${type}`);
         input.setAttribute('name', `${name}`);
-        if (required === 1){
+        if (required === 1) {
             input.required = true;
         }
         input.style.marginTop = '4px';
@@ -75,7 +75,7 @@ const createPage = () => {
     addListElement('text', 'First Name', 'Your First Name', 'FirstName', 1);
     addListElement('text', 'Middle Name', 'Your Middle Name', 'MiddleName', 0);
     addListElement('text', 'Last Name', 'Your Last Name', 'LastName', 0);
-    addSelectElement('Title', 4, ['', 'Mr', 'Ms','Mrs'], ['--Select--', 'Mr', 'Ms','Mrs'], 'Title', 1);
+    addSelectElement('Title', 4, ['', 'Mr', 'Ms', 'Mrs'], ['--Select--', 'Mr', 'Ms', 'Mrs'], 'Title', 1);
     addListElement('date', 'Starting Date', '', 'StartDate', 1);
     addListElement('date', 'Leaving Date', '', 'EndDate', 0);
     addListElement('text', 'Street Address 1', 'Your Street Address1', 'StreetAddress1', 1);
