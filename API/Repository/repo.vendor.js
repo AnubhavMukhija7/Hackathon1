@@ -15,8 +15,12 @@ const getVendor = async id => {
 };
 
 const getAllVendors = async () => {
-    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,Facilities.FacilityName FROM
-    Vendor INNER JOIN Facilities ON
+    const query = `SELECT Vendor.VendorId,VendorName.FirstName,VendorName.LastName,
+    VendorMobile.PrimaryMobile,Vendor.VendorCompany,
+    Facilities.FacilityName FROM
+    Vendor INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
+    VendorName.VendorId = VendorMobile.VendorId INNER JOIN Facilities ON
     Vendor.FacilityId = Facilities.FacilityId`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
