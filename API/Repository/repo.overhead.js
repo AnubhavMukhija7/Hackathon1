@@ -48,4 +48,14 @@ const getAllFacilities = async () => {
     return data.recordsets[0];
 };
 
-export { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getAllFacilities };
+const updateOverhead = async(body) => {
+  const query = `UPDATE Facilities
+  SET
+  IsActive = ${body.IsActive},
+  FacilityDescription = '${body.FacilityDescription}'
+  where FacilityId=${body.FacilityId}`;
+  await request.query(query);
+  return 'Record Updated!';
+};
+
+export { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getAllFacilities, updateOverhead };
