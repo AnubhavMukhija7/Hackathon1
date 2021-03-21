@@ -11,6 +11,8 @@ import {
     empExpenseForParticularBenefitController,
     benefitExpenseController,
     benefitExpenseForGivenYearController,
+    updateBenefitController,
+    getDataController
 } from '../Controller/controller.benefits.js';
 
 const router = express.Router();
@@ -73,6 +75,15 @@ router.get('/expense/:benefitName', async (req, res) => {
 router.get('/expense/:benefitName/:year', async (req, res) => {
     const result = await benefitExpenseForGivenYearController(req.params.benefitName, req.params.year);
     res.send(result);
+});
+
+router.get('/getData/id=:id', async(req, res)=>{
+  console.log('2');
+    res.send(await getDataController(req));
+});
+
+router.post('/update', async (req, res)=>{
+    res.send(await updateBenefitController(req));
 });
 
 export default router;

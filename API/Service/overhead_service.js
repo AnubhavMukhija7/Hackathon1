@@ -1,4 +1,4 @@
-import { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getAllFacilities } from '../Repository/repo.overhead.js';
+import { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getAllFacilities, updateOverhead } from '../Repository/repo.overhead.js';
 
 const getOverHeadDetails = () => {
     return getOverHead();
@@ -20,4 +20,8 @@ const getAllFacilitiesDetails = () => {
     return getAllFacilities();
 };
 
-export { getOverHeadDetails, getOverHeadWithAmountDetails, getOverHeadForFacilityDetails, getVendorForFacilityDetails, getAllFacilitiesDetails };
+const updateOverheadDetails = async(body)=>{
+  return await updateOverhead(body);
+}
+
+export { getOverHeadDetails, getOverHeadWithAmountDetails, getOverHeadForFacilityDetails, getVendorForFacilityDetails, getAllFacilitiesDetails, updateOverheadDetails };

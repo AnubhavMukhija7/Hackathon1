@@ -9,6 +9,8 @@ import {
     empExpenseForParticularBenefit,
     benefitExpense,
     benefitExpenseForGivenYear,
+    updateBenefit,
+    getData
 } from '../Repository/repo.benefit.js';
 
 const getAllBenefitDetails = async () => {
@@ -50,6 +52,14 @@ const benefitExpenseForGivenYearDetails = async (benefit, year) => {
     return await benefitExpenseForGivenYear(benefit, year);
 };
 
+const updateBenefitDetails = async(body)=>{
+  return await updateBenefit(body);
+}
+
+const getDataDetails = async(id)=>{
+  return await getData(id);
+}
+
 export {
     getAllBenefitDetails,
     getTotalExpenseDetails,
@@ -61,4 +71,6 @@ export {
     empExpenseForParticularBenefitDetails,
     benefitExpenseDetails,
     benefitExpenseForGivenYearDetails,
+    updateBenefitDetails,
+    getDataDetails
 };

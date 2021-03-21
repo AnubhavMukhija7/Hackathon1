@@ -52,7 +52,6 @@ router.post('/add', async (req, res) => {
 
 // update bank account of employee
 router.post(`/updateEmployee`, async (req, res) => {
-    console.log('in your eyes');
     res.send(await updateEmployeeController(req));
 });
 
