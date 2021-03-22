@@ -13,5 +13,4 @@ router.get('/:year', async (req, res) => {
     const result = await totalExpenseForYearController(req.params.year);
     res.send(result);
 });
-
 export default router;

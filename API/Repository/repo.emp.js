@@ -37,7 +37,7 @@ const addEmployee = async (object) => {
 
 //------NOT USING RN-------
 const deleteEmployee = async (id) => {
-    const query = `Update  Employee 
+    const query = `Update  Employee
                 set [Status] = 'Terminated'
                 where Employee.EmpId = ${id}`;
     await request.query(query);
@@ -50,7 +50,7 @@ const findAllEmployeeInTheGivenYear = async (year) => {
     INNER JOIN EmployeeContact ON
     Employee.EmpId = EmployeeContact.EmpId
     INNER JOIN EmployeeAddress ON
-    EmployeeContact.EmpId = EmployeeAddress.EmpId 
+    EmployeeContact.EmpId = EmployeeAddress.EmpId
     where ((YEAR(Employee.LeavingDate) >= ${year} OR YEAR(Employee.LeavingDate) Is NULL) AND YEAR(Employee.JoiningDate) <= ${year})`);
     return convertToModel(data.recordsets[0]);
 };
@@ -164,6 +164,15 @@ const getExpenseReport = async year => {
     return data;
 };
 
+const getOverheadAmount = async (year) => {
+    const query = `Select sum(FacilityAvailed.Amount) As OverheadCost
+    from FacilityAvailed INNER JOIN Facilities ON
+    FacilityAvailed.FacilityId = Facilities.FacilityId
+    where Facilities.FacilityType = 'O' and FacilityAvailed.YEAR = ${year}`;
+    const data = (await request.query(query)).recordset[0]['OverheadCost'];
+    return data;
+}
+
 export {
     findOneEmployee,
     addEmployee,
@@ -180,4 +189,5 @@ export {
     findAllDetailsOfOneEmpoyee,
     getUniques,
     getExpenseReport,
+    getOverheadAmount
 };

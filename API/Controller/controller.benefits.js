@@ -10,7 +10,7 @@ import {
     benefitExpenseDetails,
     benefitExpenseForGivenYearDetails,
     updateBenefitDetails,
-    getDataDetails
+    getDataDetails,
 } from '../Service/benefit_service.js';
 
 const getAllBenefitController = () => {
@@ -47,13 +47,13 @@ const benefitExpenseForGivenYearController = async (benefit, year) => {
     return await benefitExpenseForGivenYearDetails(benefit, year);
 };
 
-const updateBenefitController = async(req) =>{
-  return await updateBenefitDetails(req.body);
-}
+const updateBenefitController = async (req) => {
+    return await updateBenefitDetails(req.body);
+};
 
-const getDataController = async(req) =>{
-  return await getDataDetails(req.params.id);
-}
+const getDataController = async (req) => {
+    return await getDataDetails(req.params.id);
+};
 
 export {
     getAllBenefitController,
@@ -67,5 +67,5 @@ export {
     benefitExpenseController,
     benefitExpenseForGivenYearController,
     updateBenefitController,
-    getDataController
+    getDataController,
 };
