@@ -21,7 +21,6 @@ const showExpense = async () => {
 };
 
 const addFacility = async () => {
-    console.log('hhha');
     location.href = '../Benefit/add.benefit.html';
 };
 

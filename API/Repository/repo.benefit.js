@@ -89,7 +89,7 @@ const benefitExpenseForGivenYear = async (benefit, year) => {
     return convertToModel(data.recordsets[0]);
 };
 
-const updateBenefit = async(body) => {
+const updateBenefit = async (body) => {
     const query = `UPDATE Facilities
     SET
     IsActive = ${body.IsActive},
@@ -99,11 +99,11 @@ const updateBenefit = async(body) => {
     return 'Record Updated!';
 };
 
-const getData = async(id) =>{
-  const query = `Select FacilityId, FacilityName, FacilityDescription, IsActive from Facilities where FacilityId = ${id}`;
-  const data = await request.query(query);
-  return convertToModel(data.recordsets[0]);
-}
+const getData = async (id) => {
+    const query = `Select FacilityId, FacilityName, FacilityDescription, IsActive from Facilities where FacilityId = ${id}`;
+    const data = await request.query(query);
+    return convertToModel(data.recordsets[0]);
+};
 
 export {
     getAllBenefit,
@@ -117,5 +117,5 @@ export {
     benefitExpense,
     benefitExpenseForGivenYear,
     updateBenefit,
-    getData
+    getData,
 };

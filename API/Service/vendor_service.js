@@ -1,4 +1,3 @@
-import { findAllDetailsOfOneVendorController } from '../Controller/controller.vendor.js';
 import {
     getVendor,
     getAllVendors,
