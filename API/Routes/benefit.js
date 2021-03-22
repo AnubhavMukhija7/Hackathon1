@@ -12,7 +12,7 @@ import {
     benefitExpenseController,
     benefitExpenseForGivenYearController,
     updateBenefitController,
-    getDataController
+    getDataController,
 } from '../Controller/controller.benefits.js';
 
 const router = express.Router();
@@ -77,12 +77,11 @@ router.get('/expense/:benefitName/:year', async (req, res) => {
     res.send(result);
 });
 
-router.get('/getData/id=:id', async(req, res)=>{
-  console.log('2');
+router.get('/getData/id=:id', async (req, res) => {
     res.send(await getDataController(req));
 });
 
-router.post('/update', async (req, res)=>{
+router.post('/update', async (req, res) => {
     res.send(await updateBenefitController(req));
 });
 
