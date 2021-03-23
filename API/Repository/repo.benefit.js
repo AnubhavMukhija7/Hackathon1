@@ -18,12 +18,15 @@ const getTotalExpense = async () => {
 };
 
 const getTotalExpenseForGivenYear = async (year) => {
-    const query = `Select sum(FacilityAvailed.Amount) as Amount
+    const query = `Select Sum(FacilityAvailed.Amount) as Amount
     from Facilities
     INNER JOIN FacilityAvailed ON
     FacilityAvailed.FacilityId = Facilities.FacilityId
     where FacilityAvailed.[Year] = ${year} AND Facilities.IsActive = ${1} AND Facilities.FacilityType = 'B'`;
     const data = await request.query(query);
+    if (data.recordset[0].Amount === null) {
+        return [];
+    }
     return convertToModel(data.recordsets[0]);
 };
 

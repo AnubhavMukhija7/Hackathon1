@@ -14,7 +14,7 @@ import {
     findAllDetailsOfOneEmpoyee,
     getUniques,
     getExpenseReport,
-    getOverheadAmount
+    getOverheadAmount,
 } from '../Repository/repo.emp.js';
 
 const validateData = async (data) => {
