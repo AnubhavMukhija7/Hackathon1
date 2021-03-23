@@ -36,8 +36,8 @@ router.get('/:benefitName/:year/employee', async (req, res) => {
 });
 
 // Expense due to benefits for a particular emp
-router.get('/employee/:id/expense', async (req, res) => {
-    const result = await benefitExpenseForEmpController(parseInt(req.params.id));
+router.get('/employee/:id/:year/expense', async (req, res) => {
+    const result = await benefitExpenseForEmpController(parseInt(req.params.id), parseInt(req.params.year));
     res.send(result);
 });
 

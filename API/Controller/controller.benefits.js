@@ -28,8 +28,8 @@ const getEmpsForBenefitController = (benefit) => {
 const getEmpsForBenefitForGivenYearController = (benefit, year) => {
     return getEmpsForBenefitForGivenYearDetails(benefit, year);
 };
-const benefitExpenseForEmpController = (id) => {
-    return benefitExpenseForEmpDetails(id);
+const benefitExpenseForEmpController = (id, year) => {
+    return benefitExpenseForEmpDetails(id, year);
 };
 
 const benefitAvailedController = (id) => {
