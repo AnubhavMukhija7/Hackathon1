@@ -33,8 +33,8 @@ const getEmpsForBenefitForGivenYearDetails = async (benefit, year) => {
     return await getEmpsForBenefitForGivenYear(benefit, year);
 };
 
-const benefitExpenseForEmpDetails = async (id) => {
-    return await benefitExpenseForEmp(id);
+const benefitExpenseForEmpDetails = async (id, year) => {
+    return await benefitExpenseForEmp(id, year);
 };
 
 const benefitAvailedDetails = async (id) => {

@@ -46,11 +46,11 @@ const getEmpsForBenefitForGivenYear = async (benefit, year) => {
     return convertToModel(data.recordsets[0]);
 };
 
-const benefitExpenseForEmp = async (id) => {
+const benefitExpenseForEmp = async (id, year) => {
     const query = `Select FacilityName,  SUM(FacilityAvailed.Amount) as Amount from Facilities
     INNER JOIN FacilityAvailed ON
     Facilities.FacilityId = FacilityAvailed.FacilityId
-    where Facilities.FacilityType = 'B' and AvailedFor = ${id} and [Year] = YEAR(GETDATE())
+    where Facilities.FacilityType = 'B' and AvailedFor = ${id} and [Year] = ${year}
     Group By FacilityName`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
