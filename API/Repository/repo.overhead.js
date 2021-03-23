@@ -9,12 +9,15 @@ const getOverHead = async () => {
 };
 
 const getOverHeadWithAmount = async (year) => {
-    const query = `Select sum(FacilityAvailed.Amount) as Amount
+    const query = `Select SUM(FacilityAvailed.Amount) as Amount
     from Facilities
     INNER JOIN FacilityAvailed ON
     FacilityAvailed.FacilityId = Facilities.FacilityId
     where FacilityAvailed.[Year] = ${year} AND Facilities.IsActive = ${1} AND Facilities.FacilityType = 'O'`;
     const data = await request.query(query);
+    if (data.recordset[0].Amount === null) {
+        return [];
+    }
     return convertToModel(data.recordsets[0]);
 };
 
@@ -48,4 +51,14 @@ const getAllFacilities = async () => {
     return data.recordsets[0];
 };
 
-export { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getAllFacilities };
+const updateOverhead = async (body) => {
+    const query = `UPDATE Facilities
+    SET
+    IsActive = ${body.IsActive},
+    FacilityDescription = '${body.FacilityDescription}'
+    where FacilityId=${body.FacilityId}`;
+    await request.query(query);
+    return 'Record Updated!';
+};
+
+export { getOverHead, getOverHeadWithAmount, getOverHeadForFacility, getVendorForFacility, getAllFacilities, updateOverhead };

@@ -6,6 +6,7 @@ import {
     getOverHeadForFacilityController,
     getVendorForFacilityController,
     getAllFacilitiesController,
+    updateOverheadController
 } from '../Controller/controller.overhead.js';
 
 const router = express.Router();
@@ -39,6 +40,10 @@ router.get('/:facility/vendors/:year', async (req, res) => {
 router.get('/facilities', async (req, res) => {
     const result = await getAllFacilitiesController();
     res.send(result);
+});
+
+router.post('/update', async (req, res)=>{
+    res.send(await updateOverheadController(req));
 });
 
 export default router;

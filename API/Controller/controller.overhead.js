@@ -4,6 +4,7 @@ import {
     getOverHeadForFacilityDetails,
     getVendorForFacilityDetails,
     getAllFacilitiesDetails,
+    updateOverheadDetails
 } from '../Service/overhead_service.js';
 
 const getOverHeadController = () => {
@@ -25,10 +26,15 @@ const getAllFacilitiesController = () => {
     return getAllFacilitiesDetails();
 };
 
+const updateOverheadController = async(req) =>{
+  return await updateOverheadDetails(req.body);
+}
+
 export {
     getOverHeadController,
     getOverHeadWithAmountController,
     getOverHeadForFacilityController,
     getVendorForFacilityController,
     getAllFacilitiesController,
+    updateOverheadController
 };

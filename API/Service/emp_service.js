@@ -14,6 +14,7 @@ import {
     findAllDetailsOfOneEmpoyee,
     getUniques,
     getExpenseReport,
+    getOverheadAmount,
 } from '../Repository/repo.emp.js';
 
 const validateData = async (data) => {
@@ -111,7 +112,8 @@ const findAllDetailsOfOneEmpoyeeDetails = async (req) => {
 
 const getExpenseDetails = async (req) => {
     const response = await getExpenseReport(req.params.year);
-    let TotalExpense = 0;
+    const overHeadAmount = await getOverheadAmount(req.params.year);
+    let TotalExpense = overHeadAmount;
     for (const item of response) {
         TotalExpense += item.CTC * parseFloat(req.params.per);
     }

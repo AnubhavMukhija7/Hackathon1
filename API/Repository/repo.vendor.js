@@ -15,8 +15,12 @@ const getVendor = async id => {
 };
 
 const getAllVendors = async () => {
-    const query = `SELECT Vendor.VendorId,Vendor.VendorCompany,Facilities.FacilityName FROM
-    Vendor INNER JOIN Facilities ON
+    const query = `SELECT Vendor.VendorId,VendorName.FirstName,VendorName.LastName,
+    VendorMobile.PrimaryMobile,Vendor.VendorCompany,
+    Facilities.FacilityName FROM
+    Vendor INNER JOIN VendorName ON
+    Vendor.VendorId = VendorName.VendorId INNER JOIN VendorMobile ON
+    VendorName.VendorId = VendorMobile.VendorId INNER JOIN Facilities ON
     Vendor.FacilityId = Facilities.FacilityId`;
     const data = await request.query(query);
     return convertToModel(data.recordsets[0]);
@@ -55,7 +59,7 @@ const getVendorsEarningForFacility = async (facility, year) => {
     VendorName.VendorId = VendorMobile.VendorId INNER JOIN VendorPayment ON
     VendorMobile.VendorId = VendorPayment.VendorId where Vendor.EndDate Is NULL
     and Facilities.FacilityName = '${facility}' and Year = ${year}
-    group by 
+    group by
     Vendor.VendorId,Vendor.VendorCompany, Facilities.FacilityName,
     VendorName.FirstName,VendorMobile.PrimaryMobile,VendorPayment.[Year]`;
     const data = await request.query(query);
@@ -86,7 +90,8 @@ const vendorEarningForFacilityInYear = async (id, facility, year) => {
     return convertToModel(data.recordsets[0]);
 };
 
-const addFacility = async object => {
+const addFacility = async (object) => {
+  console.log(object);
     const insertIntoFacilities = `Insert into Facilities(FacilityName,FacilityDescription,IsActive,FacilityType)
                             Values('${object.FacilityName}','${object.FacilityDescription}',1,'${object.FacilityType}')`;
     await request.query(insertIntoFacilities);
